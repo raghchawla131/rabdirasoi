@@ -2,10 +2,12 @@ export default function Navbar() {
   return (
     <>
       <header>
-        <h1 className="logo">Logo</h1>
-        <input type="checkbox" id='nav-toggle' className='nav-toggle'/>
-        <label htmlFor="nav-toggle" className='nav-toggle-label'>
-          <span><ion-icon name="menu-outline"></ion-icon></span>
+        <h1 className="logo">Rab Di Rasoi</h1>
+        <input type="checkbox" id="nav-toggle" className="nav-toggle" />
+        <label htmlFor="nav-toggle" className="nav-toggle-label">
+          <span>
+            <ion-icon name="menu-outline"></ion-icon>
+          </span>
         </label>
         <nav>
           <ul>
@@ -23,6 +25,7 @@ export default function Navbar() {
             </li>
           </ul>
         </nav>
+        <hr />
       </header>
     </>
   );
