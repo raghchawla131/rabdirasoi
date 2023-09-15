@@ -2,7 +2,7 @@ export default function Navbar() {
   return (
     <>
       <header>
-        <h1 className="logo">Rab Di Rasoi</h1>
+        <h1 className="logo">Logo</h1>
         <input type="checkbox" id="nav-toggle" className="nav-toggle" />
         <label htmlFor="nav-toggle" className="nav-toggle-label">
           <span>
