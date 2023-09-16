@@ -7,10 +7,8 @@ export default function Home() {
   return (
     <div id="home">
       <div className="page-1">
-        <div className="image-pair">
-          <img className="image-pair-first" src={tempImg} alt="" />
-          <img className="image-pair-second" src={tempImg} alt="" />
-        </div>
+        <img className="image-pair-first" src={tempImg} alt="" />
+        <img className="image-pair-second" src={tempImg} alt="" />
         <div className="shop-now-content">
           <h1>DESSERTS DELIVERED TO YOUR DOOR</h1>
           <p>
@@ -22,13 +20,13 @@ export default function Home() {
           </p>
           <a href="j">SHOP NOW</a>
         </div>
-        <div className="infinite-scroll">
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        </div>
+      </div>
+      <div className="infinite-scroll">
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
       </div>
       <div className="page-2">
         <div className="horizontal-scroller-header">
@@ -64,10 +62,8 @@ export default function Home() {
         </div>
       </div>
       <div className="page-4">
-        <div className="image-pair">
-          <img className="image-pair-first" src={tempImg} alt="" />
-          <img className="image-pair-second" src={tempImg} alt="" />
-        </div>
+        <img className="image-pair-first" src={tempImg} alt="" />
+        <img className="image-pair-second" src={tempImg} alt="" />
         <div className="shop-now-content">
           <h1>SUMMER FUN, DELIVERED.</h1>
           <p>
@@ -80,19 +76,20 @@ export default function Home() {
           </p>
           <a href="j">ORDER NOW</a>
         </div>
-        <div className="infinite-scroll">
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-          <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        </div>
+      </div>
+      <div className="infinite-scroll">
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
       </div>
       <div className="page-5">
         <div className="horizontal-scroller-header">
           <h1>SHOP OUR BESTSELLERS</h1>
           <p>
-          Iconic layer cakes with unfrosted sides, gooey pie, and fudgy Cake Truffles.
+            Iconic layer cakes with unfrosted sides, gooey pie, and fudgy Cake
+            Truffles.
           </p>
         </div>
         <HorizontalScroller />

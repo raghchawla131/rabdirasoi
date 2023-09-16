@@ -25,6 +25,7 @@ export default function Navbar() {
             </li>
           </ul>
         </nav>
+        <hr />
       </header>
     </>
   );

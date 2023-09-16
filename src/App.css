@@ -1,20 +1,26 @@
-*, *::before, *::after { 
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Open Sans', sans-serif;
+:root {
+  --mobile-breakpoint: 400px;
+  --tablet-breakpoint: 800px;
+  --desktop-breakpoint: 1200px;
+  --xlarge-breakpoint: 1540px;
 }
 
-
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+}
 
 /* navbar styling */
-
-
 
 header {
   background-color: rgba(255, 255, 255, 0.95);
@@ -38,7 +44,7 @@ header {
   align-items: center;
 }
 
-.nav-toggle-label span { 
+.nav-toggle-label span {
   height: 32px; /* font-size and height are depending on each other idk why */
   position: relative;
   font-size: 2rem;
@@ -90,29 +96,20 @@ nav a:hover {
   transition: opacity 250ms ease-in-out 250ms;
 }
 
-
-
 /* main styling */
-
-
 
 #home {
   padding-top: 77px;
 }
 
-.page-1 {
-  display: flex;
-  flex-direction: column;
-}
-
-.image-pair {
+.page-1, .page-4 {
   display: grid;
-  grid-template-rows: 320px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
+  column-gap: 7px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
 }
 
-.image-pair > img {
+.page-1 img, .page-4 img {
   height: 320px;
   width: 100%;
   object-fit: cover;
@@ -130,6 +127,7 @@ nav a:hover {
 }
 
 .shop-now-content {
+  grid-column: 1 / 3;
   padding: 2em 1em;
   display: flex;
   flex-direction: column;
@@ -170,10 +168,10 @@ nav a:hover {
 }
 
 @keyframes infinite-scroll-anim {
-  0%{
+  0% {
     transform: translateX(0%);
   }
-  100%{
+  100% {
     transform: translateX(-100%);
   }
 }
@@ -187,25 +185,24 @@ nav a:hover {
   padding: 0 1.5em;
 }
 
-.horizontal-scroller-header p{
+.horizontal-scroller-header p {
   margin-top: 1em;
 }
-
 
 .horizontal-scroller {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 75%;
+  grid-auto-columns: 18rem;
   gap: 0.5rem;
   overflow-x: auto;
-  padding: 2em 10px;
+  padding: 2em 1em;
 }
 
 .horizontal-scroller .scroll-items {
   box-sizing: border-box;
   height: 25rem;
   border-radius: 10px;
-  box-shadow: 0 28px 30px -12px #334a6733
+  box-shadow: 0 28px 30px -12px #334a6733;
 }
 
 .scroll-items-top {
@@ -239,9 +236,11 @@ nav a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .page-3 h2 {
+  text-align: center;
   padding: 0 1em 1em 1em;
 }
 
@@ -261,15 +260,53 @@ nav a:hover {
   width: 40px;
 }
 
-.perk-1, .perk-2 {
+.perk-1,
+.perk-2 {
   padding: 0 1em 1em 1em;
 }
 
-.perk-1 > *, .perk-2 > * {
+.perk-1 > *,
+.perk-2 > * {
   padding-bottom: 1em;
 }
 
 .page-5 {
   padding-top: 2em;
   text-align: center;
+}
+
+@media (min-width: 800px) {
+  .page-1, .page-4 {
+    padding: 2em 2em 0 2em;
+  }
+  
+  .horizontal-scroller-header {
+    padding: 0 5em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-1, .page-4 {
+    grid-template-rows: none;
+    gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 2em;
+  }
+
+  .page-1 img, .page-4 img {
+    height: 500px;
+  }
+
+  .shop-now-content {
+    padding: 0 3em;
+    grid-column: 3 / 4;
+  }
+
+  .horizontal-scroller-header {
+    padding: 0 25em;
+  }
+
+  .horizontal-scroller {
+    gap: 1em;
+  }
 }
