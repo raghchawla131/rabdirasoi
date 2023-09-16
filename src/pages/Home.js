@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <div id="home">
       <div className="page-1">
-        <img className="image-pair-first" src={tempImg} alt="" />
-        <img className="image-pair-second" src={tempImg} alt="" />
+        <img className="image-pair-first" src="https://images.unsplash.com/photo-1576670394045-d6afc94e0ce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80" alt="" />
+        <img className="image-pair-second" src="https://images.unsplash.com/photo-1553882299-9601a48ebe6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
         <div className="shop-now-content">
           <h1>DESSERTS DELIVERED TO YOUR DOOR</h1>
           <p>
@@ -62,8 +62,8 @@ export default function Home() {
         </div>
       </div>
       <div className="page-4">
-        <img className="image-pair-first" src={tempImg} alt="" />
-        <img className="image-pair-second" src={tempImg} alt="" />
+        <img className="image-pair-first" src="https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
+        <img className="image-pair-second" src="https://images.unsplash.com/photo-1561702856-b4ec96854ed8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
         <div className="shop-now-content">
           <h1>SUMMER FUN, DELIVERED.</h1>
           <p>
