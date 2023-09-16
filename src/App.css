@@ -107,23 +107,26 @@ nav a:hover {
 
 .image-pair {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 320px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
+}
+
+.image-pair > img {
   height: 320px;
-}
-
-#image-pair-first {
-  background-image: url("https://images.unsplash.com/photo-1532678465554-94846274c297?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80");
-  background-position: center;
-  background-size: cover;
+  width: 100%;
+  object-fit: cover;
   border-radius: 10px;
 }
 
-#image-pair-second {
-  background-image: url("https://images.unsplash.com/photo-1538489949601-cbabf5b0c105?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80");
-  background-position: center;
-  background-size: cover;
-  border-radius: 10px;
+.image-pair-first {
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-pair-second {
+  object-fit: cover;
+  object-position: center;
 }
 
 .shop-now-content {
@@ -180,16 +183,16 @@ nav a:hover {
   text-align: center;
 }
 
-.page-2-text {
+.horizontal-scroller-header {
   padding: 0 1.5em;
 }
 
-.page-2-text p{
+.horizontal-scroller-header p{
   margin-top: 1em;
 }
 
 
-.page-2-scroll-items {
+.horizontal-scroller {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 75%;
@@ -198,7 +201,7 @@ nav a:hover {
   padding: 2em 10px;
 }
 
-.page-2-scroll-items .scroll-items {
+.horizontal-scroller .scroll-items {
   box-sizing: border-box;
   height: 25rem;
   border-radius: 10px;
@@ -209,7 +212,7 @@ nav a:hover {
   height: 70%;
 }
 
-.page-2-scroll-items .scroll-items-top > img {
+.horizontal-scroller .scroll-items-top > img {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -229,4 +232,44 @@ nav a:hover {
 
 .scroll-items-bottom p {
   padding-top: 10px;
+}
+
+.page-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-3 h2 {
+  padding: 0 1em 1em 1em;
+}
+
+.page-3 h2 span {
+  color: deeppink;
+}
+
+.perks > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.perks img {
+  width: 40px;
+}
+
+.perk-1, .perk-2 {
+  padding: 0 1em 1em 1em;
+}
+
+.perk-1 > *, .perk-2 > * {
+  padding-bottom: 1em;
+}
+
+.page-5 {
+  padding-top: 2em;
+  text-align: center;
 }
