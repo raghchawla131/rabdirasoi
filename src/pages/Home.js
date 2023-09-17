@@ -1,7 +1,6 @@
 import HorizontalScroller from "../components/HorizontalScroller";
 import cakeSvg from "../assets/cake.svg";
 import boxSvg from "../assets/box.svg";
-import logo from "../assets/rab di rasoi logo.png";
 import IGlogo from "..//assets/rab di rasoi ig logo.png";
 
 export default function Home() {
