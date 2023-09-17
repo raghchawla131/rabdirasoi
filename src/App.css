@@ -31,7 +31,8 @@ header {
 }
 
 .logo {
-  margin: 0.5em 0;
+  width: 10rem;
+  padding: 1em 0;
 }
 
 .nav-toggle-label {
@@ -232,6 +233,7 @@ nav a:hover {
 }
 
 .page-3 {
+  padding-top: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -275,6 +277,106 @@ nav a:hover {
   text-align: center;
 }
 
+.page-6 {
+  padding: 2em;
+  background-color: #fef5f5ff;
+}
+
+.page-6 h2 {
+  text-align: center;
+  padding-bottom: 2em;
+}
+
+.social-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.social-comment {
+  width: 90%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 1.5em;
+}
+
+.comment-2 {
+  max-width: 30rem;
+}
+
+.social-comment:nth-child(2) {
+  align-self: flex-end;
+}
+
+.page-7 {
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+
+.community {
+  padding: 1em 0;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 28px 30px #334a6733;
+  border-radius: 10px;
+}
+
+.page-7-header {
+  text-align: center;
+}
+
+.page-7-header p {
+  padding-top: 1em;
+  padding-bottom: 2em;
+}
+
+.instagram {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ig-logo {
+  width: 5rem;
+  padding: 1em 0;
+}
+
+.ig-bio p {
+  font-size: 0.8rem;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.ig-bio a {
+  text-decoration: none;
+  color: black;
+}
+
+.ig-bio .ig-follow {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  box-sizing: border-box;
+  width: fit-content;
+  color: white;
+  background-color: #0095f6ff;
+  border-radius: 6px;
+  margin-top: 1em;
+  padding: 0.4em 3em;
+}
+
+.ig-bio ion-icon {
+  
+}
+
+
+
+
+
+
+
+
 @media (min-width: 800px) {
   .page-1, .page-4 {
     padding: 2em 2em 0 2em;
@@ -308,5 +410,18 @@ nav a:hover {
 
   .horizontal-scroller {
     gap: 1em;
+  }
+
+  .page-3 h2 {
+    font-size: 2rem;
+  }
+
+  .perks {
+    display: flex;
+    gap: 10rem;
+  }
+
+  .perks > * {
+    max-width: 20rem;
   }
 }

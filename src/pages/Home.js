@@ -1,14 +1,23 @@
 import HorizontalScroller from "../components/HorizontalScroller";
 import cakeSvg from "../assets/cake.svg";
 import boxSvg from "../assets/box.svg";
-import tempImg from "../assets/tempImg.jpg";
+import logo from "../assets/rab di rasoi logo.png";
+import IGlogo from "..//assets/rab di rasoi ig logo.png";
 
 export default function Home() {
   return (
     <div id="home">
       <div className="page-1">
-        <img className="image-pair-first" src="https://images.unsplash.com/photo-1576670394045-d6afc94e0ce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80" alt="" />
-        <img className="image-pair-second" src="https://images.unsplash.com/photo-1553882299-9601a48ebe6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
+        <img
+          className="image-pair-first"
+          src="https://images.unsplash.com/photo-1608830597604-619220679440?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+          alt=""
+        />
+        <img
+          className="image-pair-second"
+          src="https://images.unsplash.com/photo-1627308595171-d1b5d67129c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
+          alt=""
+        />
         <div className="shop-now-content">
           <h1>DESSERTS DELIVERED TO YOUR DOOR</h1>
           <p>
@@ -62,8 +71,16 @@ export default function Home() {
         </div>
       </div>
       <div className="page-4">
-        <img className="image-pair-first" src="https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
-        <img className="image-pair-second" src="https://images.unsplash.com/photo-1561702856-b4ec96854ed8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="" />
+        <img
+          className="image-pair-first"
+          src="https://images.unsplash.com/photo-1562777717-dc6984f65a63?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+          alt=""
+        />
+        <img
+          className="image-pair-second"
+          src="https://images.unsplash.com/photo-1561702856-b4ec96854ed8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+          alt=""
+        />
         <div className="shop-now-content">
           <h1>SUMMER FUN, DELIVERED.</h1>
           <p>
@@ -93,6 +110,56 @@ export default function Home() {
           </p>
         </div>
         <HorizontalScroller />
+      </div>
+      <div className="page-6">
+        <section className="social-proof">
+          <div className="social-proof-header">
+            <h2>WORD ON THE STREET</h2>
+          </div>
+          <div className="social-comments">
+            <div className="social-comment comment-1">
+              <p>
+                "When it comes to epic birthday cakes, no one makes them better
+                than the Rab di rasoi"
+              </p>
+            </div>
+            <div className="social-comment comment-2">
+              <p>
+                "No matter the occasion, Rab di rasoi treats will definitely put
+                a smile on someone’s face."
+              </p>
+            </div>
+            <div className="social-comment comment-3">
+              <p>
+                "The chef of Rab di rasoi has created a sweet-treat kingdom
+                built on Amroha’s nostalgia."
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div className="page-7">
+        <div className="community">
+          <div className="page-7-header">
+            <h2>Our Community</h2>
+            <p>Follow us to stay up to date on all things Rab di rasoi.</p>
+          </div>
+          <div className="instagram">
+            <div>
+              <img className="ig-logo" src={IGlogo} alt="" />
+            </div>
+            <div className="ig-bio">
+              <h4><i><a href="https://www.instagram.com/rabdirasoi/">@rabdirasoi</a></i></h4>
+              <p>
+                😉Sugarcoating, everything is our speciality <br />
+                🍰Customized cake, Brownie, Pinata, Chocolates <br />
+                🍴Pre-Order 1 day in advance <br />
+                🧁100%Eggless <br />
+              </p>
+              <a className="ig-follow" href="https://www.instagram.com/rabdirasoi/">Follow <ion-icon name="logo-instagram"></ion-icon></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

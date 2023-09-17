@@ -1,8 +1,10 @@
+import logo from "../assets/rab di rasoi logo.png"
+
 export default function Navbar() {
   return (
     <>
       <header>
-        <h1 className="logo">Logo</h1>
+        <img className="logo" src={logo} alt="" />
         <input type="checkbox" id="nav-toggle" className="nav-toggle" />
         <label htmlFor="nav-toggle" className="nav-toggle-label">
           <span>
