@@ -97,6 +97,53 @@ nav a:hover {
   transition: opacity 250ms ease-in-out 250ms;
 }
 
+/* footer styling */
+
+.shop-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b2b2b;
+  color: #fff5e9ff;
+  padding: 2em 1em;
+}
+
+.footer-newsletter input {
+  display: block;
+  background-color: transparent;
+  border: none;
+  color: #fff5e9ff;
+  border-bottom: 2px solid #fff5e9ff;
+  width: 100%;
+  max-width: 40rem;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.footer-newsletter input::placeholder {
+  color: #fff5e9ff;
+}
+
+.footer-newsletter input:focus {
+  outline: none;
+}
+
+.footer-newsletter button {
+  background-color: deeppink;
+  border: none;
+  padding: 1em;
+  width: 100%;
+  max-width: 40rem;
+  margin-top: 20px;
+  color: #fff5e9ff;
+  font-weight: 700;
+}
+
+.socials {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
 /* main styling */
 
 #home {
