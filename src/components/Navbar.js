@@ -1,4 +1,5 @@
-import logo from "../assets/rab di rasoi logo.png"
+import logo from "../assets/rab di rasoi logo.png";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -14,16 +15,16 @@ export default function Navbar() {
         <nav>
           <ul>
             <li>
-              <a href="i">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="j">About us</a>
+              <Link to="/About">About us</Link>
             </li>
             <li>
-              <a href="l">Contact us</a>
+              <Link to="/Contact">Contact us</Link>
             </li>
             <li>
-              <a href="h">Shop</a>
+              <Link to="/Shop">Shop</Link>
             </li>
           </ul>
         </nav>

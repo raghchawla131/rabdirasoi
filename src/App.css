@@ -144,10 +144,10 @@ nav a:hover {
   font-size: 25px;
 }
 
-/* main styling */
+/* home styling */
 
 #home {
-  padding-top: 77px;
+  padding-top: 81px;
 }
 
 .page-1, .page-4 {
@@ -200,6 +200,19 @@ nav a:hover {
   padding: 1em 2em;
   border-radius: 5px;
 }
+
+/* .shop-now-content a:hover {
+  animation: wave-animation 1s ease-in-out infinite;
+}
+
+@keyframes wave-animation {
+  0%,100% {
+    clip-path: polygon(0 44%, 14% 46%, 30% 51%, 47% 55%, 66% 56%, 81% 52%, 100% 42%, 100% 99%, 0% 100%);
+  }
+  50% {
+    clip-path: polygon(0 52%, 14% 49%, 31% 48%, 48% 50%, 66% 52%, 81% 45%, 100% 40%, 100% 99%, 0% 100%);
+  }
+} */
 
 .infinite-scroll {
   background-color: rgb(23, 23, 23);
@@ -414,11 +427,6 @@ nav a:hover {
 
 
 
-
-
-
-
-
 @media (min-width: 800px) {
   .page-1, .page-4 {
     padding: 2em 2em 0 2em;
@@ -466,4 +474,37 @@ nav a:hover {
   .perks > * {
     max-width: 20rem;
   }
+}
+
+
+/* contact styling */
+
+#contact {
+  padding-top: 81px;
+}
+
+.contact-us-details {
+  width: 100%;
+  background-color: #fff5e9ff;
+  padding: 1em;
+}
+
+.contact-us-details h3 {
+  margin-bottom: 1em;
+}
+
+.contact-us-details p {
+  font-size: 0.8rem;
+  margin: 0.6em 0;
+}
+
+.contact-us-details p a {
+  color: deeppink;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.4em;
+}
+
+.faq {
+  padding: 1em 0.5em;
 }
