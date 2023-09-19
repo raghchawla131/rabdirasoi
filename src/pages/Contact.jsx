@@ -1,3 +1,5 @@
+import Queries from "../components/Queries";
+
 export default function Contact() {
   return (
     <>
@@ -23,6 +25,20 @@ export default function Contact() {
         </div>
         <div className="faq">
           <h2>Frequently Asked Questions</h2>
+          <section className="faq-section">
+            <hr />
+            <h1>About Our Products</h1>
+            <hr />
+            <Queries
+              header="Do you offer customized products?
+"
+              content="If you placed an order with a third party vendor (DoorDash/Caviar/UberEats/Postmates/Grubhub), and something has gone wrong, please reach out directly to the third party vendor or the bakery it was picked up from for further assistance."
+            />
+            <Queries
+              header="Storage Instructions and Shelf Life"
+              content="If you placed an order with a third party vendor (DoorDash/Caviar/UberEats/Postmates/Grubhub), and something has gone wrong, please reach out directly to the third party vendor or the bakery it was picked up from for further assistance."
+            />
+          </section>
         </div>
       </div>
     </>
