@@ -9,11 +9,13 @@ export default function Queries({ header, content }) {
 
   return (
     <>
-      <h4>
-        {header}
-        <button onClick={handleClick}>+</button>
-      </h4>
-      {showMore && <p>{content}</p>}
+      <div className="query">
+        <h5>
+          {header}
+          <button onClick={handleClick}>+</button>
+        </h5>
+        {showMore && <p>{content}</p>}
+      </div>
       <hr />
     </>
   );

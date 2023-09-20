@@ -481,6 +481,8 @@ nav a:hover {
 
 #contact {
   padding-top: 81px;
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-us-details {
@@ -507,4 +509,49 @@ nav a:hover {
 
 .faq {
   padding: 1em 0.5em;
+}
+
+.faq h2 {
+  padding-bottom: 3em;
+}
+
+.query {
+  padding: 1em 0;
+}
+
+.faq-section h1 {
+  padding: 0.2em 0;
+}
+
+.query h5 {
+  position: relative;
+}
+
+.query button {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translate(-50%, -50%);
+  float: right;
+  background-color: transparent;
+  color: deeppink;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.query p{
+  margin: 3em 0;
+}
+
+
+@media (min-width: 1200px) {
+  #contact {
+    flex-direction: row-reverse;
+  }
+
+  #contact > * {
+    width: 50%;
+    padding: 4em 3em;
+  }
 }
