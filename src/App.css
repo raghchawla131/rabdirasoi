@@ -555,3 +555,65 @@ nav a:hover {
     padding: 4em 3em;
   }
 }
+
+
+/* shop styling */
+
+#shop {
+  padding-top: 81px;
+}
+
+.collections {
+  padding: 0 1em;
+}
+ 
+.collections h3 {
+  padding-top: 1em;
+  text-transform: uppercase;
+}
+
+.collections p {
+  padding-top: 1em;
+}
+
+.product-type {
+  padding-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.product-card {
+  box-shadow: 0 28px 30px -12px #334a6733;
+  border-radius: 10px;
+  height: 20rem;
+  width: 48%;
+  max-width: 15rem;
+  overflow-y: hidden;
+}
+
+.product-card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 60%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-card-info {
+  text-align: center;
+  padding: 1em 0;
+}
+
+.product-card-item-name {
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.product-card-item-about {
+  padding: 0.5em 0;
+}
