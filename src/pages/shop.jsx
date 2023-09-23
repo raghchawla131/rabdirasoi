@@ -7,11 +7,13 @@ export default function Shop() {
       <div id="shop">
         <div className="collections">
           <section className="cakes">
-            <h3>Cakes</h3>
-            <p>
-              Layers of frosting, cake crumbs and see-through-sides make these
-              easy-to-spot-cakes darn near impossible to resist.
-            </p>
+            <div className="header">
+              <h3>Cakes</h3>
+              <p>
+                Layers of frosting, cake crumbs and see-through-sides make these
+                easy-to-spot-cakes darn near impossible to resist.
+              </p>
+            </div>
             <div className="product-type cake-cards">
               {PRODUCTS.filter((product) => product.type === "cake").map(
                 (product) => (
