@@ -2,14 +2,18 @@ import logo from "../assets/rab di rasoi logo.png";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+/*   const [menuClick, setMenuClick] = useState(false);
+
+  function handleClick() {
+    setMenuClick(!menuClick);
+  } */
+
   return (
     <>
-      <nav>
-        <ion-icon name="menu-outline"></ion-icon>
+      <nav className="desktop-nav">
         <div id="logo">
           <img className="logo" src={logo} alt="" />
         </div>
-        <ion-icon name="cart-outline"></ion-icon>
         <div className="nav-links">
           <ul>
             <li>

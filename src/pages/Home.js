@@ -61,10 +61,9 @@ export default function Home() {
           </div>
           <div className="perk-2">
             <img src={boxSvg} alt="" />
-            <h4>ONE-OF-A-KIND TREATS</h4>
+            <h4>THOUGHTFULLY PACKAGED</h4>
             <p>
-              Try our award-winning classic Birthday Cake and our fan-favorite
-              B’Day Cake Truffles!
+              We make your treats fresh and flash-freeze ‘em for peak quality.
             </p>
           </div>
         </div>
@@ -148,14 +147,25 @@ export default function Home() {
               <img className="ig-logo" src={IGlogo} alt="" />
             </div>
             <div className="ig-bio">
-              <h4><i><a href="https://www.instagram.com/rabdirasoi/">@rabdirasoi</a></i></h4>
+              <h4>
+                <i>
+                  <a href="https://www.instagram.com/rabdirasoi/">
+                    @rabdirasoi
+                  </a>
+                </i>
+              </h4>
               <p>
                 😉Sugarcoating, everything is our speciality <br />
                 🍰Customized cake, Brownie, Pinata, Chocolates <br />
                 🍴Pre-Order 1 day in advance <br />
                 🧁100%Eggless <br />
               </p>
-              <a className="ig-follow" href="https://www.instagram.com/rabdirasoi/">Follow <ion-icon name="logo-instagram"></ion-icon></a>
+              <a
+                className="ig-follow"
+                href="https://www.instagram.com/rabdirasoi/"
+              >
+                Follow <ion-icon name="logo-instagram"></ion-icon>
+              </a>
             </div>
           </div>
         </div>
