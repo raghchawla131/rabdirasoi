@@ -9,7 +9,7 @@ export default function Sidebar() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  const toggleSidebarClass = isMenuOpen ? "sidebar-show" : ""
+  const toggleSidebarClass = isMenuOpen ? "sidebar-show" : "";
 
   return (
     <>

@@ -345,6 +345,21 @@ body {
   padding-top: 10px;
 }
 
+.horizontal-scroller::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+.horizontal-scroller::-webkit-scrollbar-track {
+  margin: 0 2rem;
+  background-color: rgba(255, 20, 145, 0.2);
+  border-radius: 100vw;
+}
+
+.horizontal-scroller::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 20, 145, 0.8);
+  border-radius: 100vw;
+}
+
 .page-3 {
   padding-top: 2em;
   display: flex;
