@@ -6,7 +6,7 @@ import cupcake from "../src/assets/best sellers/cupcake.jpg"
 import fruitCake from "../src/assets/best sellers/fruit cake.jpg"
 import strawberryCake from "../src/assets/best sellers/strawberry cake.jpg"
 
-export const horizontalscrolldata1 = [
+export const horizontalscrolldata2 = [
   {
     id: 1,
     image: chocolateCake,

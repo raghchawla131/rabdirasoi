@@ -3,6 +3,7 @@ import cakeSvg from "../assets/cake.svg";
 import boxSvg from "../assets/box.svg";
 import IGlogo from "..//assets/rab di rasoi ig logo.png";
 import {horizontalscrolldata1} from "../horizontalscrolldata-1"
+import {horizontalscrolldata2} from "../horizontalscrolldata-2";
 
 export default function Home() {
   return (
@@ -108,7 +109,7 @@ export default function Home() {
             Truffles.
           </p>
         </div>
-        <HorizontalScroller data={horizontalscrolldata1} />
+        <HorizontalScroller data={horizontalscrolldata2} />
       </div>
       <div className="page-6">
         <section className="social-proof">
