@@ -1,11 +1,11 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Home from "./pages/Home";
+import Home from "./pages/Home.jsx";
 import Footer from "./components/Footer";
-import About from "./pages/About";
-import Contact from "./pages/Contact"
-import Shop from "./pages/Shop";
+import About from "./pages/About.jsx"
+import Contact from "./pages/Contact.jsx"
+import Shop from "./pages/Shop.jsx"
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 
