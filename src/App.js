@@ -5,7 +5,7 @@ import Home from "./pages/Home.jsx";
 import Footer from "./components/Footer";
 import About from "./pages/About.jsx"
 import Contact from "./pages/Contact.jsx"
-import Shop from "./pages/Shop"
+import Shop from "../src/pages/Shop.jsx"
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 
