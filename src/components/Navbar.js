@@ -2,11 +2,9 @@ import logo from "../assets/rab di rasoi logo.png";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-/*   const [menuClick, setMenuClick] = useState(false);
-
-  function handleClick() {
-    setMenuClick(!menuClick);
-  } */
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  }
 
   return (
     <>
@@ -17,16 +15,16 @@ export default function Navbar() {
         <div className="nav-links">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={scrollToTop}>Home</Link>
             </li>
             <li>
-              <Link to="/Shop">Shop</Link>
+              <Link to="/Shop" onClick={scrollToTop}>Shop</Link>
             </li>
             <li>
-              <Link to="/Contact">Contact us</Link>
+              <Link to="/Contact" onClick={scrollToTop}>Contact us</Link>
             </li>
             <li>
-              <Link to="/About">About us</Link>
+              <Link to="/About" onClick={scrollToTop}>About us</Link>
             </li>
           </ul>
         </div>

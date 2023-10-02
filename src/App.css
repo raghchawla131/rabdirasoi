@@ -107,18 +107,20 @@ body {
 .sidebar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -80vw;
   background-color: white;
   height: 100vh;
   width: 80vw;
   z-index: 100;
   padding: 0rem 1.25rem;
   box-sizing: border-box;
-  transform: scale(0);
+  transform: translateX(-80vw);
+  transition: transform 0.5s ease-in-out;
 }
 
 .sidebar-show {
-  transform: scale(1);
+  left: 0;
+  transform: translateX(0);
 }
 
 .sidebar-header {
@@ -646,6 +648,10 @@ body {
   padding-top: 1em;
 }
 
+.product {
+  margin-bottom: 15px;
+}
+
 .product-type {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -669,7 +675,6 @@ body {
   position: relative;
   width: 100%; /* Make sure it takes up the full width of the .product-card */
   padding-top: 100%; /* Set the padding to create a square based on width */
-  background-color: #f0f0f0; /* Optional background color for visualization */
 }
 
 .product-card-top img {

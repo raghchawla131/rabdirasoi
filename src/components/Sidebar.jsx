@@ -9,6 +9,19 @@ export default function Sidebar() {
     setIsMenuOpen(!isMenuOpen);
   }
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  }
+
+  const handleLinkClick = () => {
+    scrollToTop();
+    closeMenu();
+  }
+
   const toggleSidebarClass = isMenuOpen ? "sidebar-show" : "";
 
   return (
@@ -34,16 +47,16 @@ export default function Sidebar() {
         <div className="sidebar-links">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={handleLinkClick}>Home</Link>
             </li>
             <li>
-              <Link to="/Shop">Shop</Link>
+              <Link to="/Shop" onClick={handleLinkClick}>Shop</Link>
             </li>
             <li>
-              <Link to="/Contact">Contact us</Link>
+              <Link to="/Contact" onCanPlay={handleLinkClick}>Contact us</Link>
             </li>
             <li>
-              <Link to="/About">About us</Link>
+              <Link to="/About" onClick={handleLinkClick}>About us</Link>
             </li>
           </ul>
         </div>
