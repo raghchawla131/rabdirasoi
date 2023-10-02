@@ -8,8 +8,10 @@ export default function Product(props) {
             <img src={productImage} alt="" />
           </div>
           <div className="product-card-bottom">
-            <p className="product-card-item-name">{productName}</p>
-            <p className="product-card-item-about">{price}</p>
+            <div className="product-card-bottom-content">
+              <h5 className="product-card-item-name">{productName}</h5>
+              <p className="product-card-item-about">{about}</p>
+            </div>
           </div>
         </div>
       </div>
