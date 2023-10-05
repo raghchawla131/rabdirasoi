@@ -710,3 +710,19 @@ body {
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+
+@media (min-width: 1200px) {
+  .collections {
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    gap: 30px;
+  }
+  .product {
+    grid-column: 2/span 10;
+    display: flex;
+  }
+  .product .header {
+    flex: 0 0 200px;
+    margin-right: 80px;
+  }
+}
