@@ -1,7 +1,14 @@
+import { Link } from "react-router-dom";
+import ItemDetails from "./ItemDetails";
+
 export default function Product(props) {
-  const { productName, price, productImage, about } = props.data;
+  const { productName, price, productImage, about, key } = props.data;
+
+  const productPath = `/products/${key}`;
+
   return (
     <>
+    <Link to={productPath} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className="product-card">
         <div className="product-card-division">
           <div className="product-card-top">
@@ -15,6 +22,7 @@ export default function Product(props) {
           </div>
         </div>
       </div>
+    </Link>
     </>
   );
 }

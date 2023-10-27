@@ -58,6 +58,9 @@ export default function Sidebar() {
             <li>
               <Link to="/About" onClick={handleLinkClick}>About us</Link>
             </li>
+            <li>
+              <Link to="/Login" onClick={handleLinkClick}>Login</Link>
+            </li>
           </ul>
         </div>
       </div>

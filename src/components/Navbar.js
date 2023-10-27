@@ -26,6 +26,9 @@ export default function Navbar() {
             <li>
               <Link to="/About" onClick={scrollToTop}>About us</Link>
             </li>
+            <li>
+              <Link to="/Login" onClick={scrollToTop}>Login</Link>
+            </li>
           </ul>
         </div>
       </nav>

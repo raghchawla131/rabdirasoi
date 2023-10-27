@@ -726,3 +726,50 @@ body {
     margin-right: 80px;
   }
 }
+
+/* item details */
+
+.selected-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-item-img {
+  width: 100vw;
+  height: 100vw;
+}
+
+.selected-item-img img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  object-position: center;
+}
+
+.selected-item-size {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.5em;
+}
+
+.selected-item-size-choice {
+  border: 1px solid grey;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+/* login */
+
+.login {
+  padding-top: 81px;
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
