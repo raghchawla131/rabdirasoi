@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { PRODUCTS } from "../products";
 
@@ -8,6 +9,16 @@ export default function ItemDetails() {
     (product) => product.key === parseInt(productId)
   );
 
+  const[itemsQuantity, setItemsQuantity] = useState(1);
+
+  function handleIncrement() {
+    setItemsQuantity(itemsQuantity + 1);
+  }
+
+  function handleDecrement() {
+    setItemsQuantity(itemsQuantity - 1);
+  }
+
   return (
     <>
       <div style={{ paddingTop: "81px" }}>
@@ -15,13 +26,12 @@ export default function ItemDetails() {
           <div className="selected-item-img">
             <img src={productImage} alt="" />
           </div>
-          <div>
-            <h1>{productName}</h1>
+          <div className="selected-item-desc">
+            <h1 id="selected-item-title">{productName}</h1>
             <p>{about}</p>
             <section className="selected-item-price">
-              <div>
                 <div>
-                  <h4>Select size: </h4>
+                  <h4 id="selected-item-size-header">Select size: </h4>
                   <div className="selected-item-size">
                     <div
                       id="1-pound-size"
@@ -68,9 +78,17 @@ export default function ItemDetails() {
                       </div>
                     </div>
                   </div>
+                  <div className="add-selected-item-to-cart">
+                    <div className="selected-item-quantity">
+                        <button onClick={handleDecrement}><ion-icon name="remove-outline"></ion-icon></button>
+                        <div>{itemsQuantity}</div>
+                        <button onClick={handleIncrement}><ion-icon name="add-outline"></ion-icon></button>
+                    </div>
+                    <button className="selected-item-to-cart-btn">
+                      add to cart
+                    </button>
+                  </div>
                 </div>
-                <div></div>
-              </div>
             </section>
           </div>
         </div>
