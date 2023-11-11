@@ -1,8 +1,13 @@
 import logo from "../assets/rab di rasoi logo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Cart from "./Cart";
 
-export default function Sidebar() {
+export default function Sidebar({
+  isCartVisible,
+  setIsCartVisible,
+  toggleCart,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -15,12 +20,12 @@ export default function Sidebar() {
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
-  }
+  };
 
   const handleLinkClick = () => {
     scrollToTop();
     closeMenu();
-  }
+  };
 
   const toggleSidebarClass = isMenuOpen ? "sidebar-show" : "";
 
@@ -34,7 +39,9 @@ export default function Sidebar() {
           <img className="sidebar-logo" src={logo} alt="" />
         </div>
         <div>
-          <ion-icon name="cart-outline"></ion-icon>
+          <Link to="/Cart" onClick={toggleCart}>
+            <ion-icon name="cart-outline"></ion-icon>
+          </Link>
         </div>
       </nav>
       <div className={`sidebar ${toggleSidebarClass}`}>
@@ -47,23 +54,41 @@ export default function Sidebar() {
         <div className="sidebar-links">
           <ul>
             <li>
-              <Link to="/" onClick={handleLinkClick}>Home</Link>
+              <Link to="/" onClick={handleLinkClick}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/Shop" onClick={handleLinkClick}>Shop</Link>
+              <Link to="/Shop" onClick={handleLinkClick}>
+                Shop
+              </Link>
             </li>
             <li>
-              <Link to="/Contact" onCanPlay={handleLinkClick}>Contact us</Link>
+              <Link to="/Contact" onCanPlay={handleLinkClick}>
+                Contact us
+              </Link>
             </li>
             <li>
-              <Link to="/About" onClick={handleLinkClick}>About us</Link>
+              <Link to="/About" onClick={handleLinkClick}>
+                About us
+              </Link>
             </li>
             <li>
-              <Link to="/Login" onClick={handleLinkClick}>Login</Link>
+              <Link to="/Login" onClick={handleLinkClick}>
+                Login
+              </Link>
             </li>
           </ul>
         </div>
       </div>
+      {isCartVisible && (
+        <Cart
+          isCartVisible={isCartVisible}
+          setIsCartVisible={setIsCartVisible}
+          toggleCart={toggleCart}
+          onClose={() => setIsCartVisible(false)}
+        />
+      )}
     </>
   );
 }

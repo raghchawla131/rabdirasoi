@@ -8,6 +8,7 @@ import Contact from "./pages/Contact.jsx";
 import Shop from "./pages/Shop.jsx";
 import ItemDetails from "./components/ItemDetails";
 import Login from "./pages/Login";
+import Cart from "./components/Cart";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -16,7 +17,7 @@ export default function App() {
   const location = useLocation();
 
   const handleWindowSizeChange = () => {
-    setIsMobile(window.innerWidth < 800)
+    setIsMobile(window.innerWidth < 800);
   };
 
   useEffect(() => {
@@ -25,21 +26,40 @@ export default function App() {
 
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
-    }
-  }, [])
+    };
+  }, []);
 
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === "/login";
+
+  const [isCartVisible, setIsCartVisible] = useState(false);
+
+  const toggleCart = (e) => {
+    e.preventDefault();
+    setIsCartVisible(!isCartVisible);
+  };
 
   return (
     <>
-      {isMobile ? <Sidebar /> : <Navbar />}
+      {isMobile ? (
+        <Sidebar
+          isCartVisible={isCartVisible}
+          setIsCartVisible={setIsCartVisible}
+          toggleCart={toggleCart}
+        />
+      ) : (
+        <Navbar
+          isCartVisible={isCartVisible}
+          setIsCartVisible={setIsCartVisible}
+          toggleCart={toggleCart}
+        />
+      )}
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/About" element={<About />}></Route>
         <Route path="/Contact" element={<Contact />}></Route>
-        <Route path="/Shop" element={<Shop />}></Route> 
+        <Route path="/Shop" element={<Shop />}></Route>
         <Route path="/products/:productId" element={<ItemDetails />}></Route>
-        <Route path="/login" element={<Login />}></Route> 
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
       {!isLoginPage && <Footer />}
     </>

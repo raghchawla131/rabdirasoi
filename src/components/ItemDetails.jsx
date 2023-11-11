@@ -38,7 +38,7 @@ export default function ItemDetails() {
                       className="selected-item-size-choice"
                     >
                       <div>
-                        <h4>1-Pound - 300</h4>
+                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
                       </div>
                       <div>
                         <p>Serves group of 2-4</p>
@@ -49,7 +49,7 @@ export default function ItemDetails() {
                       className="selected-item-size-choice"
                     >
                       <div>
-                        <h4>1-Pound - 300</h4>
+                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
                       </div>
                       <div>
                         <p>Serves group of 2-4</p>
@@ -60,7 +60,7 @@ export default function ItemDetails() {
                       className="selected-item-size-choice"
                     >
                       <div>
-                        <h4>1-Pound - 300</h4>
+                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
                       </div>
                       <div>
                         <p>Serves group of 2-4</p>
@@ -71,7 +71,7 @@ export default function ItemDetails() {
                       className="selected-item-size-choice"
                     >
                       <div>
-                        <h4>1-Pound - 300</h4>
+                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
                       </div>
                       <div>
                         <p>Serves group of 2-4</p>
