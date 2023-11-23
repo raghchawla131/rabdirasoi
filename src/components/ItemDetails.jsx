@@ -1,22 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { PRODUCTS } from "../products";
+import { getCartItemsFromStorage, setCartItemsToStorage } from "../utils/CartStorage";
 
 export default function ItemDetails() {
   const { productId } = useParams();
+  const [items, setItems] = useState([]);
+  const[itemsQuantity, setItemsQuantity] = useState(1);
 
   const { productName, price, productImage, about } = PRODUCTS.find(
     (product) => product.key === parseInt(productId)
   );
-
-  const[itemsQuantity, setItemsQuantity] = useState(1);
 
   function handleIncrement() {
     setItemsQuantity(itemsQuantity + 1);
   }
 
   function handleDecrement() {
-    setItemsQuantity(itemsQuantity - 1);
+    if(itemsQuantity > 1) {
+      setItemsQuantity(itemsQuantity - 1);
+    } 
+  }
+
+  function handleAddToCartBtnClick() {
+    const existingCartItems = getCartItemsFromStorage();
+    const isProductInCart = existingCartItems.includes(productId);
+
+    if(!isProductInCart) {
+      const newCartItems = [...existingCartItems, productId];
+      setCartItemsToStorage(newCartItems);
+    }
   }
 
   return (
@@ -84,7 +97,7 @@ export default function ItemDetails() {
                         <div>{itemsQuantity}</div>
                         <button onClick={handleIncrement}><ion-icon name="add-outline"></ion-icon></button>
                     </div>
-                    <button className="selected-item-to-cart-btn">
+                    <button onClick={handleAddToCartBtnClick} className="selected-item-to-cart-btn">
                       add to cart
                     </button>
                   </div>
