@@ -33,6 +33,18 @@ export default function App() {
 
   const [isCartVisible, setIsCartVisible] = useState(false);
 
+  useEffect(() => {
+    if (isCartVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [isCartVisible]);
+
   const toggleCart = (e) => {
     e.preventDefault();
     setIsCartVisible(!isCartVisible);

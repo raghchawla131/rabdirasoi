@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import "../App.css";
 import Cart from "./Cart";
 import logo from "../assets/rab di rasoi logo.png";
@@ -15,6 +14,9 @@ export default function Navbar({
 
   return (
     <>
+      {isCartVisible && (
+        <div className="overlay" onClick={() => setIsCartVisible(false)}></div>
+      )}
       <nav className="desktop-nav">
         <div id="logo">
           <img className="logo" src={logo} alt="" />

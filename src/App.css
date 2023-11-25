@@ -883,18 +883,144 @@ body {
   top: 0;
   right: 0;
   z-index: 110;
-  background-color: gray;
-  width: 35vw;
+  background-color: white;
+  border: 1px solid black;
+  width: 450px;
   height: 100vw;
-  padding: 1em;
+  z-index: 1000;
+}
+
+/* cart overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.cart-top {
+  padding: 1em 1em 0em 1em;
 }
 
 .cart-header {
   display: flex;
 }
 
+.cart-header h4 {
+  padding: 1rem;
+}
+
+.selected-cart-items {
+  padding-top: .5rem;
+  height: 32vw;
+  overflow-y: scroll;
+}
+
 .close-cart-btn {
   background-color: transparent;
   border: none;
   font-size: 1.5em;
+  cursor: pointer;
+}
+
+.cart-item {
+  position: relative;
+  height: 130px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 2fr ;
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.cart-item-img {
+  height: 100px;
+  width: 100px;
+}
+
+.cart-item-img img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.cart-item-description {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.remove-cart-item {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.remove-cart-item ion-icon {
+  font-size: 1.5rem;
+}
+
+.selected-item-quantity-cart {
+  display: grid;
+  grid-template-columns: repeat(3, 30px);
+  grid-template-rows: auto;
+  border-radius: 3px;
+}
+
+.selected-item-quantity-cart button {
+  margin-top: 4px;
+  background-color: transparent;
+  border: none;
+}
+
+.selected-item-quantity-cart div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-bottom {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  width: 100%;
+  height: inherit;
+  border-radius: 20px;
+  box-shadow: 0 -8px 6px -5px #14141421;
+  padding: 20px 40px;
+}
+
+.total-order-price {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.total-order-price > * {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.enter-address-btn {
+  margin-top: 1.5em;
+}
+
+.cart-bottom .enter-address-btn button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 1em;
+  width: 100%;
+  text-transform: uppercase;
 }
