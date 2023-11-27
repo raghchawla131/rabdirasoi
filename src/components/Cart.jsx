@@ -7,18 +7,16 @@ export default function Cart({ toggleCart }) {
   return (
     <>
       <section className="cart">
-        <div className="cart-top">
-          <div className="cart-header">
-            <button onClick={toggleCart} className="close-cart-btn">
-              <ion-icon name="close"></ion-icon>
-            </button>
-            <h4>YOUR ORDERS</h4>
-          </div>
-          <div className="selected-cart-items">
-            {cartItems.map((item) => {
-              return <CartItem key={item} item={item} />;
-            })}
-          </div>
+        <div className="cart-header">
+          <button onClick={toggleCart} className="close-cart-btn">
+            <ion-icon name="close"></ion-icon>
+          </button>
+          <h4>YOUR ORDERS</h4>
+        </div>
+        <div className="selected-cart-items">
+          {cartItems.map((item) => {
+            return <CartItem key={item} item={item} />;
+          })}
         </div>
         <div className="cart-bottom">
           <div className="total-order-price">
