@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { PRODUCTS } from "../products";
 import { getCartItemsFromStorage, setCartItemsToStorage } from "../utils/CartStorage";
 
 export default function ItemDetails() {
   const { productId } = useParams();
-  const [items, setItems] = useState([]);
   const[itemsQuantity, setItemsQuantity] = useState(1);
 
-  const { productName, price, productImage, about } = PRODUCTS.find(
+  const { productName, productImage, about } = PRODUCTS.find(
     (product) => product.key === parseInt(productId)
   );
 

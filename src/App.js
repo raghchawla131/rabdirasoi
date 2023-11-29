@@ -8,7 +8,6 @@ import Contact from "./pages/Contact.jsx";
 import Shop from "./pages/Shop.jsx";
 import ItemDetails from "./components/ItemDetails";
 import Login from "./pages/Login";
-import Cart from "./components/Cart";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 

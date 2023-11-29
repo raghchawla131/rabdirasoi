@@ -1,6 +1,6 @@
 export function getCartItemsFromStorage() {
-    const storedItems = localStorage.getItem("cartItems");
-    return storedItems ? JSON.parse(storedItems) : [];
+  const storedItems = localStorage.getItem("cartItems");
+  return storedItems ? JSON.parse(storedItems) : [];
 }
 
 export function setCartItemsToStorage(cartItems) {

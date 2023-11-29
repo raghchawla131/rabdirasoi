@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CartItem from "./CartItem";
-import { getCartItemsFromStorage } from "../utils/CartStorage";
+import { getCartItemsFromStorage, setCartItemsToStorage } from "../utils/CartStorage";
 
 export default function Cart({ toggleCart }) {
-  const cartItems = getCartItemsFromStorage();
+  const [cartItems, setCartItems] = useState(getCartItemsFromStorage());
+
+  useEffect(() => {
+    setCartItems(getCartItemsFromStorage());
+  }, [])
+
+  const handleRemoveItem = (itemToRemove) => {
+    const updatedCartItems = cartItems.filter((item) => item !== itemToRemove);
+    setCartItems(updatedCartItems);
+    setCartItemsToStorage(updatedCartItems);
+  };
+
   return (
     <>
       <section className="cart">
@@ -15,7 +26,7 @@ export default function Cart({ toggleCart }) {
         </div>
         <div className="selected-cart-items">
           {cartItems.map((item) => {
-            return <CartItem key={item} item={item} />;
+            return <CartItem key={item} item={item} onRemoveItem={handleRemoveItem} />;
           })}
         </div>
         <div className="cart-bottom">
