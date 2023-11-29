@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import ItemDetails from "./ItemDetails";
 
 export default function Product(props) {
-  const { productName, price, productImage, about, key } = props.data;
+  const { productName, productImage, about, key } = props.data;
 
   const productPath = `/products/${key}`;
 

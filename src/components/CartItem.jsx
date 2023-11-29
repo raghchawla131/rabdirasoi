@@ -1,16 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { PRODUCTS } from "../products";
-import { getCartItemsFromStorage, setCartItemsToStorage } from "../utils/CartStorage";
 
 export default function CartItem({ item, onRemoveItem }) {
   const [itemsQuantity, setItemsQuantity] = useState(1);
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    // Retrieve cart items from local storage when the component mounts
-    const storedCartItems = getCartItemsFromStorage();
-    setCartItems(storedCartItems);
-  }, []);
 
   const product =
     PRODUCTS.find((product) => product.key === parseInt(item)) || {};
