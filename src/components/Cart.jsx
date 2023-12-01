@@ -11,7 +11,7 @@ export default function Cart({ toggleCart }) {
       let calculatedSubtotal = 0;
 
       for (const itemId of cartItems) {
-        const product = PRODUCTS.find((product) =>product.key == itemId);
+        const product = PRODUCTS.find((product) => String(product.key) === itemId);
 
         if (product) {
           calculatedSubtotal += product.price;
