@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PRODUCTS } from "../products";
 
-export default function CartItem({ item, onRemoveItem }) {
+export default function CartItem({ item, onRemoveItem, onSubtotalChange }) {
   const [itemsQuantity, setItemsQuantity] = useState(1);
 
   const product =
@@ -20,10 +20,7 @@ export default function CartItem({ item, onRemoveItem }) {
   }
 
   function handleRemoveItemClick() {
-    console.log("working")
     onRemoveItem(parseInt(item));
-    // Find the index of the item to be removed
-
   }
 
   return (
