@@ -28,7 +28,7 @@ export default function Home() {
             just happy it's Wednesday — these treats are sure to get the party
             started. Plus, we ship nationwide straight to your door!
           </p>
-          <a href="/shop">SHOP NOW</a>
+          <a href="/Shop">SHOP NOW</a>
         </div>
       </div>
       <div className="infinite-scroll">
@@ -91,7 +91,7 @@ export default function Home() {
             thoughtfully package all of our treats so they arrive perfectly and
             ready to enjoy. Better get those sunglasses ready :)
           </p>
-          <a href="/shop">ORDER NOW</a>
+          <a href="/Shop">ORDER NOW</a>
         </div>
       </div>
       <div className="infinite-scroll">
