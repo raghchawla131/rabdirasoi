@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HorizontalScroller from "../components/HorizontalScroller";
 import cakeSvg from "../assets/cake.svg";
 import boxSvg from "../assets/box.svg";
@@ -28,7 +29,7 @@ export default function Home() {
             just happy it's Wednesday — these treats are sure to get the party
             started. Plus, we ship nationwide straight to your door!
           </p>
-          <a href="/Shop">SHOP NOW</a>
+          <Link to="/shop">SHOP NOW</Link>
         </div>
       </div>
       <div className="infinite-scroll">
@@ -91,7 +92,7 @@ export default function Home() {
             thoughtfully package all of our treats so they arrive perfectly and
             ready to enjoy. Better get those sunglasses ready :)
           </p>
-          <a href="/Shop">ORDER NOW</a>
+          <Link to="/shop">SHOP NOW</Link>
         </div>
       </div>
       <div className="infinite-scroll">

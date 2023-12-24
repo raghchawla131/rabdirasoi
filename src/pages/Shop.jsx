@@ -1,7 +1,12 @@
 import { PRODUCTS } from "../products";
 import Product from "../components/Product";
+import { useEffect } from "react";
 
 export default function Shop() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+  
   return (
     <>
       <div id="shop">
