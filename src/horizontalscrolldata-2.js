@@ -1,8 +1,6 @@
 import chocolateCake from "../src/assets/best sellers/chocolate cake.jpg";
-import blueberryCake from "../src/assets/best sellers/blueberry cake.jpg";
 import brownie from "../src/assets/best sellers/brownie.jpg";
 import chocolate from "../src/assets/best sellers/chocolate.jpg";
-import cupcake from "../src/assets/best sellers/cupcake.jpg";
 import fruitCake from "../src/assets/best sellers/fruit cake.jpg";
 import strawberryCake from "../src/assets/best sellers/strawberry cake.jpg";
 
