@@ -1,52 +1,65 @@
-import chocolateCake from "../src/assets/best sellers/chocolate cake.jpg"
-import blueberryCake from "../src/assets/best sellers/blueberry cake.jpg"
-import brownie from "../src/assets/best sellers/brownie.jpg"
-import chocolate from "../src/assets/best sellers/chocolate.jpg"
-import cupcake from "../src/assets/best sellers/cupcake.jpg"
-import fruitCake from "../src/assets/best sellers/fruit cake.jpg"
-import strawberryCake from "../src/assets/best sellers/strawberry cake.jpg"
+import chocolateCake from "../src/assets/best sellers/chocolate cake.jpg";
+import blueberryCake from "../src/assets/best sellers/blueberry cake.jpg";
+import brownie from "../src/assets/best sellers/brownie.jpg";
+import chocolate from "../src/assets/best sellers/chocolate.jpg";
+import cupcake from "../src/assets/best sellers/cupcake.jpg";
+import fruitCake from "../src/assets/best sellers/fruit cake.jpg";
+import strawberryCake from "../src/assets/best sellers/strawberry cake.jpg";
 
 export const horizontalscrolldata2 = [
   {
-    id: 1,
-    image: chocolateCake,
-    title: "CHOCOLATE CAKE",
-    description: "Indulge in pure bliss with our decadent chocolate cake"
+    key: 1,
+    productName: "Strawberry Cake",
+    price: 400,
+    productImage: strawberryCake,
+    about:
+      "You’ve never tried a birthday cake like this. Our bestselling Birthday Cake, inspired by the boxed vanilla funfetti cake we loved as a kid, has grown up and gone gourmet. It has three tiers of heavenly rainbow-flecked vanilla birthday cake, layers of creamy frosting & crunchy crumbs, all topped with rainbow sprinkles.",
+    description:
+      "Savor the essence of nature in every bite with our delightful fruit cake",
+    type: "cake",
   },
   {
-    id: 2,
-    image: fruitCake,
-    title: "FRUIT CAKE",
-    description: "Savor the essence of nature in every bite with our delightful fruit cake"
+    key: 2,
+    productName: "Fruit Cake",
+    price: 400,
+    productImage: fruitCake,
+    about:
+      "You’ve never tried a birthday cake like this. Our bestselling Birthday Cake, inspired by the boxed vanilla funfetti cake we loved as a kid, has grown up and gone gourmet. It has three tiers of heavenly rainbow-flecked vanilla birthday cake, layers of creamy frosting & crunchy crumbs, all topped with rainbow sprinkles.",
+    description:
+      "Savor the essence of nature in every bite with our delightful fruit cake",
+    type: "cake",
   },
   {
-    id: 3,
-    image: blueberryCake,
-    title: "BLUEBERRY CAKE",
-    description: "Discover a burst of blueberry bliss in every bite of our delightful cake"
+    key: 4,
+    productName: "Chocolate Cake",
+    price: 400,
+    productImage: chocolateCake,
+    about:
+      "You’ve never tried a birthday cake like this. Our bestselling Birthday Cake, inspired by the boxed vanilla funfetti cake we loved as a kid, has grown up and gone gourmet. It has three tiers of heavenly rainbow-flecked vanilla birthday cake, layers of creamy frosting & crunchy crumbs, all topped with rainbow sprinkles.",
+    description:
+      "Savor the essence of nature in every bite with our delightful fruit cake",
+    type: "cake",
   },
   {
-    id: 4,
-    image: chocolate,
-    title: "CHOCOLATES",
-    description: "Unwrap happiness with our chocolates, a sweet moment in every piece"
+    key: 7,
+    productName: "Brownie Cake",
+    price: 400,
+    productImage: brownie,
+    about:
+      "You’ve never tried a birthday cake like this. Our bestselling Birthday Cake, inspired by the boxed vanilla funfetti cake we loved as a kid, has grown up and gone gourmet. It has three tiers of heavenly rainbow-flecked vanilla birthday cake, layers of creamy frosting & crunchy crumbs, all topped with rainbow sprinkles.",
+    description:
+      "Savor the essence of nature in every bite with our delightful fruit cake",
+    type: "brownie",
   },
   {
-    id: 5,
-    image: cupcake,
-    title: "CUP CAKE",
-    description: "Indulge in mini moments of delight with our scrumptious cupcakes"
-  },
-  {
-    id: 6,
-    image: brownie,
-    title: "BROWNIE",
-    description: "Experience pure chocolatey pleasure with our delectable brownies"
-  },
-  {
-    id: 7,
-    image: strawberryCake,
-    title: "STRAWBERRY CAKE",
-    description: "Delight in the taste of summer with our luscious strawberry cake"
+    key: 11,
+    productName: "Chocolate",
+    price: 400,
+    productImage: chocolate,
+    about:
+      "You’ve never tried a birthday cake like this. Our bestselling Birthday Cake, inspired by the boxed vanilla funfetti cake we loved as a kid, has grown up and gone gourmet. It has three tiers of heavenly rainbow-flecked vanilla birthday cake, layers of creamy frosting & crunchy crumbs, all topped with rainbow sprinkles.",
+    description:
+      "Savor the essence of nature in every bite with our delightful fruit cake",
+    type: "chocolate",
   },
 ];

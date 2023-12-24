@@ -6,6 +6,7 @@ import { PRODUCTS } from "../products";
 export default function Cart({ toggleCart }) {
   const [cartItems, setCartItems] = useState(getCartItemsFromStorage());
   const [subtotal, setSubtotal] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
     const countSubtotal = () => {
       let calculatedSubtotal = 0;
@@ -38,11 +39,16 @@ export default function Cart({ toggleCart }) {
     countSubtotal();
   };
 
+  const handleToggleCart = () => {
+    setIsOpen(!isOpen);
+    toggleCart();
+  };
+
   return (
     <>
-      <section className="cart">
+      <section className={`cart ${isOpen ? 'open' : ''}`}>
         <div className="cart-header">
-          <button onClick={toggleCart} className="close-cart-btn">
+          <button onClick={handleToggleCart} className="close-cart-btn">
             <ion-icon name="close"></ion-icon>
           </button>
           <h4>YOUR ORDERS</h4>

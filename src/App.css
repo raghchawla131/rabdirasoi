@@ -54,10 +54,6 @@ body {
   font-size: 1.5em;
 }
 
-/* .cart-btn:hover {
-  cursor: ;
-} */
-
 .nav-links a {
   color: black;
   text-decoration: none;
@@ -889,6 +885,12 @@ body {
   width: 450px;
   height: 100vh; 
   z-index: 1000;
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.cart .open {
+  transform: translateX(0);
 }
 
 /* cart overlay */

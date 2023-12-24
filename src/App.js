@@ -45,7 +45,9 @@ export default function App() {
   }, [isCartVisible]);
 
   const toggleCart = (e) => {
-    e.preventDefault();
+    if(e) {
+      e.preventDefault();
+    }
     setIsCartVisible(!isCartVisible);
   };
 

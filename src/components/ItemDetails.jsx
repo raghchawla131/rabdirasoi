@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PRODUCTS } from "../products";
 import { getCartItemsFromStorage, setCartItemsToStorage } from "../utils/CartStorage";
@@ -10,6 +10,10 @@ export default function ItemDetails() {
   const { productName, productImage, about } = PRODUCTS.find(
     (product) => product.key === parseInt(productId)
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function handleIncrement() {
     setItemsQuantity(itemsQuantity + 1);
