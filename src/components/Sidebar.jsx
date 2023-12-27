@@ -1,6 +1,6 @@
 import logo from "../assets/rab di rasoi logo.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cart from "./Cart";
 
 export default function Sidebar({
@@ -29,8 +29,21 @@ export default function Sidebar({
 
   const toggleSidebarClass = isMenuOpen ? "sidebar-show" : "";
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'visible';
+    }
+
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
+      {isMenuOpen && <div className="overlayMenu"></div>}
       <nav className="mobile-nav">
         <div onClick={toggleMenu}>
           <ion-icon id="open-menu" name="menu-outline"></ion-icon>

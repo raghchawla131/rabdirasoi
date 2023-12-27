@@ -15,7 +15,7 @@ export default function Navbar({
   return (
     <>
       {isCartVisible && (
-        <div className="overlay" onClick={() => setIsCartVisible(false)}></div>
+        <div className="overlayCart" onClick={() => setIsCartVisible(false)}></div>
       )}
       <nav className="desktop-nav">
         <div id="logo">
