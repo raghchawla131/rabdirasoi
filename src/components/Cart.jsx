@@ -8,21 +8,20 @@ export default function Cart({ toggleCart }) {
   const [subtotal, setSubtotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
-    const countSubtotal = () => {
-      let calculatedSubtotal = 0;
-
-      for (const itemId of cartItems) {
-        const product = PRODUCTS.find((product) => String(product.key) === itemId);
-
-        if (product) {
-          calculatedSubtotal += product.price;
-        } else {
-          console.warn(`Product not found for itemId: ${itemId}`);
-        }
+  const countSubtotal = () => {
+    let calculatedSubtotal = 0;
+    for (const itemId of cartItems) {
+      const product = PRODUCTS.find((product) => String(product.key) === itemId);
+      if (product) {
+        calculatedSubtotal += product.price;
+      } else {
+        console.warn(`Product not found for itemId: ${itemId}`);
       }
+    }
+    setSubtotal(calculatedSubtotal);
+  };
 
-      setSubtotal(calculatedSubtotal);
-    };
+  const shippingCharges = cartItems.length > 0 ? 50 : 0;
 
   useEffect(() => {
     setCartItems(getCartItemsFromStorage());
@@ -66,11 +65,11 @@ export default function Cart({ toggleCart }) {
             </div>
             <div>
               <h4>shipping + handling</h4>
-              <h4>₹50</h4>
+              <h4>₹{shippingCharges}</h4>
             </div>
             <div>
               <h4>total</h4>
-              <h4>₹{subtotal + 50}</h4>
+              <h4>₹{subtotal + shippingCharges}</h4>
             </div>
           </div>
           <div className="enter-address-btn">

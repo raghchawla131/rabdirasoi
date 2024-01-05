@@ -29,7 +29,7 @@ export default function Home() {
             just happy it's Wednesday — these treats are sure to get the party
             started. Plus, we ship nationwide straight to your door!
           </p>
-          <Link to="/shop">SHOP NOW</Link>
+          <Link to="/shop"z>SHOP NOW</Link>
         </div>
       </div>
       <div className="infinite-scroll">

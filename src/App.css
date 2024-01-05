@@ -274,19 +274,6 @@ body {
   border-radius: 5px;
 }
 
-/* .shop-now-content a:hover {
-  animation: wave-animation 1s ease-in-out infinite;
-}
-
-@keyframes wave-animation {
-  0%,100% {
-    clip-path: polygon(0 44%, 14% 46%, 30% 51%, 47% 55%, 66% 56%, 81% 52%, 100% 42%, 100% 99%, 0% 100%);
-  }
-  50% {
-    clip-path: polygon(0 52%, 14% 49%, 31% 48%, 48% 50%, 66% 52%, 81% 45%, 100% 40%, 100% 99%, 0% 100%);
-  }
-} */
-
 .infinite-scroll {
   background-color: rgb(23, 23, 23);
   color: antiquewhite;
@@ -597,10 +584,11 @@ body {
 
 .faq {
   padding: 1em 0.5em;
+  overflow-y: scroll;
 }
 
 .faq h2 {
-  padding-bottom: 3em;
+  padding-bottom: 2em;
 }
 
 .query {
@@ -639,7 +627,24 @@ body {
 
   #contact > * {
     width: 50%;
+    height: calc(100dvh - 81px);
+  }
+
+  .contact-us-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 4em 3em;
+  }
+
+  .faq {
+    padding: 1em 3em;
+  }
+
+  .faq-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
   }
 }
 
