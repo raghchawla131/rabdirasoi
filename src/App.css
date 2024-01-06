@@ -587,6 +587,22 @@ body {
   overflow-y: scroll;
 }
 
+.faq::-webkit-scrollbar {
+  height: calc(100vh - 81px);
+  width: 0.5em;
+}
+
+.faq::-webkit-scrollbar-track {
+  margin: 0 2rem;
+  background-color: rgba(255, 20, 145, 0.2);
+  border-radius: 100vw;
+}
+
+.faq::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 20, 145, 0.8);
+  border-radius: 100vw;
+}
+
 .faq h2 {
   padding-bottom: 2em;
 }
