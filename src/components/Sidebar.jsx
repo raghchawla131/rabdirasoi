@@ -77,7 +77,7 @@ export default function Sidebar({
               </Link>
             </li>
             <li>
-              <Link to="/Contact" onCanPlay={handleLinkClick}>
+              <Link to="/Contact" onClick={handleLinkClick}>
                 Contact us
               </Link>
             </li>
