@@ -170,7 +170,49 @@ body {
 
 /* footer styling */
 
+footer {
+  background-color: #2b2b2b;
+  color: #fff5e9ff;
+  padding: 1.5em 0;
+}
+
 .shop-footer {
+  padding: 0 1em;
+}
+
+.shop-footer h1 {
+  font-size: 1.9em;
+  font-weight: 500;
+}
+
+.shop-footer p {
+  padding-bottom: 0.5em;
+  line-height: 1.8em;
+}
+
+.footer-socials {
+  padding: 0 1em;
+}
+
+.footer-page-links {
+  padding: 0 1em;
+}
+
+table {
+  border-spacing: 0.5rem;
+  font-size: 0.875rem;
+}
+
+table th {
+  text-transform: uppercase;
+}
+
+table th,
+table td {
+  font-weight: 500;
+}
+
+/* .shop-footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,7 +255,7 @@ body {
 .socials {
   margin-top: 20px;
   font-size: 25px;
-}
+} */
 
 /* home styling */
 
