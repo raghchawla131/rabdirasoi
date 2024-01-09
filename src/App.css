@@ -222,18 +222,23 @@ footer {
   padding: 0 1em;
 }
 
-table {
+footer table {
   border-spacing: 0.5rem;
   font-size: 0.875rem;
 }
 
-table th {
+footer table th {
   text-transform: uppercase;
   color: rgba(255, 245, 233, 0.700);
 }
 
-table th,
-table td {
+footer table a {
+  color: #fff5e9ff;
+  text-decoration: none;
+}
+
+footer table th,
+footer table td {
   font-weight: 500;
 }
 

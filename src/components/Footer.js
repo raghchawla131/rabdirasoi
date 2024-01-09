@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
 import Socials from "./socials";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <footer>
@@ -26,16 +31,25 @@ export default function Footer() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>About Us</td>
+                    <td>
+                      <Link to="/Shop" onClick={scrollToTop}>
+                        Shop
+                      </Link>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Blog</td>
+                    <td>
+                      <Link to="/Contact" onClick={scrollToTop}>
+                        Contact
+                      </Link>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Github</td>
-                  </tr>
-                  <tr>
-                    <td>Free Products</td>
+                    <td>
+                      <Link to="/About" onClick={scrollToTop}>
+                        About
+                      </Link>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -49,16 +63,17 @@ export default function Footer() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>About Us</td>
+                    <td>
+                      <a href="https://github.com/raghchawla131/rabdirasoi">
+                        GitHub
+                      </a>
+                    </td>
                   </tr>
                   <tr>
-                    <td>Blog</td>
+                    <td>Gallery</td>
                   </tr>
                   <tr>
-                    <td>Github</td>
-                  </tr>
-                  <tr>
-                    <td>Free Products</td>
+                    <td>Location</td>
                   </tr>
                 </tbody>
               </table>
