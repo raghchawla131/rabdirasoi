@@ -61,27 +61,27 @@ body {
   position: relative;
 }
 
-.nav-links a:hover::after,
-.sidebar-links a:hover::after {
+.nav-links a::after {
   content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
   background-color: deeppink;
-  width: 100%;
+  width: 0;
   height: 2px;
-  animation: hoverLine 350ms;
+  transition: width 350ms ease-in-out;
 }
 
-@keyframes hoverLine {
-  0% {
-    width: 0;
-    left: 0;
-  }
-  100% {
-    width: 100%;
-    left: 0;
-  }
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a::after {
+  width: 0;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 /* Sidebar styling */
@@ -725,6 +725,15 @@ footer table td {
     gap: 3em;
   }
 }
+
+/* about us styling */
+
+.about-us {
+  padding-top: 81px;
+}
+
+
+
 
 /* shop styling */
 
