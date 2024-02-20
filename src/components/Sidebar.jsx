@@ -1,6 +1,6 @@
 import logo from "../assets/rab di rasoi logo.png";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Cart from "./Cart";
 
 export default function Sidebar({
@@ -15,32 +15,47 @@ export default function Sidebar({
   }
 
   const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
+    if(isMenuOpen) setIsMenuOpen(false);
   };
 
   const handleLinkClick = () => {
     scrollToTop();
     closeMenu();
   };
-
+  
   const toggleSidebarClass = isMenuOpen ? "sidebar-show" : "";
-
+  
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     }
-
+    
     return () => {
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
     };
   }, [isMenuOpen]);
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
+  
+  const ref = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+  }, [ref]);
+
+  
   return (
     <>
       {isMenuOpen && <div className="overlayMenu"></div>}
@@ -57,7 +72,7 @@ export default function Sidebar({
           </Link>
         </div>
       </nav>
-      <div className={`sidebar ${toggleSidebarClass}`}>
+      <div ref={ref} className={`sidebar ${toggleSidebarClass}`}>
         <div className="sidebar-header">
           <img className="sidebar-logo" src={logo} alt="" />
           <div onClick={toggleMenu}>
