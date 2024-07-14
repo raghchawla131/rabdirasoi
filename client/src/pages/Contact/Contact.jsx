@@ -1,5 +1,6 @@
-import Queries from "../components/Queries";
-import { useState } from "react";
+import "./Contact.css"
+import Queries from "../../components/Queries"
+import { useState } from "react"
 
 export default function Contact() {
   const [activeQueryIndex, setActiveQueryIndex] = useState(null);

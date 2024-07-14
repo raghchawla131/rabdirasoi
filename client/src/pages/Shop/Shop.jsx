@@ -1,6 +1,7 @@
-import { PRODUCTS } from "../products";
-import Product from "../components/Product";
-import { useEffect } from "react";
+import "./Shop.css"
+import { PRODUCTS } from "../../products"
+import Product from "../../components/Product"
+import { useEffect } from "react"
 
 export default function Shop() {
   useEffect(() => {
