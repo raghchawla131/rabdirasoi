@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import "./AdminSidebar.css";
 
 const AdminSidebar = () => {
@@ -23,27 +23,31 @@ const AdminSidebar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <>
+    <div>
       {isMobile && (
-        <ion-icon 
-          name="menu-outline" 
-          className={`menu-icon ${isSidebarVisible ? 'hidden' : ''}`} 
-          onClick={toggleSidebar} 
-          style={{ padding: '1rem' }}
+        <ion-icon
+          name="menu-outline"
+          className={`menu-icon ${isSidebarVisible ? "hidden" : ""}`}
+          onClick={toggleSidebar}
+          style={{ padding: "1rem" }}
         ></ion-icon>
       )}
-      <div className={`sidebar ${isSidebarVisible ? 'mobile-visible' : 'mobile-hidden'}`}>
+      <div
+        className={`sidebar ${
+          isSidebarVisible ? "mobile-visible" : "mobile-hidden"
+        }`}
+      >
         {isMobile && (
-          <ion-icon 
-            name="close-outline" 
-            className={`close-icon ${isSidebarVisible ? '' : 'hidden'}`} 
-            onClick={toggleSidebar} 
+          <ion-icon
+            name="close-outline"
+            className={`close-icon ${isSidebarVisible ? "" : "hidden"}`}
+            onClick={toggleSidebar}
           ></ion-icon>
         )}
         {/* Sidebar content goes here */}
@@ -55,8 +59,8 @@ const AdminSidebar = () => {
           <li>Settings</li>
         </ul>
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default AdminSidebar;
