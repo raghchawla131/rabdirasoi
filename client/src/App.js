@@ -1,8 +1,10 @@
+// src/App.jsx
+import React, { useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
   Outlet,
+  Navigate,
 } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
@@ -13,56 +15,71 @@ import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/Shop/Shop";
 import ItemDetails from "./components/ItemDetails";
 import Login from "./pages/Login";
+import Admin from "./Admin/Admin";
+import AdminLogin from "./Admin/AdminLogin/AdminLogin.jsx";
 
-const Layout = ({ children }) => {
-  return (
-    <div className="layout">
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </div>
-  );
+const Layout = () => (
+  <div className="layout">
+    <Navbar />
+    <Outlet />
+    <Footer />
+  </div>
+);
+
+const ProtectedRoute = ({ element, adminAuthenticated }) => {
+  return adminAuthenticated ? element : <Navigate to="/admin/login" />;
 };
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/About",
-        element: <About />,
-      },
-      {
-        path: "/Contact",
-        element: <Contact />,
-      },
-      {
-        path: "/Shop",
-        element: <Shop />,
-      },
-      {
-        path: "/products/:productId",
-        element: <ItemDetails />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-]);
-
 function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  const [adminAuthenticated, setAdminAuthenticated] = useState(false);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+        {
+          path: "/shop",
+          element: <Shop />,
+        },
+        {
+          path: "/products/:productId",
+          element: <ItemDetails />,
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/admin/login",
+      element: <AdminLogin setAdminAuthenticated={setAdminAuthenticated} />,
+    },
+    {
+      path: "/admin",
+      element: (
+        <ProtectedRoute
+          element={<Admin />}
+          adminAuthenticated={adminAuthenticated}
+        />
+      ),
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

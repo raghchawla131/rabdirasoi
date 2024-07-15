@@ -17,14 +17,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
-app.get("/api/auth/signup", (req, res) => {
-  res.send("<h1>signup page</h1>")
-})
-
-app.get("/api/auth/login", (req, res) => {
-  res.send("<h1>login page</h1>")
-})
-
 app.use('/api/auth', authRoutes);
 
 app.listen(8000, () => {

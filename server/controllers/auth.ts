@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import db from "../db";
-import bcrypt from "bcrypt";
+import { Request, Response } from 'express';
+import bcrypt from 'bcrypt';
+import db from '../db';
 import jwt from "jsonwebtoken";
 
 export const signup = (req: Request, res: Response) => {
@@ -28,6 +28,7 @@ export const signup = (req: Request, res: Response) => {
   });
 };
 
+
 export const login = (req: Request, res: Response) => {
   const q = "SELECT * FROM users WHERE email = ?";
   db.query(q, [req.body.email], (err, result: any[]) => {
@@ -53,5 +54,30 @@ export const login = (req: Request, res: Response) => {
     res.cookie("accessToken", token, {
         httpOnly: true,
       }).status(200).json(user_id);
+  });
+};
+
+export const adminLogin = (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  
+  // Query the admins table
+  const query = `SELECT * FROM admins WHERE email = ?`;
+
+  // Check if email exists in the admins table
+  db.query(query, [email], (err, result: any[]) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (!result.length) {
+      return res.status(400).json({ message: "Admin does not exist" });
+    }
+
+    // Password verification (plain text comparison)
+    if (password !== result[0].password) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // If the email and password match, return success response
+    res.status(200).json({ message: "Login successful" });
   });
 };
