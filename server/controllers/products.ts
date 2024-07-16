@@ -28,3 +28,24 @@ export const getProducts = async (req: Request, res: Response) => {
     return res.status(200).json(results);
   });
 };
+
+export const deleteProduct = async (req: Request, res: Response) => {
+  const { product_id } = req.params;
+  
+  try {
+    const q = 'DELETE FROM products WHERE product_id = ?';
+    db.query(q, [product_id], (err, result) => {
+      if (err) {
+        console.error('Error deleting product:', err);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+      if((result as any).affectedRows === 0) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      res.status(200).json({ message: 'Product deleted successfully' });
+    });
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
