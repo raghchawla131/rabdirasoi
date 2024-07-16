@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./AdminSidebar.css";
 
 const AdminSidebar = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleSidebar = () => {
     if (isMobile) {
       setIsSidebarVisible(!isSidebarVisible);
+    }
+    setOpenDropdown(null);
+  };
+
+  const closeSidebar = () => {
+    if (isMobile) {
+      setIsSidebarVisible(false);
     }
   };
 
@@ -27,6 +36,10 @@ const AdminSidebar = () => {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleDropdownClick = (dropdown) => {
+    setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+  };
 
   return (
     <div>
@@ -52,11 +65,19 @@ const AdminSidebar = () => {
         )}
         {/* Sidebar content goes here */}
         <ul>
-          <li>Dashboard</li>
-          <li>Products</li>
-          <li>Orders</li>
-          <li>Customers</li>
-          <li>Settings</li>
+          <li><Link to="/admin" onClick={closeSidebar}>Dashboard</Link></li>
+          <li onClick={() => handleDropdownClick('products')}>
+            Products
+            {openDropdown === 'products' && (
+              <ul className="dropdown">
+                <li><Link to="/admin/add-product" onClick={closeSidebar}>Add Product</Link></li>
+                <li><Link to="/admin/show-products" onClick={closeSidebar}>Show All Products</Link></li>
+              </ul>
+            )}
+          </li>
+          <li><Link to="/admin/orders" onClick={closeSidebar}>Orders</Link></li>
+          <li><Link to="/admin/customers" onClick={closeSidebar}>Customers</Link></li>
+          <li><Link to="/admin/settings" onClick={closeSidebar}>Settings</Link></li>
         </ul>
       </div>
     </div>

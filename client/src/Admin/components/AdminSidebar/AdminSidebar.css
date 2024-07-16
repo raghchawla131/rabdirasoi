@@ -26,7 +26,7 @@
 /* Sidebar width for mobile */
 @media (max-width: 768px) {
   .sidebar {
-    width: 70vw;
+    width: 60vw;
     flex-direction: row-reverse;
     justify-content: space-between;
   }
@@ -35,7 +35,7 @@
 /* Sidebar width for larger screens */
 @media (min-width: 769px) {
   .sidebar {
-    width: 30vw;
+    width: 25vw;
     transform: translateX(0);
     
   }
@@ -84,4 +84,12 @@ ion-icon {
 
 .sidebar ul li:hover {
   background-color: #444;
+}
+
+.dropdown {
+  border: 1px solid yellow;
+}
+
+.dropdown li a {
+  text-decoration: none;
 }
