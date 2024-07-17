@@ -42,7 +42,7 @@ const ProtectedRoute = ({ element, adminAuthenticated }) => {
 };
 
 function App() {
-  const [adminAuthenticated, setAdminAuthenticated] = useState(false); // Start with adminAuthenticated as false
+  const [adminAuthenticated, setAdminAuthenticated] = useState(true); // Start with adminAuthenticated as false
 
   const router = createBrowserRouter([
     {

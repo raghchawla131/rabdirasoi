@@ -7,7 +7,7 @@ const ShowProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:8001/api/products');
+      const response = await axios.post('http://localhost:8001/api/products/show-products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -61,7 +61,7 @@ const ShowProducts = () => {
                 <td>{product.name}</td>
                 <td>{product.description}</td>
                 <td>{product.category}</td>
-                <td>${product.price}</td>
+                <td>&#8377;{product.price}</td>
                 <td>
                   <button onClick={() => deleteProduct(product.product_id)}>Delete</button>
                 </td>

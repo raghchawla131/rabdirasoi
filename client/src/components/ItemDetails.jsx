@@ -1,114 +1,106 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { PRODUCTS } from "../products";
 import { getCartItemsFromStorage, setCartItemsToStorage } from "../utils/CartStorage";
+import axios from "axios";
 
-export default function ItemDetails() {
+const ItemDetails = () => {
   const { productId } = useParams();
-  const[itemsQuantity, setItemsQuantity] = useState(1);
-
-  const { productName, productImage, about } = PRODUCTS.find(
-    (product) => product.key === parseInt(productId)
-  );
+  const [product, setProduct] = useState(null);
+  const [itemsQuantity, setItemsQuantity] = useState(1);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // Function to fetch product details based on productId
+    const fetchProduct = async () => {
+      try {
+        const res = await axios.post(`http://localhost:8001/api/products/get-product/${productId}`);
+        setProduct(res.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProduct(); // Call the fetch function when component mounts
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productId]); // Dependency on productId ensures fetch runs when ID changes
 
   function handleIncrement() {
     setItemsQuantity(itemsQuantity + 1);
   }
 
   function handleDecrement() {
-    if(itemsQuantity > 1) {
+    if (itemsQuantity > 1) {
       setItemsQuantity(itemsQuantity - 1);
-    } 
+    }
   }
 
   function handleAddToCartBtnClick() {
     const existingCartItems = getCartItemsFromStorage();
     const isProductInCart = existingCartItems.includes(productId);
 
-    if(!isProductInCart) {
+    if (!isProductInCart) {
       const newCartItems = [...existingCartItems, productId];
       setCartItemsToStorage(newCartItems);
     }
   }
+
+  if (!product) {
+    return <div>Loading...</div>; // Placeholder for when product data is being fetched
+  }
+
+  const { name, image_url, description } = product;
 
   return (
     <>
       <div style={{ paddingTop: "81px" }}>
         <div className="selected-item-details">
           <div className="selected-item-img">
-            <img src={productImage} alt="" />
+            <img src={image_url} alt={name} />
           </div>
           <div className="selected-item-desc">
-            <h1 id="selected-item-title">{productName}</h1>
-            <p>{about}</p>
+            <h1 id="selected-item-title">{name}</h1>
+            <p>{description}</p>
             <section className="selected-item-price">
-                <div>
-                  <h4 id="selected-item-size-header">Select size: </h4>
-                  <div className="selected-item-size">
-                    <div
-                      id="1-pound-size"
-                      className="selected-item-size-choice"
-                    >
-                      <div>
-                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
-                      </div>
-                      <div>
-                        <p>Serves group of 2-4</p>
-                      </div>
+              <div>
+                <h4 id="selected-item-size-header">Select size: </h4>
+                <div className="selected-item-size">
+                  {/* Placeholder content for size selection */}
+                  <div id="1-pound-size" className="selected-item-size-choice">
+                    <div>
+                      <p className="selected-item-choice-pp">
+                        <span>1-Pound</span> - $300
+                      </p>
                     </div>
-                    <div
-                      id="2-pound-size"
-                      className="selected-item-size-choice"
-                    >
-                      <div>
-                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
-                      </div>
-                      <div>
-                        <p>Serves group of 2-4</p>
-                      </div>
-                    </div>
-                    <div
-                      id="3-pound-size"
-                      className="selected-item-size-choice"
-                    >
-                      <div>
-                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
-                      </div>
-                      <div>
-                        <p>Serves group of 2-4</p>
-                      </div>
-                    </div>
-                    <div
-                      id="4-pound-size"
-                      className="selected-item-size-choice"
-                    >
-                      <div>
-                        <p className="selected-item-choice-pp"><span>1-Pound</span> - 300</p>
-                      </div>
-                      <div>
-                        <p>Serves group of 2-4</p>
-                      </div>
+                    <div>
+                      <p>Serves group of 2-4</p>
                     </div>
                   </div>
-                  <div className="add-selected-item-to-cart">
-                    <div className="selected-item-quantity">
-                        <button onClick={handleDecrement}><ion-icon name="remove-outline"></ion-icon></button>
-                        <div>{itemsQuantity}</div>
-                        <button onClick={handleIncrement}><ion-icon name="add-outline"></ion-icon></button>
-                    </div>
-                    <button onClick={handleAddToCartBtnClick} className="selected-item-to-cart-btn">
-                      add to cart
+                  {/* Add other size options similarly */}
+                </div>
+                <div className="add-selected-item-to-cart">
+                  <div className="selected-item-quantity">
+                    <button onClick={handleDecrement}>
+                      <ion-icon name="remove-outline"></ion-icon>
+                    </button>
+                    <div>{itemsQuantity}</div>
+                    <button onClick={handleIncrement}>
+                      <ion-icon name="add-outline"></ion-icon>
                     </button>
                   </div>
+                  <button
+                    onClick={handleAddToCartBtnClick}
+                    className="selected-item-to-cart-btn"
+                  >
+                    add to cart
+                  </button>
                 </div>
+              </div>
             </section>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
+
+export default ItemDetails;
