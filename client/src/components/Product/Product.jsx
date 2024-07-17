@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './Product.css';
 
 export default function Product({ data }) {
   const { name, image_url, description, product_id } = data;

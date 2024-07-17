@@ -13,7 +13,7 @@ import Footer from "./components/layout/Footer";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/Shop/Shop";
-import ItemDetails from "./components/ItemDetails";
+import ItemDetails from "./components/ItemDetails/ItemDetails.jsx";
 import Login from "./pages/Login";
 import Admin from "./Admin/Admin";
 import AdminLogin from "./Admin/pages/AdminLogin/AdminLogin.jsx";
