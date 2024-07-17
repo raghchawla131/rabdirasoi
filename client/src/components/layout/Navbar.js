@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState, useRef } from "react"
-import Cart from "../Cart"
+import Cart from "../Cart/Cart"
 import logo from "../../assets/rab di rasoi logo.png"
 import "./Navbar.css"
 

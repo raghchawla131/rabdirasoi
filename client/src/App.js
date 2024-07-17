@@ -14,12 +14,13 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/Shop/Shop";
 import ItemDetails from "./components/ItemDetails/ItemDetails.jsx";
-import Login from "./pages/Login";
 import Admin from "./Admin/Admin";
 import AdminLogin from "./Admin/pages/AdminLogin/AdminLogin.jsx";
 import AddProducts from "./Admin/pages/AddProducts/AddProducts.jsx";
 import ShowProducts from "./Admin/pages/ShowProducts/ShowProducts.jsx";
 import AdminSidebar from "./Admin/components/AdminSidebar/AdminSidebar.jsx";
+import Login from "./pages/Auth/Login.jsx";
+import Signup from "./pages/Auth/Signup.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -74,6 +75,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
     },
     {
       path: "/admin/login",
