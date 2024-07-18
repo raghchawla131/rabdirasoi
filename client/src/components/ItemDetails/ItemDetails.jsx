@@ -1,10 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./ItemDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getCartItemsFromStorage,
-  setCartItemsToStorage,
-} from "../../utils/CartStorage";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 
@@ -13,7 +9,7 @@ const ItemDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [itemsQuantity, setItemsQuantity] = useState(1);
-  const [selectedValue, setSelectedValue] = useState("1");
+  const [poundQuantity, setPoundQuantity] = useState("1");
 
   const navigate = useNavigate();
 
@@ -45,7 +41,7 @@ const ItemDetails = () => {
   ];
 
   const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
+    setPoundQuantity(event.target.value);
   };
 
   const handleIncrement = () => {
@@ -62,9 +58,27 @@ const ItemDetails = () => {
   }
 
   const handleAddToCartBtnClick = async () => {
-    console.log(currentUser);
-    if(!currentUser) navigate("/login");
-  }
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
+  
+    try {
+      await axios.post(
+        "http://localhost:8001/api/cart/add-to-cart",
+        {
+          user_id: currentUser,
+          product_id: productId,
+          pound_quantity: poundQuantity,
+        },
+      );
+      alert("Item added to cart successfully");
+    } catch (error) {
+      console.error("Error adding item to cart", error);
+      alert("Failed to add item to cart");
+    }
+  };
+  
 
   if (!product) {
     return <div>Loading...</div>;
@@ -85,7 +99,7 @@ const ItemDetails = () => {
             <div>
               <h4 id="selected-item-size-header">Select size: </h4>
               <div className="custom-dropdown">
-                <select value={selectedValue} onChange={handleSelectChange}>
+                <select value={poundQuantity} onChange={handleSelectChange}>
                   {options.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}

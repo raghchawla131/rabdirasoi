@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./Cart.css";
 import CartItem from "../CartItem";
 import {
@@ -8,9 +8,12 @@ import {
 import { PRODUCTS } from "../../products";
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
+import axios from "axios";
+import { AuthContext } from "../../context/authContext";
 
 export default function Cart({ toggleCart }) {
-  const [cartItems, setCartItems] = useState(getCartItemsFromStorage());
+  const { currentUser } = useContext(AuthContext);
+  const [cartItems, setCartItems] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,6 +56,26 @@ export default function Cart({ toggleCart }) {
     toggleCart();
   };
 
+  const fetchCartItems = async () => {
+    if (currentUser) {
+      try {
+        const res = await axios.post(
+          'http://localhost:8001/api/cart/fetch-cart-items', 
+          {
+            user_id: currentUser,
+          }
+        );
+        setCartItems(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchCartItems();
+  }, [currentUser]);
+
   return (
     <>
       <section className={`cart ${isOpen ? "open" : ""}`}>
@@ -65,16 +88,14 @@ export default function Cart({ toggleCart }) {
           <h4>YOUR ORDERS</h4>
         </div>
         <div className="selected-cart-items">
-          {cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item}
-                item={item}
-                onRemoveItem={handleRemoveItem}
-                onSubtotalChange={countSubtotal}
-              />
-            );
-          })}
+          {cartItems.map((item) => (
+            <CartItem
+              key={item.product_id} // Assuming product_id is unique
+              item={item}
+              onRemoveItem={handleRemoveItem}
+              onSubtotalChange={countSubtotal}
+            />
+          ))}
         </div>
         <div className="cart-bottom">
           <div className="total-order-price">
@@ -98,4 +119,5 @@ export default function Cart({ toggleCart }) {
       </section>
     </>
   );
+  
 }

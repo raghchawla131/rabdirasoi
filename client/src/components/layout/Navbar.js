@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import Cart from "../Cart/Cart";
 import logo from "../../assets/rab di rasoi logo.png";
