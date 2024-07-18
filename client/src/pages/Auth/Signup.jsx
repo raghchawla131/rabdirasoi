@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Auth.css'; // Use the common Auth.css file
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/authContext';
 
 export default function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [authData, setAuthData] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
   const navigate = useNavigate();
+  const {signup} = useContext(AuthContext);
 
-  const handleSignup = async () => {
+  const handleChange = (e) => {
+    setAuthData((prevAuthData) => ({
+      ...prevAuthData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
     try {
-      await axios.post("http://localhost:8001/api/auth/signup", {
-        email,
-        password,
-        username,
-      });
-      navigate("/login"); // Redirect to login page after successful signup
+      signup(authData);
+      navigate("/");
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -27,22 +35,22 @@ export default function Signup() {
       <h2>User Signup</h2>
       <input
         type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        nane="username"
+        onChange={handleChange}
         placeholder="Username"
         className="input-field"
       />
       <input
         type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        name="email"
+        onChange={handleChange}
         placeholder="Email"
         className="input-field"
       />
       <input
         type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        name="password"
+        onChange={handleChange}
         placeholder="Password"
         className="input-field"
       />

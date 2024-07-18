@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ItemDetails.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getCartItemsFromStorage,
   setCartItemsToStorage,
 } from "../../utils/CartStorage";
 import axios from "axios";
+import { AuthContext } from "../../context/authContext";
 
 const ItemDetails = () => {
+  const {currentUser} = useContext(AuthContext);
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [itemsQuantity, setItemsQuantity] = useState(1);
   const [selectedValue, setSelectedValue] = useState("1");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -58,7 +62,8 @@ const ItemDetails = () => {
   }
 
   const handleAddToCartBtnClick = async () => {
-
+    console.log(currentUser);
+    if(!currentUser) navigate("/login");
   }
 
   if (!product) {

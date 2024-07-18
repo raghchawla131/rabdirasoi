@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom"
-import { useEffect, useState, useRef } from "react"
-import Cart from "../Cart/Cart"
-import logo from "../../assets/rab di rasoi logo.png"
-import "./Navbar.css"
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useState, useRef, useContext } from "react";
+import Cart from "../Cart/Cart";
+import logo from "../../assets/rab di rasoi logo.png";
+import "./Navbar.css";
+import { AuthContext } from "../../context/authContext";
 
 export default function Navbar() {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser, logout } = useContext(AuthContext);
 
   // Function to handle window resize
   const handleWindowSizeChange = () => {
@@ -80,6 +82,11 @@ export default function Navbar() {
     };
   }, [isCartVisible]);
 
+  // Handle logout
+  const handleLogout = () => {
+    logout();
+  };
+
   // Render based on isMobile
   if (isMobile) {
     return (
@@ -135,11 +142,17 @@ export default function Navbar() {
                   About us
                 </Link>
               </li>
-              <li>
-                <Link to="/Login" onClick={handleLinkClick}>
-                  Login
-                </Link>
-              </li>
+              {currentUser ? (
+                <li>
+                  <Link onClick={handleLogout}>Logout</Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/Login" onClick={handleLinkClick}>
+                    Login
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -188,11 +201,17 @@ export default function Navbar() {
                   About us
                 </Link>
               </li>
-              <li>
-                <Link to="/Login" onClick={scrollToTop}>
-                  Login
-                </Link>
-              </li>
+              {currentUser ? (
+                <li>
+                  <Link onClick={handleLogout}>Logout</Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/Login" onClick={scrollToTop}>
+                    Login
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link to="/Cart" onClick={toggleCart}>
                   Cart
