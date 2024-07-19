@@ -1,0 +1,123 @@
+.selected-cart-items {
+  padding: 0 1em;
+  height: 52vh;
+  overflow-y: scroll;
+}
+
+.cart-item-container {
+  position: relative;
+  padding: 10px;
+  height: 120px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-item-img {
+  height: 100px;
+  width: 100px;
+}
+
+.cart-item-img img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.cart-item-description {
+  width: calc(100vw - 32px - 100px - 30px) !important;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid blue;
+}
+
+.cart-item-quantity-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-dropdown-pound-quantity select,
+.cart-item-quantity {
+  height: 30px;
+}
+
+.cart-item-dropdown-pound-quantity select {
+  width: 90px;
+  font-size: 0.85rem !important;
+  padding: 0 !important; 
+}
+
+.cart-item-quantity button {
+  width: 30px;
+  background-color: hotpink !important;
+}
+
+.cart-item-quantity button:hover {
+  background-color: rgb(255, 0, 128) !important;
+}
+
+.cart-item-dropdown-pound-quantity select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  margin-right: 10px;
+}
+
+.cart-item-dropdown-pound-quantity select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cart-item-quantity button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  font-size: 24px;
+}
+
+.cart-item-quantity button:hover {
+  background-color: #f0f0f0;
+}
+
+.cart-item-quantity div {
+  padding: 8px;
+  font-size: 16px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.remove-cart-item {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.remove-cart-item ion-icon {
+  font-size: 1.5rem;
+}

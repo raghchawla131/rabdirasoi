@@ -55,15 +55,6 @@ body {
 
 /* login */
 
-.login {
-  padding-top: 81px;
-  box-sizing: border-box;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Cart */
 
 .cart {

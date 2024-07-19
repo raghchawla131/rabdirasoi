@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./ItemDetails.css";
+import './ItemDetails.css';
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
@@ -70,14 +70,20 @@ const ItemDetails = () => {
           user_id: currentUser,
           product_id: productId,
           pound_quantity: poundQuantity,
-        },
+          item_quantity: itemsQuantity,
+        }
       );
       alert("Item added to cart successfully");
     } catch (error) {
-      console.error("Error adding item to cart", error);
-      alert("Failed to add item to cart");
+      if (error.response && error.response.status === 409) {
+        alert("This item is already in your cart");
+      } else {
+        console.error("Error adding item to cart", error);
+        alert("Failed to add item to cart");
+      }
     }
   };
+  
   
 
   if (!product) {

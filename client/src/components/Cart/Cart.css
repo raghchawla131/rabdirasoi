@@ -18,58 +18,6 @@
   padding: 1rem;
 }
 
-.selected-cart-items {
-  padding: 0em 1em 0em 1em;
-  /* padding-top: .5rem; */
-  height: 52vh;
-  overflow-y: scroll;
-}
-
-.cart-item {
-  position: relative;
-  height: 130px;
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 2fr ;
-  padding: 15px;
-  gap: 10px;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid gray;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.cart-item-img {
-  height: 100px;
-  width: 100px;
-}
-
-.cart-item-img img {
-  height: 100px;
-  width: 100px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 8px;
-}
-
-.cart-item-description {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.remove-cart-item {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-
-.remove-cart-item ion-icon {
-  font-size: 1.5rem;
-}
-
 .selected-item-quantity-cart {
   display: grid;
   grid-template-columns: repeat(3, 30px);

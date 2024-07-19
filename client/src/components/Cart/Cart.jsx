@@ -1,10 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import "./Cart.css";
-import CartItem from "../CartItem";
-import {
-  getCartItemsFromStorage,
-  setCartItemsToStorage,
-} from "../../utils/CartStorage";
+import CartItem from "../CartItems/CartItem";
 import { PRODUCTS } from "../../products";
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
@@ -17,17 +13,10 @@ export default function Cart({ toggleCart }) {
   const [subtotal, setSubtotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
-  const countSubtotal = () => {
+  const countSubtotal = (items) => {
     let calculatedSubtotal = 0;
-    for (const itemId of cartItems) {
-      const product = PRODUCTS.find(
-        (product) => String(product.key) === itemId
-      );
-      if (product) {
-        calculatedSubtotal += product.price;
-      } else {
-        console.warn(`Product not found for itemId: ${itemId}`);
-      }
+    for (const item of items) {
+      calculatedSubtotal += item.price * item.pound_quantity * item.item_quantity;
     }
     setSubtotal(calculatedSubtotal);
   };
@@ -35,21 +24,8 @@ export default function Cart({ toggleCart }) {
   const shippingCharges = cartItems.length > 0 ? 50 : 0;
 
   useEffect(() => {
-    setCartItems(getCartItemsFromStorage());
-  }, []);
-
-  useEffect(() => {
-    countSubtotal();
-  });
-
-  const handleRemoveItem = (itemToRemove) => {
-    const updatedCartItems = cartItems.filter(
-      (item) => item !== itemToRemove.toString()
-    );
-    setCartItems(updatedCartItems);
-    setCartItemsToStorage(updatedCartItems);
-    countSubtotal();
-  };
+    countSubtotal(cartItems);
+  }, [cartItems]);
 
   const handleToggleCart = () => {
     setIsOpen(!isOpen);
@@ -92,8 +68,7 @@ export default function Cart({ toggleCart }) {
             <CartItem
               key={item.product_id} // Assuming product_id is unique
               item={item}
-              onRemoveItem={handleRemoveItem}
-              onSubtotalChange={countSubtotal}
+              fetchCartItems={fetchCartItems}
             />
           ))}
         </div>
@@ -119,5 +94,4 @@ export default function Cart({ toggleCart }) {
       </section>
     </>
   );
-  
 }
