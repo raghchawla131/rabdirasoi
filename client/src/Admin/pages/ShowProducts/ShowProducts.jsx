@@ -7,7 +7,7 @@ const ShowProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.post('http://localhost:8001/api/products/show-products');
+      const response = await axios.post('http://localhost:8000/api/products/show-products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -21,7 +21,7 @@ const ShowProducts = () => {
   // Function to delete a product
   const deleteProduct = async (productId) => {
     try {
-      const response = await axios.post(`http://localhost:8001/api/products/delete-product/${productId}`);
+      const response = await axios.post(`http://localhost:8000/api/products/delete-product/${productId}`);
       if (response.status === 200) {
         // Remove the deleted product from the state
         setProducts(products.filter(product => product.product_id !== productId));

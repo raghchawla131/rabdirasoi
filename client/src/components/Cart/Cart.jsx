@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import "./Cart.css";
 import CartItem from "../CartItems/CartItem";
-import { PRODUCTS } from "../../products";
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
 import axios from "axios";
@@ -36,7 +35,7 @@ export default function Cart({ toggleCart }) {
     if (currentUser) {
       try {
         const res = await axios.post(
-          'http://localhost:8001/api/cart/fetch-cart-items', 
+          'http://localhost:8000/api/cart/fetch-cart-items', 
           {
             user_id: currentUser,
           }

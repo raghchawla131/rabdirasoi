@@ -11,7 +11,7 @@ export default function Shop() {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.post('http://localhost:8001/api/products/show-products');
+        const response = await axios.post('http://localhost:8000/api/products/show-products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);

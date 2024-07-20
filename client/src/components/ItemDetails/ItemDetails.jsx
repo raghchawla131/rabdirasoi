@@ -17,7 +17,7 @@ const ItemDetails = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.post(
-          `http://localhost:8001/api/products/get-product/${productId}`
+          `http://localhost:8000/api/products/get-product/${productId}`
         );
         setProduct(res.data[0]);
       } catch (error) {
@@ -65,7 +65,7 @@ const ItemDetails = () => {
   
     try {
       await axios.post(
-        "http://localhost:8001/api/cart/add-to-cart",
+        "http://localhost:8000/api/cart/add-to-cart",
         {
           user_id: currentUser,
           product_id: productId,

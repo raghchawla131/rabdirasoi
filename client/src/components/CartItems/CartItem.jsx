@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import "./CartItem.css";
 import { AuthContext } from "../../context/authContext";
 import axios from "axios";
@@ -22,18 +22,33 @@ export default function CartItem({ item, fetchCartItems }) {
   ];
 
   // Handle changes to the select dropdown
-  const handleSelectChange = async (event) => {
-    const newQuantity = parseFloat(event.target.value);
-    setPoundQuantity(newQuantity);
-    await updateCartItemQuantity(newQuantity, itemsQuantity);
+  const handlePoundChange = async (e) => {
+    const newQuantity = parseFloat(e.target.value);
+  
+    try {
+      const status = await updateCartItemPoundQuantity(poundQuantity, String(newQuantity));
+      
+      if (status === 200) {
+        // Only proceed if the status code is 200
+        setPoundQuantity(newQuantity);
+      } else {
+        // Optionally handle other statuses or errors
+        console.log("Error: Unexpected status code", status);
+      }
+    } catch (error) {
+      // Optionally handle the error or display a message to the user
+      console.log("Error updating pound quantity:", error.message);
+    }
   };
+  
 
   // Handle incrementing the item quantity
   const handleIncrement = async () => {
     if (itemsQuantity < 3) {
       const newQuantity = itemsQuantity + 1;
       setItemsQuantity(newQuantity);
-      await updateCartItemQuantity(poundQuantity, newQuantity);
+      console.log(poundQuantity, newQuantity);
+      updateCartItemQuantity(poundQuantity, newQuantity);
     }
   };
 
@@ -42,14 +57,32 @@ export default function CartItem({ item, fetchCartItems }) {
     if (itemsQuantity > 1) {
       const newQuantity = itemsQuantity - 1;
       setItemsQuantity(newQuantity);
-      await updateCartItemQuantity(poundQuantity, newQuantity);
+      updateCartItemQuantity(poundQuantity, newQuantity);
+    }
+  };
+
+  // Update the cart item pound quantity
+  const updateCartItemPoundQuantity = async (oldPoundQuantity, newPoundQuantity) => {
+    try {
+      const res = await axios.post("http://localhost:8000/api/cart/update-cart-item-pound-quantity", {
+        user_id: currentUser,
+        product_id: item.product_id,
+        old_pound_quantity: oldPoundQuantity,
+        new_pound_quantity: newPoundQuantity,
+      });
+      if(res.status === 200) {
+        fetchCartItems(); // Fetch updated cart items
+      }
+      return res.status;
+    } catch (error) {
+      console.log(error);
     }
   };
 
   // Update the cart item quantity
   const updateCartItemQuantity = async (poundQuantity, itemsQuantity) => {
     try {
-      await axios.post("http://localhost:8001/api/cart/update-quantity", {
+      await axios.post("http://localhost:8000/api/cart/update-cart-item-quantity", {
         user_id: currentUser,
         product_id: item.product_id,
         pound_quantity: poundQuantity,
@@ -64,7 +97,7 @@ export default function CartItem({ item, fetchCartItems }) {
   // Handle removing an item from the cart
   const handleRemoveCartItem = async (productId) => {
     try {
-      await axios.post("http://localhost:8001/api/cart/remove-from-cart", {
+      await axios.post("http://localhost:8000/api/cart/remove-from-cart", {
         user_id: currentUser,
         product_id: productId,
       });
@@ -86,7 +119,7 @@ export default function CartItem({ item, fetchCartItems }) {
           <h5>₹{item.price}</h5>
           <div className="cart-item-quantity-wrapper">
             <div className="cart-item-dropdown-pound-quantity">
-              <select defaultValue={item.pound_quantity} onChange={handleSelectChange}>
+              <select defaultValue={item.pound_quantity} onChange={handlePoundChange}>
                 {options.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}

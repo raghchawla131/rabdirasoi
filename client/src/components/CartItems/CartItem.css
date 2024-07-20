@@ -35,9 +35,9 @@
   width: calc(100vw - 32px - 100px - 30px) !important;
   height: 100px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 15px;
-  border: 1px solid blue;
 }
 
 .cart-item-quantity-wrapper {
