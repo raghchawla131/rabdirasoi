@@ -69,7 +69,7 @@ export const addToCart = async (req: Request, res: Response) => {
 };
 
 export const removeFromCart = async (req: Request, res: Response) => {
-  const { user_id, product_id } = req.body;
+  const { user_id, product_id, pound_quantity } = req.body;
   if (!user_id || !product_id) {
     return res
       .status(400)
@@ -78,9 +78,9 @@ export const removeFromCart = async (req: Request, res: Response) => {
 
   const deleteQuery = `
       DELETE FROM cart
-      WHERE user_id = ? AND product_id = ?
+      WHERE user_id = ? AND product_id = ? AND pound_quantity = ?
     `;
-  db.query(deleteQuery, [user_id, product_id], (err) => {
+  db.query(deleteQuery, [user_id, product_id, pound_quantity], (err) => {
     if (err) {
       return res.status(500).json({ error: "Internal server error" });
     }

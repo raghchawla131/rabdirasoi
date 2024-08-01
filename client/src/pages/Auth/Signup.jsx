@@ -35,7 +35,7 @@ export default function Signup() {
       <h2>User Signup</h2>
       <input
         type="text"
-        nane="username"
+        name="username"
         onChange={handleChange}
         placeholder="Username"
         className="input-field"

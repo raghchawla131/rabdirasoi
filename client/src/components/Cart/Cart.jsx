@@ -5,12 +5,14 @@ import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({ toggleCart }) {
   const { currentUser } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const countSubtotal = (items) => {
     let calculatedSubtotal = 0;
@@ -46,6 +48,10 @@ export default function Cart({ toggleCart }) {
       }
     }
   };
+
+  const navigateToCustomerDetails = () => {
+    navigate("/customer-details");
+  }
 
   useEffect(() => {
     fetchCartItems();
@@ -86,7 +92,7 @@ export default function Cart({ toggleCart }) {
               <h4>₹{subtotal + shippingCharges}</h4>
             </div>
           </div>
-          <div className="enter-address-btn">
+          <div onClick={navigateToCustomerDetails} className="enter-address-btn">
             <button>enter address</button>
           </div>
         </div>

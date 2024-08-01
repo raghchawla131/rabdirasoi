@@ -21,6 +21,7 @@ import ShowProducts from "./Admin/pages/ShowProducts/ShowProducts.jsx";
 import AdminSidebar from "./Admin/components/AdminSidebar/AdminSidebar.jsx";
 import Login from "./pages/Auth/Login.jsx";
 import Signup from "./pages/Auth/Signup.jsx";
+import CustomerDetails from "./pages/CustomerDetails/CustomerDetails.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -79,6 +80,10 @@ function App() {
     {
       path: "/signup",
       element: <Signup />,
+    },
+    {
+      path: "/customer-details",
+      element: <CustomerDetails />,
     },
     {
       path: "/admin/login",

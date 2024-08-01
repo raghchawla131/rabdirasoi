@@ -40,7 +40,6 @@ export default function CartItem({ item, fetchCartItems }) {
       console.log("Error updating pound quantity:", error.message);
     }
   };
-  
 
   // Handle incrementing the item quantity
   const handleIncrement = async () => {
@@ -95,11 +94,12 @@ export default function CartItem({ item, fetchCartItems }) {
   };
 
   // Handle removing an item from the cart
-  const handleRemoveCartItem = async (productId) => {
+  const handleRemoveCartItem = async (productId, pound_quantity) => {
     try {
       await axios.post("http://localhost:8000/api/cart/remove-from-cart", {
         user_id: currentUser,
         product_id: productId,
+        pound_quantity: pound_quantity,
       });
       fetchCartItems(); // Fetch updated cart items
     } catch (error) {
@@ -139,7 +139,7 @@ export default function CartItem({ item, fetchCartItems }) {
           </div>
         </div>
         <div
-          onClick={() => handleRemoveCartItem(item.product_id)}
+          onClick={() => handleRemoveCartItem(item.product_id, item.pound_quantity)}
           className="remove-cart-item"
         >
           <ion-icon name="close-outline"></ion-icon>
