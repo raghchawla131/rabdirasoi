@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth';
 import productsRoutes from './routes/products';
 import cartRoutes from './routes/cart';
-
+import customerDetails from './routes/customerDetails';
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/customerDetails', customerDetails);
 
 app.listen(8000, () => {
   console.log("Server is running on port 8000")

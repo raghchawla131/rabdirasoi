@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./CustomerDetails.css";
+import axios from "axios";
+import { AuthContext } from "../../context/authContext";
 
 export default function CustomerDetails() {
+  const { currentUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    pickupDate: "",
-    pickupTime: "",
-    specialInstructions: "",
+    pickup_date: "",
+    pickup_time: "",
+    special_instructions: "",
   });
 
   const handleChange = (e) => {
@@ -18,10 +21,19 @@ export default function CustomerDetails() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., send data to the server)
-    console.log("Customer details submitted:", formData);
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/customerDetails/updateCustomerDetails",
+        {
+          ...formData,
+          user_id: currentUser,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -51,33 +63,33 @@ export default function CustomerDetails() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="pickupDate">Pickup Date:</label>
+          <label htmlFor="pickup_date">Pickup Date:</label>
           <input
             type="date"
-            id="pickupDate"
-            name="pickupDate"
-            value={formData.pickupDate}
+            id="pickup_date"
+            name="pickup_date"
+            value={formData.pickup_date}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="pickupTime">Pickup Time:</label>
+          <label htmlFor="pickup_time">Pickup Time:</label>
           <input
             type="time"
-            id="pickupTime"
-            name="pickupTime"
-            value={formData.pickupTime}
+            id="pickup_time"
+            name="pickup_time"
+            value={formData.pickup_time}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="specialInstructions">Special Instructions:</label>
+          <label htmlFor="special_instructions">Special Instructions:</label>
           <textarea
-            id="specialInstructions"
-            name="specialInstructions"
-            value={formData.specialInstructions}
+            id="special_instructions"
+            name="special_instructions"
+            value={formData.special_instructions}
             onChange={handleChange}
           ></textarea>
         </div>
