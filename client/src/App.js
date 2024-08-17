@@ -22,6 +22,7 @@ import AdminSidebar from "./Admin/components/AdminSidebar/AdminSidebar.jsx";
 import Login from "./pages/Auth/Login.jsx";
 import Signup from "./pages/Auth/Signup.jsx";
 import CustomerDetails from "./pages/CustomerDetails/CustomerDetails.jsx";
+import Checkout from "./pages/Checkout/Checkout.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -70,6 +71,10 @@ function App() {
         {
           path: "/products/:productId",
           element: <ItemDetails />,
+        },
+        {
+          path: "/checkout",
+          element: <Checkout />,
         },
       ],
     },

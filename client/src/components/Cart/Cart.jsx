@@ -49,8 +49,10 @@ export default function Cart({ toggleCart }) {
     }
   };
 
-  const navigateToCustomerDetails = () => {
-    navigate("/customer-details");
+  const navigateToCheckout = () => {
+    setIsOpen(!isOpen);
+    toggleCart();
+    navigate("/checkout");
   }
 
   useEffect(() => {
@@ -92,8 +94,8 @@ export default function Cart({ toggleCart }) {
               <h4>₹{subtotal + shippingCharges}</h4>
             </div>
           </div>
-          <div onClick={navigateToCustomerDetails} className="enter-address-btn">
-            <button>enter address</button>
+          <div onClick={navigateToCheckout} className="cart-checkout">
+            <button className="cart-checkout-btn">Checkout</button>
           </div>
         </div>
       </section>

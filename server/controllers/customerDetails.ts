@@ -1,6 +1,27 @@
 import { Request, Response } from "express";
 import db from "../db";
 
+export const fetchCustomerDetails = async (req: Request, res: Response) => {
+  const { user_id } = req.body;
+
+  if (!user_id) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  const q = `SELECT * FROM customer_details WHERE user_id = ?`;
+  db.query(q, [user_id], (err, result: any[]) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+
+    if (result.length) {
+      res.status(200).json(result[0]);
+    } else {
+      res.status(404).json({ message: "Customer details not found" });
+    }
+  }); 
+}
+
 export const updateCustomerDetails = async (req: Request, res: Response) => {
   const {
     user_id,

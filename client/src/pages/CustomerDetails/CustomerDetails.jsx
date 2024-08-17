@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./CustomerDetails.css";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CustomerDetails() {
   const { currentUser } = useContext(AuthContext);
@@ -12,6 +13,37 @@ export default function CustomerDetails() {
     pickup_time: "",
     special_instructions: "",
   });
+  const navigate = useNavigate();
+
+  // Fetch customer details when the component mounts
+  useEffect(() => {
+    const fetchCustomerDetails = async () => {
+      if (currentUser) {
+        try {
+          const res = await axios.post(
+            "http://localhost:8000/api/customerDetails/fetchCustomerDetails",
+            {
+              user_id: currentUser,
+            }
+          );
+          if (res.data) {
+            setFormData({
+              name: res.data.name || "",
+              phone: res.data.phone || "",
+              pickup_date: res.data.pickup_date || "", // Directly use the stored date
+              pickup_time: res.data.pickup_time || "",
+              special_instructions: res.data.special_instructions || "",
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+  
+    fetchCustomerDetails();
+  }, [currentUser]);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,13 +56,14 @@ export default function CustomerDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:8000/api/customerDetails/updateCustomerDetails",
         {
           ...formData,
           user_id: currentUser,
         }
       );
+      navigate("/checkout");
     } catch (error) {
       console.log(error);
     }
