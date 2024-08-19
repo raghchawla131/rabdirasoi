@@ -121,6 +121,9 @@ const Checkout = () => {
           <div className="total-text"><strong>Total:</strong></div>
           <div className="total-price">₹{total}</div>
         </div>
+        <div className='payment'>
+          <button>pay now</button>
+        </div>
       </div>
     </div>
   );

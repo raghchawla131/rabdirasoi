@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import Cart from "../Cart/Cart";
 import logo from "../../assets/rab di rasoi logo.png";
@@ -10,6 +10,17 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentUser, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogoClick = () => {
+    if(location.pathname === "/") {
+      window.scrollTo({top: 0, behavior: "smooth"});
+      // window.location.reload();
+    } else {
+      navigate("/");
+    }
+  }
 
   // Function to handle window resize
   const handleWindowSizeChange = () => {
@@ -176,7 +187,7 @@ export default function Navbar() {
           ></div>
         )}
         <nav className="desktop-nav">
-          <div id="logo">
+          <div id="logo" onClick={handleLogoClick}>
             <img className="logo" src={logo} alt="" />
           </div>
           <div className="nav-links">
