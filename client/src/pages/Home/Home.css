@@ -42,37 +42,51 @@
   margin: 1em 0;
 }
 
-.shop-now-content a {
+
+.shop-btn {
   background-color: deeppink;
   color: white;
-  text-decoration: none;
+  width: 50%;
   font-weight: 700;
   padding: 1em 2em;
   border-radius: 5px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.shop-btn:hover {
+  color: deeppink;
+  background-color: white;
+  border: 1px solid deeppink;
 }
 
 .infinite-scroll {
   background-color: rgb(23, 23, 23);
   color: antiquewhite;
   padding: 1em 0;
-  display: flex;
   white-space: nowrap;
   overflow-x: hidden;
 }
 
-.infinite-scroll p {
-  margin: 0 1.5em;
-  animation: infinite-scroll-anim 15s linear infinite;
+.scroll-content {
+  display: inline-flex;
+  animation: scroll 30s linear infinite;
 }
 
-@keyframes infinite-scroll-anim {
+.scroll-content p {
+  margin: 0 1.5em;
+}
+
+@keyframes scroll {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
+
 
 .page-2 {
   padding-top: 2em;

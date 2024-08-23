@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom";
-export default function HorizontalScrollerItems(item) {
-  const { productName, description, key, productImage } = item.data;
 
-  const productPath = `/products/${key}`;
+export default function HorizontalScrollerItems({ data }) {
+  const { name, description, product_id, image_url } = data;
+  const productPath = `/products/${product_id}`;
 
   return (
     <>
-      <Link to={productPath} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link
+        to={productPath}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
         <div className="scroll-items">
           <div className="scroll-items-top">
-            <img key={item.key} src={productImage} alt="productImage" />
+            <img key={product_id} src={image_url} alt="productImage" />
           </div>
           <div className="scroll-items-bottom">
-            <h4>{productName}</h4>
+            <h4>{name}</h4>
             <p>{description}</p>
           </div>
         </div>
       </Link>
     </>
-  )
+  );
 }

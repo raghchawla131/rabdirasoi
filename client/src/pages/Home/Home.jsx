@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
-import "./Home.css"
+import { useNavigate } from "react-router-dom";
+import "./Home.css";
 import HorizontalScroller from "../../components/HorizontalScroller";
 import cakeSvg from "../../assets/cake.svg";
 import boxSvg from "../../assets/box.svg";
 import IGlogo from "../../assets/rab di rasoi ig logo.png";
-import {horizontalscrolldata1} from "../../horizontalscrolldata-1"
-import {horizontalscrolldata2} from "../../horizontalscrolldata-2";
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const productIdsBestSellers = ["1", "2", "3", "4", "5", "6"];
+
   return (
     <div id="home">
       <div className="page-1">
@@ -30,16 +32,32 @@ export default function Home() {
             just happy it's Wednesday — these treats are sure to get the party
             started. Plus, we ship nationwide straight to your door!
           </p>
-          <Link to="/shop"z>SHOP NOW</Link>
+          <button
+            onClick={() => {
+              navigate("/shop");
+            }}
+            className="shop-btn"
+          >
+            SHOP NOW
+          </button>
         </div>
       </div>
       <div className="infinite-scroll">
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <div className="scroll-content">
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          {/* Duplicate content */}
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+        </div>
       </div>
+
       <div className="page-2">
         <div className="horizontal-scroller-header">
           <h1>FROM OUR BAKERY TO YOUR DOORSTEP</h1>
@@ -48,7 +66,7 @@ export default function Home() {
             and best-selling treats. Ships in 1-2 Days!
           </p>
         </div>
-        <HorizontalScroller data={horizontalscrolldata1} />
+        <HorizontalScroller data={productIdsBestSellers} />
       </div>
       <div className="page-3">
         <h2>
@@ -93,15 +111,30 @@ export default function Home() {
             thoughtfully package all of our treats so they arrive perfectly and
             ready to enjoy. Better get those sunglasses ready :)
           </p>
-          <Link to="/shop">SHOP NOW</Link>
+          <button
+            onClick={() => {
+              navigate("/shop");
+            }}
+            className="shop-btn"
+          >
+            SHOP NOW
+          </button>
         </div>
       </div>
       <div className="infinite-scroll">
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
-        <p>SHAKING UP THE DESSET SCENE SINCE 2021.</p>
+        <div className="scroll-content">
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          {/* Duplicate content */}
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+          <p>SHAKING UP THE DESSERT SCENE SINCE 2021.</p>
+        </div>
       </div>
       <div className="page-5">
         <div className="horizontal-scroller-header">
@@ -111,7 +144,7 @@ export default function Home() {
             Truffles.
           </p>
         </div>
-        <HorizontalScroller data={horizontalscrolldata2} />
+        <HorizontalScroller data={productIdsBestSellers} />
       </div>
       <div className="page-6">
         <section className="social-proof">
