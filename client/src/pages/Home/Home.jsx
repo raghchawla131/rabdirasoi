@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-import HorizontalScroller from "../../components/HorizontalScroller";
 import cakeSvg from "../../assets/cake.svg";
 import boxSvg from "../../assets/box.svg";
 import IGlogo from "../../assets/rab di rasoi ig logo.png";
+import HorizontalScroller from "../../components/HorizontalScroller/HorizontalScroller";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -86,6 +86,14 @@ export default function Home() {
             <h4>THOUGHTFULLY PACKAGED</h4>
             <p>
               We make your treats fresh and flash-freeze ‘em for peak quality.
+            </p>
+          </div>
+          <div className="perk-2">
+            <img src={cakeSvg} alt="" />
+            <h4>HANDCRAFTED WITH LOVE</h4>
+            <p>
+              Each treat is meticulously crafted using the finest ingredients,
+              ensuring every bite is a moment of pure delight.
             </p>
           </div>
         </div>

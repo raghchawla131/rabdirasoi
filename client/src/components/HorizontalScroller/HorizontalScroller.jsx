@@ -1,6 +1,7 @@
+import './HorizontalScroller.css';
 import axios from "axios";
-import HorizontalScrollerItems from "./HorizontalScrollerItems";
 import { useEffect, useState } from "react";
+import HorizontalScrollerItems from './HorizontalScrollerItems';
 
 export default function HorizontalScroller({ data }) {
   const [products, setProducts] = useState([]);   

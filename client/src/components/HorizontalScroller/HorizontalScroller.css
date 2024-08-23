@@ -1,0 +1,54 @@
+.horizontal-scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 17.5rem;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 2em 1em;
+}
+
+.horizontal-scroller .scroll-items {
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 28px 30px -12px #334a6733;
+}
+
+.scroll-items-top {
+  height: 18rem;
+}
+
+.horizontal-scroller .scroll-items-top > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.scroll-items-bottom {
+  height: 6rem;
+  padding: 15px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scroll-items-bottom h4 {
+  text-transform: uppercase;
+}
+
+.horizontal-scroller::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+.horizontal-scroller::-webkit-scrollbar-track {
+  margin: 0 2rem;
+  background-color: rgba(255, 20, 145, 0.2);
+  border-radius: 100vw;
+}
+
+.horizontal-scroller::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 20, 145, 0.8);
+  border-radius: 100vw;
+}
