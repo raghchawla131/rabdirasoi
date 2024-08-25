@@ -6,6 +6,9 @@ export default function Product({ data }) {
 
   const productPath = `/products/${product_id}`;
 
+  const truncatedName = name.length > 18 ? `${name.slice(0, 18)}...` : name;
+  const truncatedDesc = description.length > 33 ? `${description.slice(0, 33)}...` : description;
+
   return (
     <Link
       to={productPath}
@@ -18,8 +21,8 @@ export default function Product({ data }) {
           </div>
           <div className="product-card-bottom">
             <div className="product-card-bottom-content">
-              <h5 className="product-card-item-name">{name}</h5>
-              <p className="product-card-item-about">{description}</p>
+              <h5 className="product-card-item-name">{truncatedName}</h5>
+              <p className="product-card-item-about">{truncatedDesc}</p>
             </div>
           </div>
         </div>
