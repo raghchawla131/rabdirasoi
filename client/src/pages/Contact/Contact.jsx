@@ -1,5 +1,5 @@
 import "./Contact.css"
-import Queries from "../../components/Queries"
+import Queries from "./Queries";
 import { useState } from "react"
 
 export default function Contact() {
@@ -14,17 +14,17 @@ export default function Contact() {
       <div id="contact">
         <div className="contact-us-details">
           <h3>Didn't find the answers you were looking for?</h3>
-          <p>
+          <p className="contact-options">
             <ion-icon name="call-outline"></ion-icon>{" "}
             <a class="phone-link" href="tel:+918533097707">
               +91 8533097707
             </a>
           </p>
-          <p>
+          <p className="contact-options">
             <ion-icon name="logo-instagram"></ion-icon>{" "}
             <a href="https://www.instagram.com/rabdirasoi/">rabdirasoi</a>
           </p>
-          <p>
+          <p className="contact-options">
             <ion-icon name="logo-whatsapp"></ion-icon>
             <a href="whatsapp://send?phone=+918533097707">
               Send Message on WhatsApp
@@ -32,10 +32,8 @@ export default function Contact() {
           </p>
         </div>
         <div className="faq">
-          <h2>Frequently Asked Questions</h2>
           <section className="faq-section">
             <div>
-              <hr />
               <h1>About Our Products</h1>
               <hr />
               <Queries
@@ -64,7 +62,6 @@ export default function Contact() {
               />
             </div>
             <div>
-              <hr />
               <h1>Orders</h1>
               <hr />
               <Queries
