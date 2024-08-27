@@ -1,4 +1,5 @@
 .selected-item-details {
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
 }
@@ -19,7 +20,6 @@
   padding: 1em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .selected-item-desc>* {
@@ -69,21 +69,21 @@
 }
 
 .add-selected-item-to-cart {
-
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 3fr 3fr;
   gap: 0.5em;
+  height: 60px;
 }
 
 .selected-item-quantity {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
 }
 
 .selected-item-quantity button {
+  height: 100%;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -92,11 +92,24 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  background-color: hotpink;
+  background-color: deeppink;
+  border: 1px solid transparent;
 }
 
 .selected-item-quantity button:hover {
-  background-color: rgb(255, 0, 128);
+  color:  deeppink;
+  background-color: white;
+  border: 1px solid deeppink;
+}
+
+.selected-item-quantity button:active {
+  color: white;
+  background-color: deeppink;
+  border: 1px solid transparent;
+}
+
+.selected-item-quantity ion-icon {
+
 }
 
 .selected-item-quantity div {
@@ -105,7 +118,6 @@
   min-width: 30px;
   text-align: center;
 }
-
 
 .selected-item-to-cart-btn {
   cursor: pointer;
@@ -116,13 +128,17 @@
   text-transform: uppercase;
   border: none;
   border-radius: 5px;
-  background-color: hotpink;
+  background-color: deeppink;
   font-weight: bolder;
   color: white;
+  border: 1px solid transparent;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .selected-item-to-cart-btn:hover {
-  background-color: rgb(255, 0, 128);
+  color: deeppink;
+  background-color: white;
+  border: 1px solid deeppink;
 }
 
 @media (min-width: 1200px) {
@@ -136,6 +152,10 @@
   .selected-item-img {
     width: 35vw;
     height: 100%;
+  }
+
+  .add-selected-item-to-cart {
+    grid-template-columns: repeat(6fr, 1);
   }
 }
 

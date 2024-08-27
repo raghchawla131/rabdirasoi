@@ -42,7 +42,6 @@
   margin: 1em 0;
 }
 
-
 .shop-btn {
   background-color: deeppink;
   color: white;
@@ -82,6 +81,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -119,7 +119,7 @@
   color: deeppink;
 }
 
-.perks > * {
+.perks>* {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -136,8 +136,8 @@
   padding: 0 1em 1em 1em;
 }
 
-.perk-1 > *,
-.perk-2 > * {
+.perk-1>*,
+.perk-2>* {
   padding-bottom: 1em;
 }
 
@@ -235,6 +235,7 @@
 }
 
 @media (min-width: 800px) {
+
   .page-1,
   .page-4 {
     padding: 2em 2em 0 2em;
@@ -246,6 +247,7 @@
 }
 
 @media (min-width: 1200px) {
+
   .page-1,
   .page-4 {
     grid-template-rows: none;
@@ -281,7 +283,7 @@
     gap: 10rem;
   }
 
-  .perks > * {
+  .perks>* {
     max-width: 20rem;
   }
 }

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import './ItemDetails.css';
+import "./ItemDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 
 const ItemDetails = () => {
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [itemsQuantity, setItemsQuantity] = useState(1);
@@ -49,30 +49,27 @@ const ItemDetails = () => {
       return;
     }
     setItemsQuantity(itemsQuantity + 1);
-  }
+  };
 
   const handleDecrement = () => {
     if (itemsQuantity > 1) {
       setItemsQuantity(itemsQuantity - 1);
     }
-  }
+  };
 
   const handleAddToCartBtnClick = async () => {
     if (!currentUser) {
       navigate("/login");
       return;
     }
-  
+
     try {
-      await axios.post(
-        "http://localhost:8000/api/cart/add-to-cart",
-        {
-          user_id: currentUser,
-          product_id: productId,
-          pound_quantity: poundQuantity,
-          item_quantity: itemsQuantity,
-        }
-      );
+      await axios.post("http://localhost:8000/api/cart/add-to-cart", {
+        user_id: currentUser,
+        product_id: productId,
+        pound_quantity: poundQuantity,
+        item_quantity: itemsQuantity,
+      });
       alert("Item added to cart successfully");
     } catch (error) {
       if (error.response && error.response.status === 409) {
@@ -83,14 +80,14 @@ const ItemDetails = () => {
       }
     }
   };
-  
-  
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
-  const { name, image_url, description } = product;
+  const { name, image_url, description, price } = product;
+
+  const trimmedPrice = parseFloat(price).toString();
 
   return (
     <>
@@ -127,7 +124,7 @@ const ItemDetails = () => {
                   onClick={handleAddToCartBtnClick}
                   className="selected-item-to-cart-btn"
                 >
-                  Add to Cart
+                  Add to Cart - &#8377;{trimmedPrice}
                 </button>
               </div>
             </div>
