@@ -1,191 +1,214 @@
-.selected-item-details {
-  max-width: 100vw;
+/* BEM style for ItemDetails component */
+.item-details {
+  padding-top: 81px;
+  margin: 0 1rem;
+}
+
+.item-details__container {
   display: flex;
-  flex-direction: column;
-}
-
-.selected-item-img {
-  width: 100vw;
-  height: 100vw;
-}
-
-.selected-item-img img {
-  width: inherit;
-  height: inherit;
-  object-fit: cover;
-  object-position: center;
-}
-
-.selected-item-desc {
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-}
-
-.selected-item-desc>* {
-  padding-bottom: 0.5rem;
-}
-
-.selected-item-desc h1 {
-  font-size: 3rem;
-  font-weight: 800;
-}
-
-#selected-item-size-header {
-  padding-bottom: 0.5rem;
-}
-
-.selected-item-size {
-  padding-bottom: 0.5em;
-}
-
-.selected-item-size {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0.5em;
-}
-
-.selected-item-size-choice {
-  padding: 10px 8px;
-  font-size: 13px;
-  font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
-  border: 1px solid grey;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Default to column layout (mobile view) */
   justify-content: center;
-  align-items: flex-start;
-}
-
-.selected-item-choice-pp {
-  font-size: 1.2em;
-}
-
-.selected-item-size-choice span {
-  font-weight: 700;
-}
-
-.add-selected-item-to-cart {
-  display: grid;
-  grid-template-columns: 3fr 3fr;
-  gap: 0.5em;
-  height: 60px;
-}
-
-.selected-item-quantity {
-  display: flex;
   align-items: center;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.selected-item-quantity button {
-  height: 100%;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
-  background-color: deeppink;
-  border: 1px solid transparent;
-}
-
-.selected-item-quantity button:hover {
-  color:  deeppink;
-  background-color: white;
-  border: 1px solid deeppink;
-}
-
-.selected-item-quantity button:active {
-  color: white;
-  background-color: deeppink;
-  border: 1px solid transparent;
-}
-
-.selected-item-quantity ion-icon {
-
-}
-
-.selected-item-quantity div {
-  padding: 8px;
-  font-size: 16px;
-  min-width: 30px;
-  text-align: center;
-}
-
-.selected-item-to-cart-btn {
-  cursor: pointer;
-  grid-column: 2 / 5;
-  padding: 18px 8px;
-  font-size: 13px;
-  text-align: center;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 5px;
-  background-color: deeppink;
-  font-weight: bolder;
-  color: white;
-  border: 1px solid transparent;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.selected-item-to-cart-btn:hover {
-  color: deeppink;
-  background-color: white;
-  border: 1px solid deeppink;
-}
-
-@media (min-width: 1200px) {
-  .selected-item-details {
-    height: calc(100vh - 81px);
-    gap: 5em;
-    flex-direction: row;
-    padding: 3em;
-  }
-
-  .selected-item-img {
-    width: 35vw;
-    height: 100%;
-  }
-
-  .add-selected-item-to-cart {
-    grid-template-columns: repeat(6fr, 1);
-  }
-}
-
-/* custom quantity dropdown */
-
-.custom-dropdown {
-  width: 200px;
-  padding-bottom: 0.5rem;
-}
-
-.custom-dropdown select {
   width: 100%;
+  padding: 1rem;
+}
+
+.item-details__image {
+  width: 100%; /* Full width for mobile view */
+  margin-bottom: 1rem; /* Space between image and content */
+}
+
+.item-details__image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.item-details__content {
+  width: 100%; /* Full width for mobile view */
+}
+
+.item-details__title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.item-details__description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.item-details__size-label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.item-details__dropdown {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.item-details__dropdown select {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.item-details__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.item-details__quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.item-details__quantity-btn {
+  border: 1px solid deeppink;  /* Deep pink border */
+  background-color: transparent;  /* Transparent background */
+  color: deeppink;  /* Icon color */
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;  /* Smooth transitions */
+  outline: none;  /* Remove default button outline */
 }
 
-.custom-dropdown select:hover {
-  border-color: #888;
+.item-details__quantity-btn:hover {
+  background-color: deeppink;  /* Deep pink background on hover */
+  color: white;  /* Change text/icon color to white */
 }
 
-.custom-dropdown select:focus {
-  border-color: #555;
+.item-details__quantity-btn:active {
+  background-color: deeppink;  /* Deep pink background during the click */
+  color: white;  /* White text color during the click */
 }
 
-.custom-dropdown select option {
-  padding: 10px;
-  font-size: 14px;
+.item-details__quantity-btn:focus {
+  outline: none;  /* Remove blue outline on focus */
+}
+
+.item-details__quantity-btn:not(:active) {
+  background-color: transparent;  /* Revert back to original background after the click */
+  color: deeppink;  /* Return to deep pink text */
+}
+
+.item-details__quantity-value {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+}
+
+.item-details__cart-btn {
+  border: 1px solid deeppink;  /* Deep pink border */
+  background-color: transparent;  /* Transparent background */
+  color: deeppink;  /* Deep pink text */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;  /* Smooth transitions */
+  outline: none;  /* Remove default outline */
+}
+
+.item-details__cart-btn:hover {
+  background-color: deeppink;  /* Deep pink background on hover */
+  color: white;  /* Change text to white */
+}
+
+.item-details__cart-btn:active {
+  background-color: deeppink;  /* Deep pink background on click */
+  color: white;  /* White text on click */
+}
+
+.item-details__cart-btn:focus {
+  outline: none;  /* Remove blue outline on focus */
+}
+
+.item-details__cart-btn:not(:active) {
+  background-color: transparent;  /* Revert back to original background after the click */
+  color: deeppink;  /* Return to deep pink text */
+}
+
+
+/* Desktop view */
+@media (min-width: 768px) {
+  .item-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item-details__container {
+    display: flex;
+    flex-direction: row; /* Row layout for desktop */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Adjust width for desktop */
+  }
+
+  .item-details__image {
+    width: 50%; /* Half width for the image on desktop */
+    margin-bottom: 0;
+  }
+
+  .item-details__content {
+    width: 45%; /* Half width for content on desktop */
+  }
+
+  .item-details__title,
+  .item-details__description,
+  .item-details__size-label {
+    text-align: left; /* Align text to the left */
+  }
+
+  .item-details__dropdown {
+    width: 100%; /* Ensure the dropdown takes the full width */
+    margin-bottom: 1rem; /* Add some space below the dropdown */
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .item-details__actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+  }
+
+  .item-details__quantity {
+    display: flex;
+    align-items: center; /* Align quantity buttons vertically */
+    margin-bottom: 0; /* Align the dropdown and buttons */
+  }
+
+  .item-details__quantity-btn,
+  .item-details__cart-btn {
+    height: 50px; /* Set the same height for both buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-details__cart-btn {
+    flex: 0.8;
+    border: 1px solid deeppink;
+    background-color: transparent;
+    color: deeppink;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .item-details__cart-btn:hover {
+    background-color: deeppink;
+    color: white;
+  }
+
+  .item-details__size-label {
+    margin-bottom: 0.5rem;
+    display: block; /* Ensures the label is separate and aligns with dropdown */
+  }
 }

@@ -90,48 +90,54 @@ const ItemDetails = () => {
   const trimmedPrice = parseFloat(price).toString();
 
   return (
-    <>
-      <div style={{ paddingTop: "81px" }}>
-        <div className="selected-item-details">
-          <div className="selected-item-img">
-            <img src={image_url} alt={name} />
-          </div>
-          <div className="selected-item-desc">
-            <h1 id="selected-item-title">{name}</h1>
-            <p>{description}</p>
-            <div>
-              <h4 id="selected-item-size-header">Select size: </h4>
-              <div className="custom-dropdown">
-                <select value={poundQuantity} onChange={handleSelectChange}>
-                  {options.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="add-selected-item-to-cart">
-                <div className="selected-item-quantity">
-                  <button onClick={handleDecrement}>
-                    <ion-icon name="remove-outline"></ion-icon>
-                  </button>
-                  <div>{itemsQuantity}</div>
-                  <button onClick={handleIncrement}>
-                    <ion-icon name="add-outline"></ion-icon>
-                  </button>
+    <div className="item-details">
+      <div className="item-details__container">
+        <div className="item-details__image">
+          <img src={image_url} alt={name} />
+        </div>
+        <div className="item-details__content">
+          <h1 className="item-details__title">{name}</h1>
+          <p className="item-details__description">{description}</p>
+          <div>
+            <h4 className="item-details__size-label">Select size: </h4>
+            <div className="item-details__dropdown">
+              <select value={poundQuantity} onChange={handleSelectChange}>
+                {options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="item-details__actions">
+              <div className="item-details__quantity">
+                <button
+                  onClick={handleDecrement}
+                  className="item-details__quantity-btn"
+                >
+                  <ion-icon name="remove-outline"></ion-icon>
+                </button>
+                <div className="item-details__quantity-value">
+                  {itemsQuantity}
                 </div>
                 <button
-                  onClick={handleAddToCartBtnClick}
-                  className="selected-item-to-cart-btn"
+                  onClick={handleIncrement}
+                  className="item-details__quantity-btn"
                 >
-                  Add to Cart - &#8377;{trimmedPrice}
+                  <ion-icon name="add-outline"></ion-icon>
                 </button>
               </div>
+              <button
+                onClick={handleAddToCartBtnClick}
+                className="item-details__cart-btn"
+              >
+                Add to Cart - &#8377;{trimmedPrice}
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
