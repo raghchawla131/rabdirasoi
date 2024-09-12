@@ -43,44 +43,47 @@ const AdminSidebar = () => {
 
   return (
     <div>
-      {isMobile && (
-        <ion-icon
-          name="menu-outline"
-          className={`menu-icon ${isSidebarVisible ? "hidden" : ""}`}
-          onClick={toggleSidebar}
-          style={{ padding: "1rem" }}
-        ></ion-icon>
-      )}
-      <div
-        className={`sidebar ${
-          isSidebarVisible ? "mobile-visible" : "mobile-hidden"
-        }`}
-      >
-        {isMobile && (
-          <ion-icon
-            name="close-outline"
-            className={`close-icon ${isSidebarVisible ? "" : "hidden"}`}
-            onClick={toggleSidebar}
-          ></ion-icon>
+  {isMobile && (
+    <ion-icon
+      name="menu-outline"
+      className={`admin-sidebar__menu-icon ${isSidebarVisible ? "admin-sidebar__menu-icon--hidden" : ""}`}
+      onClick={toggleSidebar}
+      style={{ padding: "1rem" }}
+    ></ion-icon>
+  )}
+  <div
+    className={`admin-sidebar ${isSidebarVisible ? "admin-sidebar--mobile-visible" : "admin-sidebar--mobile-hidden"}`}
+  >
+    {isMobile && (
+      <ion-icon
+        name="close-outline"
+        className={`admin-sidebar__close-icon ${isSidebarVisible ? "" : "admin-sidebar__close-icon--hidden"}`}
+        onClick={toggleSidebar}
+      ></ion-icon>
+    )}
+    {/* Sidebar content goes here */}
+    <ul className="admin-sidebar__list">
+      <li className="admin-sidebar__item"><Link to="/admin" onClick={closeSidebar} className="admin-sidebar__link">Dashboard</Link></li>
+      <li className="admin-sidebar__item" onClick={() => handleDropdownClick('products')}>
+        <span className="admin-sidebar__link">Products</span>
+        {openDropdown === 'products' && (
+          <ul className="admin-sidebar__dropdown">
+            <li className="admin-sidebar__dropdown-item">
+              <Link to="/admin/add-product" onClick={closeSidebar} className="admin-sidebar__link">Add Product</Link>
+            </li>
+            <li className="admin-sidebar__dropdown-item">
+              <Link to="/admin/show-products" onClick={closeSidebar} className="admin-sidebar__link">Show All Products</Link>
+            </li>
+          </ul>
         )}
-        {/* Sidebar content goes here */}
-        <ul>
-          <li><Link to="/admin" onClick={closeSidebar}>Dashboard</Link></li>
-          <li onClick={() => handleDropdownClick('products')}>
-            Products
-            {openDropdown === 'products' && (
-              <ul className="dropdown">
-                <li><Link to="/admin/add-product" onClick={closeSidebar}>Add Product</Link></li>
-                <li><Link to="/admin/show-products" onClick={closeSidebar}>Show All Products</Link></li>
-              </ul>
-            )}
-          </li>
-          <li><Link to="/admin/orders" onClick={closeSidebar}>Orders</Link></li>
-          <li><Link to="/admin/customers" onClick={closeSidebar}>Customers</Link></li>
-          <li><Link to="/admin/settings" onClick={closeSidebar}>Settings</Link></li>
-        </ul>
-      </div>
-    </div>
+      </li>
+      <li className="admin-sidebar__item"><Link to="/admin/orders" onClick={closeSidebar} className="admin-sidebar__link">Orders</Link></li>
+      <li className="admin-sidebar__item"><Link to="/admin/customers" onClick={closeSidebar} className="admin-sidebar__link">Customers</Link></li>
+      <li className="admin-sidebar__item"><Link to="/admin/settings" onClick={closeSidebar} className="admin-sidebar__link">Settings</Link></li>
+    </ul>
+  </div>
+</div>
+
   );
 };
 

@@ -85,26 +85,26 @@
   font-size: 1.75rem;
 }
 
-.sidebar-logo {
+.sidebar-navbar-logo {
   width: 10rem;
   padding: 1em 0;
 }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -80vw;
-  background-color: white;
-  height: 100vh;
-  width: 80vw;
-  z-index: 100;
-  padding: 0rem 1.25rem;
-  box-sizing: border-box;
+/* .sidebar {
+  border: 2px solid yellow;
   transform: translateX(-80vw);
   transition: transform 0.5s ease-in-out;
 }
 
-/* sidebar overlay */
+.sidebar-logo {
+  width: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid greenyellow;
+}
 
 .overlayMenu {
   position: fixed;
@@ -145,4 +145,77 @@
   color: black;
   font-weight: 590;
   position: relative;
+} */
+
+.sidebar {
+  background-color:white;
+  height: 100vh;
+  width: 71%;
+  padding: 0 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transform: translateX(-80vw);
+  transition: transform 0.5s ease-in-out;
+}
+
+.sidebar--show {
+  left: 0;
+  transform: translateX(0);
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__logo {
+  width: 10rem;
+  padding: 1em 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.sidebar__list {
+  list-style: none;
+}
+
+.sidebar__item {
+  margin-bottom: 20px;
+}
+
+.sidebar__link {
+  text-decoration: none;
+  color: black;
+  font-weight: 590;
+  position: relative; /* Add this to position the ::after element properly */
+}
+
+.sidebar__link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  background-color: deeppink;
+  width: 0;
+  height: 2px;
+  transition: width 350ms ease-in-out;
+}
+
+.sidebar__link:hover::after {
+  width: 100%;
+}
+
+
+.overlayMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99;
 }

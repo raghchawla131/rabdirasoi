@@ -141,6 +141,7 @@ const Checkout = () => {
         alert(response.error.metadata.payment_id);
       });
       rzp1.open();
+      navigate('/') //to redirect to the home page after completion of the payment
       e.preventDefault();
     } catch (error) {
       console.error("Error creating transaction:", error);

@@ -1,6 +1,5 @@
-/* Basic styles for the sidebar */
-
-.sidebar {
+/* Basic styles for the admin sidebar */
+.admin-sidebar {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,36 +11,37 @@
   z-index: 1000;
   display: flex;
   padding: 1rem;
+  flex-direction: column; /* Ensure content stacks vertically */
 }
 
 /* Sidebar styles for mobile */
-.sidebar.mobile-hidden {
+.admin-sidebar--mobile-hidden {
   transform: translateX(-100%);
 }
 
-.sidebar.mobile-visible {
+.admin-sidebar--mobile-visible {
   transform: translateX(0);
 }
 
 /* Sidebar width for mobile */
 @media (max-width: 768px) {
-  .sidebar {
+  .admin-sidebar {
     width: 60vw;
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; /* Reverse the layout for mobile */
     justify-content: space-between;
   }
 }
 
 /* Sidebar width for larger screens */
 @media (min-width: 769px) {
-  .sidebar {
+  .admin-sidebar {
     width: 25vw;
-    transform: translateX(0);
-    
+    transform: translateX(0); /* Keep sidebar visible */
   }
 
-  .menu-icon, .close-icon {
-    display: none;
+  .admin-sidebar__menu-icon,
+  .admin-sidebar__close-icon {
+    display: none; /* Hide icons on larger screens */
   }
 }
 
@@ -50,24 +50,24 @@ ion-icon {
   font-size: 2rem;
 }
 
-.menu-icon.hidden,
-.close-icon.hidden {
+.admin-sidebar__menu-icon--hidden,
+.admin-sidebar__close-icon--hidden {
   display: none;
 }
 
-.close-icon {
+.admin-sidebar__close-icon {
   left: auto;
   right: 1rem;
 }
 
 /* Flexbox styles for close button */
-.close-icon-container {
+.admin-sidebar__close-icon-container {
   display: flex;
   justify-content: flex-end;
 }
 
 /* Flexbox styles for the list */
-.sidebar ul {
+.admin-sidebar__list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -76,20 +76,22 @@ ion-icon {
   gap: 1rem;
 }
 
-.sidebar ul li {
+.admin-sidebar__item {
   cursor: pointer;
   padding: 0.5rem;
   transition: background-color 0.3s ease;
 }
 
-.sidebar ul li:hover {
+.admin-sidebar__item:hover {
   background-color: #444;
 }
 
-.dropdown {
+/* Dropdown styles */
+.admin-sidebar__dropdown {
   border: 1px solid yellow;
+  margin-left: 1rem; /* Indent dropdown items */
 }
 
-.dropdown li a {
+.admin-sidebar__dropdown-item a {
   text-decoration: none;
 }

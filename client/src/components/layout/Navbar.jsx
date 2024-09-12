@@ -7,20 +7,20 @@ import { AuthContext } from "../../context/authContext";
 
 export default function Navbar() {
   const [isCartVisible, setIsCartVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800); //to check weather to display sidebar or navbar
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentUser, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleLogoClick = () => {
-    if(location.pathname === "/") {
-      window.scrollTo({top: 0, behavior: "smooth"});
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
       // window.location.reload();
     } else {
       navigate("/");
     }
-  }
+  };
 
   // Function to handle window resize
   const handleWindowSizeChange = () => {
@@ -113,7 +113,7 @@ export default function Navbar() {
             <ion-icon id="open-menu" name="menu-outline"></ion-icon>
           </div>
           <div>
-            <img className="sidebar-logo" src={logo} alt="" />
+            <img className="sidebar-navbar-logo" src={logo} alt="" />
           </div>
           <div>
             <Link to="/Cart" onClick={toggleCart}>
@@ -123,43 +123,65 @@ export default function Navbar() {
         </nav>
         <div
           ref={ref}
-          className={`sidebar ${isMenuOpen ? "sidebar-show" : ""}`}
+          className={`sidebar ${isMenuOpen ? "sidebar--show" : ""}`}
         >
-          <div className="sidebar-header">
-            <img className="sidebar-logo" src={logo} alt="" />
-            <div onClick={toggleMenu}>
+          <div className="sidebar__header">
+            <div onClick={toggleMenu} className="sidebar__toggle">
               <ion-icon id="close-menu" name="close-outline"></ion-icon>
             </div>
+            <img className="sidebar__logo" src={logo} alt="" />
           </div>
-          <div className="sidebar-links">
-            <ul>
-              <li>
-                <Link to="/" onClick={handleLinkClick}>
+          <div className="sidebar__links">
+            <ul className="sidebar__list">
+              <li className="sidebar__item">
+                <Link
+                  to="/"
+                  onClick={handleLinkClick}
+                  className="sidebar__link"
+                >
                   Home
                 </Link>
               </li>
-              <li>
-                <Link to="/Shop" onClick={handleLinkClick}>
+              <li className="sidebar__item">
+                <Link
+                  to="/Shop"
+                  onClick={handleLinkClick}
+                  className="sidebar__link"
+                >
                   Shop
                 </Link>
               </li>
-              <li>
-                <Link to="/Contact" onClick={handleLinkClick}>
+              <li className="sidebar__item">
+                <Link
+                  to="/Contact"
+                  onClick={handleLinkClick}
+                  className="sidebar__link"
+                >
                   Contact us
                 </Link>
               </li>
-              <li>
-                <Link to="/About" onClick={handleLinkClick}>
+              <li className="sidebar__item">
+                <Link
+                  to="/About"
+                  onClick={handleLinkClick}
+                  className="sidebar__link"
+                >
                   About us
                 </Link>
               </li>
               {currentUser ? (
-                <li>
-                  <Link onClick={handleLogout}>Logout</Link>
+                <li className="sidebar__item">
+                  <Link onClick={handleLogout} className="sidebar__link">
+                    Logout
+                  </Link>
                 </li>
               ) : (
-                <li>
-                  <Link to="/Login" onClick={handleLinkClick}>
+                <li className="sidebar__item">
+                  <Link
+                    to="/Login"
+                    onClick={handleLinkClick}
+                    className="sidebar__link"
+                  >
                     Login
                   </Link>
                 </li>
@@ -167,6 +189,7 @@ export default function Navbar() {
             </ul>
           </div>
         </div>
+
         {isCartVisible && (
           <Cart
             isCartVisible={isCartVisible}
