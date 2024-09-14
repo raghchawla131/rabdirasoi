@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import db from "../db";
+const db = require("../db");
 
-export const fetchCustomerDetails = async (req: Request, res: Response) => {
+exports.fetchCustomerDetails = async (req, res) => {
   const { user_id } = req.body;
 
   if (!user_id) {
@@ -9,7 +8,7 @@ export const fetchCustomerDetails = async (req: Request, res: Response) => {
   }
 
   const q = `SELECT * FROM customer_details WHERE user_id = ?`;
-  db.query(q, [user_id], (err, result: any[]) => {
+  db.query(q, [user_id], (err, result) => {
     if (err) {
       return res.status(500).json({ message: "Internal server error" });
     }
@@ -19,10 +18,10 @@ export const fetchCustomerDetails = async (req: Request, res: Response) => {
     } else {
       res.status(404).json({ message: "Customer details not found" });
     }
-  }); 
-}
+  });
+};
 
-export const updateCustomerDetails = async (req: Request, res: Response) => {
+exports.updateCustomerDetails = async (req, res) => {
   const {
     user_id,
     name,
@@ -37,7 +36,7 @@ export const updateCustomerDetails = async (req: Request, res: Response) => {
   }
 
   const q = `SELECT * FROM customer_details WHERE user_id = ?`;
-  db.query(q, [user_id], (err, result: any[]) => {
+  db.query(q, [user_id], (err, result) => {
     if (err) {
       return res.status(500).json({ message: "Internal server error" });
     }

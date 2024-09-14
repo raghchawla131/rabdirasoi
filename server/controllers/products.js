@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import db from "../db";
+const db = require("../db");
 
-export const addProduct = async (req: Request, res: Response) => {
+exports.addProduct = async (req, res) => {
   const { name, description, category, price, image_url } = req.body;
   console.log(category);
 
@@ -19,7 +18,7 @@ export const addProduct = async (req: Request, res: Response) => {
   });
 };
 
-export const getProducts = async (req: Request, res: Response) => {
+exports.getProducts = async (req, res) => {
   const q = "SELECT * FROM products";
 
   db.query(q, (err, results) => {
@@ -30,7 +29,7 @@ export const getProducts = async (req: Request, res: Response) => {
   });
 };
 
-export const deleteProduct = async (req: Request, res: Response) => {
+exports.deleteProduct = async (req, res) => {
   const { product_id } = req.params;
 
   try {
@@ -40,7 +39,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
         console.error("Error deleting product:", err);
         return res.status(500).json({ message: "Internal server error" });
       }
-      if ((result as any).affectedRows === 0) {
+      if (result.affectedRows === 0) {
         return res.status(404).json({ message: "Product not found" });
       }
       res.status(200).json({ message: "Product deleted successfully" });
@@ -51,7 +50,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const getProductUsingId = async (req: Request, res: Response) => {
+exports.getProductUsingId = async (req, res) => {
   const { product_id } = req.params;
 
   try {
@@ -61,7 +60,7 @@ export const getProductUsingId = async (req: Request, res: Response) => {
         console.error("Error fetching product:", err);
         return res.status(500).json({ message: "Internal server error" });
       }
-      if ((result as any).length === 0) {
+      if (result.length === 0) {
         return res.status(404).json({ message: "Product not found" });
       }
       res.status(200).json(result);
@@ -72,7 +71,7 @@ export const getProductUsingId = async (req: Request, res: Response) => {
   }
 };
 
-export const getProductsForHorizontalScroller = async (req: Request, res: Response) => {
+exports.getProductsForHorizontalScroller = async (req, res) => {
   const { ids } = req.body;
   
   if (!ids || !Array.isArray(ids) || ids.length === 0) {
@@ -86,7 +85,7 @@ export const getProductsForHorizontalScroller = async (req: Request, res: Respon
         console.error("Error fetching products:", err);
         return res.status(500).json({ message: "Internal server error" });
       }
-      if ((result as any).length === 0) {
+      if (result.length === 0) {
         return res.status(404).json({ message: "No products found" });
       }
       res.status(200).json(result);

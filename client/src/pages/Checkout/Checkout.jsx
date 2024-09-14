@@ -11,8 +11,9 @@ const Checkout = () => {
   const [customer, setCustomer] = useState(null); // Initially null to detect if no customer details are available
   const [subtotal, setSubtotal] = useState(0);
   const [total, setTotal] = useState(0);
+  const razorpayKeyId = process.env.REACT_APP_RAZORPAY_KEY_ID;
   const navigate = useNavigate();
-
+  
   // Fetch cart items for the current user
   const fetchCartItems = async () => {
     if (currentUser) {
@@ -105,7 +106,7 @@ const Checkout = () => {
       console.log("Transaction Response:", order);
       // Handle the response here, e.g., show a confirmation to the user
       var options = {
-        key: "rzp_test_Hy9pd8nTuqAgo7", // Enter the Key ID generated from the Dashboard
+        key: razorpayKeyId, // Enter the Key ID generated from the Dashboard
         amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency,
         name: "Rab Di Rasoi", //your business name
