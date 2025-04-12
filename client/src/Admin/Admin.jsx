@@ -1,6 +1,5 @@
 import React from 'react'
 import "./Admin.css"
-import AdminSidebar from './components/AdminSidebar/AdminSidebar'
 
 const Admin = () => {
   return (
