@@ -17,7 +17,7 @@ const ItemDetails = () => {
     const fetchProduct = async () => {
       try {
         const res = await axios.post(
-          `http://localhost:8000/api/products/get-product/${productId}`
+          `${process.env.REACT_APP_API_URL}/api/products/get-product/${productId}`
         );
         setProduct(res.data[0]);
       } catch (error) {
@@ -64,7 +64,7 @@ const ItemDetails = () => {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/cart/add-to-cart", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/add-to-cart`, {
         user_id: currentUser,
         product_id: productId,
         pound_quantity: poundQuantity,

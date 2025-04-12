@@ -19,7 +19,7 @@ const Checkout = () => {
     if (currentUser) {
       try {
         const res = await axios.post(
-          "http://localhost:8000/api/cart/fetch-cart-items",
+          `/api/cart/fetch-cart-items`,
           {
             user_id: currentUser,
           }
@@ -36,7 +36,7 @@ const Checkout = () => {
     if (currentUser) {
       try {
         const res = await axios.post(
-          "http://localhost:8000/api/customerDetails/fetchCustomerDetails",
+          "${process.env.REACT_APP_API_URL}/api/customerDetails/fetchCustomerDetails",
           {
             user_id: currentUser,
           }
@@ -96,7 +96,7 @@ const Checkout = () => {
 
   const handleTransaction = async (e) => {
     try {
-      const res = await axios.post("http://localhost:8000/api/payment/order", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/payment/order`, {
         amount,
         currency,
         receipt: receiptId,

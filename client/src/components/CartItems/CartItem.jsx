@@ -63,7 +63,7 @@ export default function CartItem({ item, fetchCartItems }) {
   // Update the cart item pound quantity
   const updateCartItemPoundQuantity = async (oldPoundQuantity, newPoundQuantity) => {
     try {
-      const res = await axios.post("http://localhost:8000/api/cart/update-cart-item-pound-quantity", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/update-cart-item-pound-quantity`, {
         user_id: currentUser,
         product_id: item.product_id,
         old_pound_quantity: oldPoundQuantity,
@@ -81,7 +81,7 @@ export default function CartItem({ item, fetchCartItems }) {
   // Update the cart item quantity
   const updateCartItemQuantity = async (poundQuantity, itemsQuantity) => {
     try {
-      await axios.post("http://localhost:8000/api/cart/update-cart-item-quantity", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/update-cart-item-quantity`, {
         user_id: currentUser,
         product_id: item.product_id,
         pound_quantity: poundQuantity,
@@ -96,7 +96,7 @@ export default function CartItem({ item, fetchCartItems }) {
   // Handle removing an item from the cart
   const handleRemoveCartItem = async (productId, pound_quantity) => {
     try {
-      await axios.post("http://localhost:8000/api/cart/remove-from-cart", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/remove-from-cart`, {
         user_id: currentUser,
         product_id: productId,
         pound_quantity: pound_quantity,

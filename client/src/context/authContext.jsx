@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (authData) => {
     const res = await axios.post(
-      "http://localhost:8000/api/auth/login",
+      `${process.env.REACT_APP_API_URL}/api/auth/login`,
       authData,
       { withCredentials: true }
     );
@@ -27,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const signup = async (authData) => {
-    await axios.post("http://localhost:8000/api/auth/signup", authData);
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, authData);
   };
 
   const logout = () => {

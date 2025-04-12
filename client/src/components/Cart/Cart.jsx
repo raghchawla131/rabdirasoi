@@ -6,6 +6,7 @@ import { IconContext } from "react-icons/lib";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import api from "../../utils/api";
 
 export default function Cart({ toggleCart }) {
   const { currentUser } = useContext(AuthContext);
@@ -37,7 +38,7 @@ export default function Cart({ toggleCart }) {
     if (currentUser) {
       try {
         const res = await axios.post(
-          'http://localhost:8000/api/cart/fetch-cart-items', 
+          `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`, 
           {
             user_id: currentUser,
           }

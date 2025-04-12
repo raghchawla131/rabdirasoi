@@ -11,7 +11,7 @@ const AdminLogin = ({ setAdminAuthenticated }) => {
 
   const handleLogin = async () => {
     try {
-      await axios.post("http://localhost:8000/api/auth/admin-login", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/admin-login`, {
         email,
         password,
         userType: 'admin'

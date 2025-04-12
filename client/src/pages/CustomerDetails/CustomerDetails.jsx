@@ -21,7 +21,7 @@ export default function CustomerDetails() {
       if (currentUser) {
         try {
           const res = await axios.post(
-            "http://localhost:8000/api/customerDetails/fetchCustomerDetails",
+            `${process.env.REACT_APP_API_URL}/api/customerDetails/fetchCustomerDetails`,
             {
               user_id: currentUser,
             }
@@ -57,7 +57,7 @@ export default function CustomerDetails() {
     e.preventDefault();
     try {
       await axios.post(
-        "http://localhost:8000/api/customerDetails/updateCustomerDetails",
+        `${process.env.REACT_APP_API_URL}/api/customerDetails/updateCustomerDetails`,
         {
           ...formData,
           user_id: currentUser,

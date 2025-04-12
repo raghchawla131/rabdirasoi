@@ -21,7 +21,7 @@ const AddProducts = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/api/products/add-product', product);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/products/add-product`, product);
 
       if (response.status === 201) {
         alert('Product added successfully');
