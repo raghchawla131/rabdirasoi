@@ -1,45 +1,41 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./Checkout.css";
-import { AuthContext } from "../../context/authContext";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/rab di rasoi logo.png";
+import React, { useContext, useEffect, useState, useCallback } from "react"; 
+import "./Checkout.css"; 
+import { AuthContext } from "../../context/authContext"; 
+import axios from "axios"; 
+import { useNavigate } from "react-router-dom"; 
+import logo from "../../assets/rab di rasoi logo.png"; 
 
 const Checkout = () => {
   const { currentUser } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
-  const [customer, setCustomer] = useState(null); // Initially null to detect if no customer details are available
-  const [subtotal, setSubtotal] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [customer, setCustomer] = useState(null); 
+  const [subtotal, setSubtotal] = useState(0); 
+  const [total, setTotal] = useState(0); 
   const razorpayKeyId = process.env.REACT_APP_RAZORPAY_KEY_ID;
   const navigate = useNavigate();
-  
+
   // Fetch cart items for the current user
-  const fetchCartItems = async () => {
+  const fetchCartItems = useCallback(async () => {
     if (currentUser) {
       try {
         const res = await axios.post(
-          `/api/cart/fetch-cart-items`,
-          {
-            user_id: currentUser,
-          }
+          `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`,
+          { user_id: currentUser }
         );
         setCartItems(res.data);
       } catch (error) {
         console.log(error);
       }
     }
-  };
+  }, [currentUser]);
 
   // Fetch customer details for the current user
-  const fetchCustomerDetails = async () => {
+  const fetchCustomerDetails = useCallback(async () => {
     if (currentUser) {
       try {
         const res = await axios.post(
-          "${process.env.REACT_APP_API_URL}/api/customerDetails/fetchCustomerDetails",
-          {
-            user_id: currentUser,
-          }
+          `${process.env.REACT_APP_API_URL}/api/customerDetails/fetchCustomerDetails`,
+          { user_id: currentUser }
         );
         if (res.data) {
           setCustomer(res.data);
@@ -50,19 +46,21 @@ const Checkout = () => {
         console.log(error);
       }
     }
-  };
-
-  useEffect(() => {
-    fetchCartItems();
-    fetchCustomerDetails();
   }, [currentUser]);
 
+  // Fetch data on mount and when currentUser changes
+  useEffect(() => {
+    if (currentUser) {
+      fetchCartItems();
+      fetchCustomerDetails();
+    }
+  }, [currentUser, fetchCartItems, fetchCustomerDetails]);
+
+  // Calculate subtotal and total
   useEffect(() => {
     const calculateSubtotal = () => {
       const newSubtotal = cartItems.reduce(
-        (acc, item) =>
-          acc +
-          parseFloat(item.price) * item.item_quantity * item.pound_quantity,
+        (acc, item) => acc + parseFloat(item.price) * item.item_quantity * item.pound_quantity,
         0
       );
       setSubtotal(newSubtotal);
@@ -72,9 +70,7 @@ const Checkout = () => {
   }, [cartItems]);
 
   // Helper functions to format date and time
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("en-GB");
-  };
+  const formatDate = (dateString) => new Date(dateString).toLocaleDateString("en-GB");
 
   const formatTime = (timeString) => {
     const [hours, minutes, seconds] = timeString.split(":");
@@ -83,11 +79,7 @@ const Checkout = () => {
     date.setMinutes(minutes);
     date.setSeconds(seconds);
 
-    return date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    });
+    return date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric", hour12: true });
   };
 
   const amount = 500;
@@ -104,25 +96,24 @@ const Checkout = () => {
       const order = res.data;
 
       console.log("Transaction Response:", order);
-      // Handle the response here, e.g., show a confirmation to the user
+
       var options = {
         key: razorpayKeyId, // Enter the Key ID generated from the Dashboard
         amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency,
-        name: "Rab Di Rasoi", //your business name
+        name: "Rab Di Rasoi", // Your business name
         description: "Test Transaction",
         image: logo,
-        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        order_id: order.id, // This is a sample Order ID. Pass the `id` obtained in the response of Step 1
         handler: function (response) {
           alert(response.razorpay_payment_id);
           alert(response.razorpay_order_id);
           alert(response.razorpay_signature);
         },
         prefill: {
-          //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-          name: "Gaurav Kumar", //your customer's name
+          name: "Gaurav Kumar", // Your customer's name
           email: "gaurav.kumar@example.com",
-          contact: "9000090000", //Provide the customer's phone number for better conversion rates
+          contact: "9000090000", // Provide the customer's phone number for better conversion rates
         },
         notes: {
           address: "Razorpay Corporate Office",
@@ -131,6 +122,7 @@ const Checkout = () => {
           color: "#3399cc",
         },
       };
+
       var rzp1 = new window.Razorpay(options);
       rzp1.on("payment.failed", function (response) {
         alert(response.error.code);
@@ -141,12 +133,12 @@ const Checkout = () => {
         alert(response.error.metadata.order_id);
         alert(response.error.metadata.payment_id);
       });
+
       rzp1.open();
-      navigate('/') //to redirect to the home page after completion of the payment
+      navigate("/"); // Redirect to home page after payment
       e.preventDefault();
     } catch (error) {
       console.error("Error creating transaction:", error);
-      // Handle the error here, e.g., show an error message to the user
     }
   };
 
@@ -169,28 +161,15 @@ const Checkout = () => {
               <strong>Pickup Time:</strong> {formatTime(customer.pickup_time)}
             </p>
             <p>
-              <strong>Special Instructions:</strong>{" "}
-              {customer.special_instructions}
+              <strong>Special Instructions:</strong> {customer.special_instructions}
             </p>
             <p>
               <strong>Order Status:</strong> {customer.order_status}
             </p>
-            <button
-              onClick={() => {
-                navigate("/customer-details");
-              }}
-            >
-              Edit Details
-            </button>
+            <button onClick={() => navigate("/customer-details")}>Edit Details</button>
           </>
         ) : (
-          <button
-            onClick={() => {
-              navigate("/customer-details");
-            }}
-          >
-            Add New
-          </button>
+          <button onClick={() => navigate("/customer-details")}>Add New</button>
         )}
       </div>
 
@@ -200,14 +179,11 @@ const Checkout = () => {
           {cartItems.map((item, index) => (
             <li key={index}>
               <div className="item-info">
-                {item.name} x {item.item_quantity} (Pounds:{" "}
-                {item.pound_quantity})
+                {item.name} x {item.item_quantity} (Pounds: {item.pound_quantity})
               </div>
               <div className="item-price">
                 ₹
-                {parseFloat(item.price) *
-                  item.item_quantity *
-                  item.pound_quantity}
+                {parseFloat(item.price) * item.item_quantity * item.pound_quantity}
               </div>
             </li>
           ))}
@@ -226,7 +202,7 @@ const Checkout = () => {
           <div className="total-price">₹{total}</div>
         </div>
         <div className="payment">
-          <button onClick={handleTransaction}>pay now</button>
+          <button onClick={handleTransaction}>Pay Now</button>
         </div>
       </div>
     </div>

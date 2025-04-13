@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fbe739c2.css",
+    "main.js": "/static/js/main.75fa6c0d.js",
+    "static/js/787.d9997b49.chunk.js": "/static/js/787.d9997b49.chunk.js",
+    "static/media/rab di rasoi ig logo.png": "/static/media/rab di rasoi ig logo.6d3bd354224c8cc2efe8.png",
+    "static/media/rab di rasoi logo.png": "/static/media/rab di rasoi logo.899e5082b161a4f3a453.png",
+    "static/media/cake.svg": "/static/media/cake.df58fb57838522f117db01439cf36a39.svg",
+    "static/media/box.svg": "/static/media/box.e35979b3504096df0577bfd1d899e76d.svg",
+    "index.html": "/index.html",
+    "main.fbe739c2.css.map": "/static/css/main.fbe739c2.css.map",
+    "main.75fa6c0d.js.map": "/static/js/main.75fa6c0d.js.map",
+    "787.d9997b49.chunk.js.map": "/static/js/787.d9997b49.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbe739c2.css",
+    "static/js/main.75fa6c0d.js"
+  ]
+}

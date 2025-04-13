@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import "./Cart.css";
 import CartItem from "../CartItems/CartItem";
 import { IoClose } from "react-icons/io5";
@@ -6,7 +6,6 @@ import { IconContext } from "react-icons/lib";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-import api from "../../utils/api";
 
 export default function Cart({ toggleCart }) {
   const { currentUser } = useContext(AuthContext);
@@ -34,31 +33,33 @@ export default function Cart({ toggleCart }) {
     toggleCart();
   };
 
-  const fetchCartItems = async () => {
-    if (currentUser) {
-      try {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`, 
-          {
-            user_id: currentUser,
-          }
-        );
-        setCartItems(res.data);
-      } catch (error) {
-        console.log(error);
-      }
+
+const fetchCartItems = useCallback(async () => {
+  if (currentUser) {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`, 
+        {
+          user_id: currentUser,
+        }
+      );
+      setCartItems(res.data);
+    } catch (error) {
+      console.log(error);
     }
-  };
-
-  const navigateToCheckout = () => {
-    setIsOpen(!isOpen);
-    toggleCart();
-    navigate("/checkout");
   }
+}, [currentUser]); // Add currentUser as a dependency
 
-  useEffect(() => {
-    fetchCartItems();
-  }, [currentUser]);
+const navigateToCheckout = () => {
+  setIsOpen(!isOpen);
+  toggleCart();
+  navigate("/checkout");
+};
+
+useEffect(() => {
+  fetchCartItems();
+}, [fetchCartItems]); // Now fetchCartItems is stable and won't cause issues
+
 
   return (
     <>

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import './Auth.css'; // Use the common Auth.css file
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 
