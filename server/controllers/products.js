@@ -53,6 +53,10 @@ exports.deleteProduct = async (req, res) => {
 exports.getProductUsingId = async (req, res) => {
   const { product_id } = req.params;
 
+  if (product_id === 'keepalive') {
+    return res.status(200).json({ message: 'Keep-alive route hit successfully' });
+  }
+
   try {
     const q = "SELECT * FROM products WHERE product_id = ?";
     db.query(q, [product_id], (err, result) => {
