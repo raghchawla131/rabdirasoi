@@ -36,15 +36,6 @@ app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/customerDetails', customerDetails);
 app.use('/api/payment', razorpay);
-app.use('/api/keep-alive', keepAlive);
-
-// Cron job to hit a real product endpoint every 14 minutes
-cron.schedule('*/14 * * * *', () => {
-  console.log('⏰ Sending keep-alive DB-touch request');
-  axios.post(`https://rabdirasoi.onrender.com/api/products/get-product/keepalive`) // Replace with a real product ID from your DB
-    .then(res => console.log('✅ Keep-alive successful:', res.status))
-    .catch(err => console.error('❌ Keep-alive failed:', err.message));
-});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
