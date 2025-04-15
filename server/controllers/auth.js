@@ -12,7 +12,7 @@ exports.signup = (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
     if (result.length) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ message: "Email already in use" });
     }
 
     const saltRounds = 10;
@@ -35,17 +35,19 @@ exports.login = (req, res) => {
     if (err) {
       return res.status(500).json({ message: "Internal server error" });
     }
+
     if (!result.length) {
       return res.status(400).json({ message: "User does not exist" });
     }
 
     const isPasswordCorrect = bcrypt.compareSync(req.body.password, result[0].password);
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Wrong password" }); // ✅ Updated here
     }
 
-    const token = jwt.sign({ id: result[0].id }, "secretKey");    
+    const token = jwt.sign({ id: result[0].id }, "secretKey");
     const { user_id } = result[0];
+
     res
       .cookie("accessToken", token, {
         httpOnly: true,
@@ -54,6 +56,7 @@ exports.login = (req, res) => {
       .json(user_id);
   });
 };
+
 
 exports.adminLogin = (req, res) => {
   const { email, password } = req.body;
