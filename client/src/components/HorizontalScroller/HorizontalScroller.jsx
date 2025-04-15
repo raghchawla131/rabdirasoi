@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import HorizontalScrollerItems from "./HorizontalScrollerItems";
-import { Box } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 
 export default function HorizontalScroller({ data }) {
   const [products, setProducts] = useState([]);
@@ -48,6 +48,20 @@ export default function HorizontalScroller({ data }) {
       {products.map((product) => (
         <HorizontalScrollerItems key={product.product_id} data={product} />
       ))}
+      {/* <Link to="/shop" style={{ textDecoration: "none", display: "inline-block" }}>
+        <Typography
+          variant="h5" // Use a size smaller than h1 but still prominent
+          sx={{
+            color: "deeppink", // Set color to deep pink
+            fontWeight: "bold", // Make the text bold
+            textAlign: "center", // Center align the text
+            cursor: "pointer", // Add pointer cursor for interactivity
+            mt: 2, // Add top margin for spacing
+          }}
+        >
+          More
+        </Typography>
+      </Link> */}
     </Box>
   );
 }

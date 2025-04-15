@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Shop.css";
+import { Container, Box, Typography } from "@mui/material";
 import Product from "../../components/Product/Product";
 
 export default function Shop() {
@@ -11,10 +11,12 @@ export default function Shop() {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/products/show-products`);
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/products/show-products`
+        );
         setProducts(response.data);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     };
 
@@ -22,69 +24,73 @@ export default function Shop() {
   }, []);
 
   const filterProductsByCategory = (category) => {
-    return products.filter(product => product.category === category);
+    return products.filter((product) => product.category === category);
   };
 
+  const categories = ["Cakes", "Brownies", "Chocolates", "Cupcakes"];
+
   return (
-    <div id="shop">
-      <div className="collections">
-        <section className="cakes product">
-          <div className="header">
-            <h3>Cakes</h3>
-            <p>
-              Layers of frosting, cake crumbs and see-through-sides make these
-              easy-to-spot-cakes darn near impossible to resist.
-            </p>
-          </div>
-          <div className="product-type">
-            {filterProductsByCategory("Cakes").map((product) => (
-              <Product key={product.product_id} data={product} />
-            ))}
-          </div>
-        </section>
-        <section className="brownies product">
-          <div className="header">
-            <h3>Brownies</h3>
-            <p>
-              Layers of frosting, cake crumbs and see-through-sides make these
-              easy-to-spot-cakes darn near impossible to resist.
-            </p>
-          </div>
-          <div className="product-type">
-            {filterProductsByCategory("Brownies").map((product) => (
-              <Product key={product.product_id} data={product} />
-            ))}
-          </div>
-        </section>
-        <section className="chocolates product">
-          <div className="header">
-            <h3>Chocolates</h3>
-            <p>
-              Layers of frosting, cake crumbs and see-through-sides make these
-              easy-to-spot-cakes darn near impossible to resist.
-            </p>
-          </div>
-          <div className="product-type">
-            {filterProductsByCategory("Chocolates").map((product) => (
-              <Product key={product.product_id} data={product} />
-            ))}
-          </div>
-        </section>
-        <section className="cupcakes product">
-          <div className="header">
-            <h3>Cupcakes</h3>
-            <p>
-              Layers of frosting, cake crumbs and see-through-sides make these
-              easy-to-spot-cakes darn near impossible to resist.
-            </p>
-          </div>
-          <div className="product-type">
-            {filterProductsByCategory("Cupcakes").map((product) => (
-              <Product key={product.product_id} data={product} />
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
+    <Container sx={{ pt: "81px" }}>
+      {/* Collections Container */}
+      <Box
+        sx={{
+          px: "7.5px",
+          pb: "15px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+          // On larger screens, use a 12-column grid layout.
+          gridTemplateColumns: { xs: "1fr", lg: "repeat(12, 1fr)" },
+        }}
+      >
+        {categories.map((category) => (
+          <Box
+            key={category}
+            sx={{
+              display: "flex",
+
+              mb: "30px",
+            }}
+          >
+            {/* Header */}
+            <Box sx={{ px: "15px", pb: "30px" }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  pt: "1em",
+                  textTransform: "uppercase",
+                  fontSize: category === "Chocolates" ? "2.4rem" : "2.5rem", // adjust as needed
+                  wordBreak: "break-word", // just in case
+                }}
+              >
+                {category}
+              </Typography>
+
+              <Typography sx={{ pt: "1em" }}>
+                Layers of frosting, cake crumbs and see-through-sides make these
+                easy-to-spot-cakes darn near impossible to resist.
+              </Typography>
+            </Box>
+            {/* Products Grid */}
+            <Box
+              sx={{
+                pt: "3em",
+                display: "grid",
+                gap: "15px",
+                // Two columns by default, three on larger screens:
+                gridTemplateColumns: {
+                  xs: "repeat(2, 1fr)",
+                  lg: "repeat(3, 1fr)",
+                },
+              }}
+            >
+              {filterProductsByCategory(category).map((product) => (
+                <Product key={product.product_id} data={product} />
+              ))}
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Container>
   );
 }
