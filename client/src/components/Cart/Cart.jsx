@@ -10,22 +10,21 @@ import { useNavigate } from "react-router-dom";
 export default function Cart({ toggleCart }) {
   const { currentUser } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
-  const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const countSubtotal = (items) => {
-    let calculatedSubtotal = 0;
+  // Calculate total only
+  const countTotal = (items) => {
+    let calculatedTotal = 0;
     for (const item of items) {
-      calculatedSubtotal += item.price * item.pound_quantity * item.item_quantity;
+      calculatedTotal += item.price * item.pound_quantity * item.item_quantity;
     }
-    setSubtotal(calculatedSubtotal);
+    setTotal(calculatedTotal);
   };
 
-  const shippingCharges = cartItems.length > 0 ? 50 : 0;
-
   useEffect(() => {
-    countSubtotal(cartItems);
+    countTotal(cartItems);
   }, [cartItems]);
 
   const handleToggleCart = () => {
@@ -33,33 +32,31 @@ export default function Cart({ toggleCart }) {
     toggleCart();
   };
 
-
-const fetchCartItems = useCallback(async () => {
-  if (currentUser) {
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`, 
-        {
-          user_id: currentUser,
-        }
-      );
-      setCartItems(res.data);
-    } catch (error) {
-      console.log(error);
+  const fetchCartItems = useCallback(async () => {
+    if (currentUser) {
+      try {
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`, 
+          {
+            user_id: currentUser,
+          }
+        );
+        setCartItems(res.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-}, [currentUser]); // Add currentUser as a dependency
+  }, [currentUser]);
 
-const navigateToCheckout = () => {
-  setIsOpen(!isOpen);
-  toggleCart();
-  navigate("/checkout");
-};
+  const navigateToCheckout = () => {
+    setIsOpen(!isOpen);
+    toggleCart();
+    navigate("/checkout");
+  };
 
-useEffect(() => {
-  fetchCartItems();
-}, [fetchCartItems]); // Now fetchCartItems is stable and won't cause issues
-
+  useEffect(() => {
+    fetchCartItems();
+  }, [fetchCartItems]);
 
   return (
     <>
@@ -84,16 +81,8 @@ useEffect(() => {
         <div className="cart-bottom">
           <div className="total-order-price">
             <div>
-              <h4>subtotal</h4>
-              <h4>₹{subtotal}</h4>
-            </div>
-            <div>
-              <h4>shipping + handling</h4>
-              <h4>₹{shippingCharges}</h4>
-            </div>
-            <div>
               <h4>total</h4>
-              <h4>₹{subtotal + shippingCharges}</h4>
+              <h4>₹{total}</h4>
             </div>
           </div>
           <div onClick={navigateToCheckout} className="cart-checkout">

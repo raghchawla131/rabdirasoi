@@ -1,8 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./ItemDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/authContext";
+import QuantityStepper from "../QuantityStepper/QuantityStepper";
+
+import {
+  Box,
+  Button,
+  Typography,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  IconButton,
+  Card,
+  CardMedia,
+  CardContent,
+  Grid,
+} from "@mui/material";
+import { Add, Remove } from "@mui/icons-material";
 
 const ItemDetails = () => {
   const { currentUser } = useContext(AuthContext);
@@ -45,10 +61,9 @@ const ItemDetails = () => {
   };
 
   const handleIncrement = () => {
-    if (itemsQuantity >= 3) {
-      return;
+    if (itemsQuantity < 3) {
+      setItemsQuantity(itemsQuantity + 1);
     }
-    setItemsQuantity(itemsQuantity + 1);
   };
 
   const handleDecrement = () => {
@@ -64,15 +79,18 @@ const ItemDetails = () => {
     }
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/add-to-cart`, {
-        user_id: currentUser,
-        product_id: productId,
-        pound_quantity: poundQuantity,
-        item_quantity: itemsQuantity,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/cart/add-to-cart`,
+        {
+          user_id: currentUser,
+          product_id: productId,
+          pound_quantity: poundQuantity,
+          item_quantity: itemsQuantity,
+        }
+      );
       alert("Item added to cart successfully");
     } catch (error) {
-      if (error.response && error.response.status === 409) {
+      if (error.response?.status === 409) {
         alert("This item is already in your cart");
       } else {
         console.error("Error adding item to cart", error);
@@ -82,62 +100,84 @@ const ItemDetails = () => {
   };
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <Typography variant="h6">Loading...</Typography>;
   }
 
   const { name, image_url, description, price } = product;
-
-  const trimmedPrice = parseFloat(price).toString();
+  const trimmedPrice = parseFloat(price).toFixed(2);
 
   return (
-    <div className="item-details">
-      <div className="item-details__container">
-        <div className="item-details__image">
-          <img src={image_url} alt={name} />
-        </div>
-        <div className="item-details__content">
-          <h1 className="item-details__title">{name}</h1>
-          <p className="item-details__description">{description}</p>
-          <div>
-            <h4 className="item-details__size-label">Select size: </h4>
-            <div className="item-details__dropdown">
-              <select value={poundQuantity} onChange={handleSelectChange}>
-                {options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="item-details__actions">
-              <div className="item-details__quantity">
-                <button
-                  onClick={handleDecrement}
-                  className="item-details__quantity-btn"
-                >
-                  <ion-icon name="remove-outline"></ion-icon>
-                </button>
-                <div className="item-details__quantity-value">
-                  {itemsQuantity}
-                </div>
-                <button
-                  onClick={handleIncrement}
-                  className="item-details__quantity-btn"
-                >
-                  <ion-icon name="add-outline"></ion-icon>
-                </button>
-              </div>
-              <button
-                onClick={handleAddToCartBtnClick}
-                className="item-details__cart-btn"
+    <Box sx={{ pt: 10, px: 2 }}>
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          p: 2,
+        }}
+      >
+        <CardMedia
+          component="img"
+          image={image_url}
+          alt={name}
+          sx={{
+            width: { xs: "100%", md: "50%" },
+            height: "auto",
+            objectFit: "contain",
+          }}
+        />
+        <CardContent sx={{ width: { md: "50%" }, display: "flex", flexDirection: "column", justifyContent: "center"}}>
+          <Typography variant="h4" gutterBottom>
+            {name}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            {description}
+          </Typography>
+
+          <Box mt={2}>
+            <FormControl fullWidth>
+              <InputLabel id="pound-select-label">Select Size</InputLabel>
+              <Select
+                labelId="pound-select-label"
+                value={poundQuantity}
+                label="Select Size"
+                onChange={handleSelectChange}
               >
-                Add to Cart - &#8377;{trimmedPrice}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                {options.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+
+          <QuantityStepper
+            handleDecrement={handleDecrement}
+            handleIncrement={handleIncrement}
+            itemsQuantity={itemsQuantity}
+          />
+
+          <Box mt={3}>
+            <Button
+              variant="outlined"
+              onClick={handleAddToCartBtnClick}
+              sx={{
+                height: "3rem",
+                color: "deeppink",
+                borderColor: "deeppink",
+                ":hover": {
+                  backgroundColor: "deeppink",
+                  color: "white",
+                  borderColor: "deeppink",
+                },
+              }}
+            >
+              Add to Cart – ₹{trimmedPrice}
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

@@ -18,20 +18,24 @@ export default function Product({ data }) {
           borderRadius: "10px",
           boxShadow: "0 28px 30px -12px #334a6733",
           overflow: "hidden",
-          height: "20rem",
-          width: "16rem",
           display: "flex",
           flexDirection: "column",
-          flexShrink: 0, // Prevent shrinking
+          flexShrink: 0,
+          height: "20rem", // Default height
+          width: "16rem", // Default width
+          "@media (max-width:600px)": {
+            width: "100%", // Full width on small screens
+            height: "auto", // Auto height for better scaling
+          },
         }}
       >
         {/* Image Section */}
         <Box
           sx={{
-            height: "14rem", // Reduced image height slightly to make space for text
+            height: "14rem", // Default image height
             position: "relative",
             overflow: "hidden",
-            flexShrink: 0, // Prevent shrinking due to content
+            flexShrink: 0,
             "& img": {
               height: "100%",
               width: "100%",
@@ -42,6 +46,9 @@ export default function Product({ data }) {
             "&:hover img": {
               transform: "scale(1.1)",
             },
+            "@media (max-width:600px)": {
+              height: "10rem", // Reduce image height on small screens
+            },
           }}
         >
           <img src={image_url} alt={name} />
@@ -50,12 +57,16 @@ export default function Product({ data }) {
         {/* Text Section */}
         <Box
           sx={{
-            height: "6rem", // Now this is fixed so it doesn’t push/shrink the image
+            height: "6rem", // Fixed text section height
             padding: "10px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             gap: "4px",
+            "@media (max-width:600px)": {
+              height: "auto", // Allow text to adjust on small screens
+              padding: "8px", // Slightly reduce padding for mobile
+            },
           }}
         >
           <Typography
