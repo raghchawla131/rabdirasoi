@@ -205,9 +205,46 @@
   transition: width 350ms ease-in-out;
 }
 
+.nav-links a {
+  color: black;
+  text-decoration: none;
+  font-weight: 590;
+  position: relative;
+  background-color: transparent; /* Ensure no background */
+}
+
+.nav-links a:focus,
+.nav-links a:active {
+  background-color: transparent; /* Remove blue background on focus/active */
+}
+
+
 .sidebar__link:hover::after {
   width: 100%;
 }
+
+/* Remove background and outline on focus or active */
+.sidebar-cart-btn:focus,
+.sidebar-cart-btn:active {
+    background-color: transparent;  /* Ensure no background color */
+    outline: none;  /* Remove outline (blue border on focus) */
+    box-shadow: none;  /* Remove any box-shadow */
+}
+
+/* Make sure the button's default color is black */
+.sidebar-cart-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: black;
+}
+
+/* Optional: Add specific focus color if needed */
+.sidebar-cart-btn:focus {
+    color: black;  /* Ensures color doesn't change on focus */
+}
+
 
 
 .overlayMenu {

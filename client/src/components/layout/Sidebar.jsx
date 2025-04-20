@@ -37,92 +37,96 @@ export default function Sidebar({ toggleCart }) {
 
       {/* Drawer for Sidebar Menu */}
       <Drawer
-        open={isMenuOpen}
-        onClose={toggleMenu}
-        anchor="left"
-        disableScrollLock={true}
-        transitionDuration={300}
-        sx={{
-          "& .MuiDrawer-paper": {
-            width: "250px", // Set the width of the sidebar
-            maxWidth: "100%",
-            padding: "20px",
-          },
-        }}
-      >
-        {/* Sidebar Close Button */}
-        <IconButton
-          onClick={toggleMenu}
-          sx={{
-            position: "absolute",
-            top: "10px",
-            right: "10px",
-            backgroundColor: "#fff", // Background color for the button
-            padding: "5px", // Adjust padding to prevent oval shape
-            borderRadius: "50%", // Ensure circular shape
-            "&:hover": {
-              backgroundColor: "#f1f1f1", // Add a hover effect
-            },
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
+  open={isMenuOpen}
+  onClose={toggleMenu}
+  anchor="left"
+  disableScrollLock={true}
+  transitionDuration={300}
+  sx={{
+    "& .MuiDrawer-paper": {
+      width: "250px",
+      maxWidth: "100%",
+      padding: "20px",
+      display: "flex",
+      flexDirection: "column",
+    },
+  }}
+>
+  {/* Container for Close Button and Links side by side */}
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      gap: "10px",
+    }}
+  >
+    {/* Sidebar Links */}
+    <ul
+      className="sidebar__list"
+      style={{
+        paddingTop: "10px",
+        listStyle: "none",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+    >
+      <li className="sidebar__item">
+        <Link to="/" onClick={handleLinkClick} className="sidebar__link">
+          Home
+        </Link>
+      </li>
+      <li className="sidebar__item">
+        <Link to="/Shop" onClick={handleLinkClick} className="sidebar__link">
+          Shop
+        </Link>
+      </li>
+      <li className="sidebar__item">
+        <Link to="/Contact" onClick={handleLinkClick} className="sidebar__link">
+          Contact us
+        </Link>
+      </li>
+      <li className="sidebar__item">
+        <Link to="/About" onClick={handleLinkClick} className="sidebar__link">
+          About us
+        </Link>
+      </li>
+      {currentUser ? (
+        <li className="sidebar__item">
+          <Link onClick={logout} className="sidebar__link">
+            Logout
+          </Link>
+        </li>
+      ) : (
+        <li className="sidebar__item">
+          <Link to="/Login" onClick={handleLinkClick} className="sidebar__link">
+            Login
+          </Link>
+        </li>
+      )}
+    </ul>
 
-        {/* Sidebar Content */}
-        <div className="sidebar__links">
-          <ul className="sidebar__list">
-            <li className="sidebar__item">
-              <Link to="/" onClick={handleLinkClick} className="sidebar__link">
-                Home
-              </Link>
-            </li>
-            <li className="sidebar__item">
-              <Link
-                to="/Shop"
-                onClick={handleLinkClick}
-                className="sidebar__link"
-              >
-                Shop
-              </Link>
-            </li>
-            <li className="sidebar__item">
-              <Link
-                to="/Contact"
-                onClick={handleLinkClick}
-                className="sidebar__link"
-              >
-                Contact us
-              </Link>
-            </li>
-            <li className="sidebar__item">
-              <Link
-                to="/About"
-                onClick={handleLinkClick}
-                className="sidebar__link"
-              >
-                About us
-              </Link>
-            </li>
-            {currentUser ? (
-              <li className="sidebar__item">
-                <Link onClick={logout} className="sidebar__link">
-                  Logout
-                </Link>
-              </li>
-            ) : (
-              <li className="sidebar__item">
-                <Link
-                  to="/Login"
-                  onClick={handleLinkClick}
-                  className="sidebar__link"
-                >
-                  Login
-                </Link>
-              </li>
-            )}
-          </ul>
-        </div>
-      </Drawer>
+    {/* Close Button */}
+    <IconButton
+      onClick={toggleMenu}
+      sx={{
+        backgroundColor: "#fff",
+        padding: "5px",
+        width: "36px",
+        height: "36px",
+        borderRadius: "50%",
+        "&:hover": {
+          backgroundColor: "#f1f1f1",
+        },
+      }}
+    >
+      <CloseIcon />
+    </IconButton>
+  </div>
+</Drawer>
+
+
     </div>
   );
 }

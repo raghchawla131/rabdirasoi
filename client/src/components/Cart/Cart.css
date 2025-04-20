@@ -39,11 +39,12 @@
 
 .cart-bottom {
   width: 100%;
-  height: 100%;
   border-radius: 20px;
   box-shadow: 0 -8px 6px -5px #14141421;
   padding: 20px 40px;
+  background-color: white;
 }
+
 
 .total-order-price {
   display: flex;
@@ -70,26 +71,37 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 500px) {
-  .cart {
-    width: 100dvw;
-    height: 100dvh;
-  }
+.selected-cart-items {
+  flex: 1;
+  overflow-y: auto;
 }
+
+
+
 
 .cart {
   position: fixed;
   top: 0;
   right: 0;
+  height: 100%;
+  width: 400px;
   background-color: white;
-  width: 450px;
-  height: 100vh;
-  z-index: 1000;
-
-  transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
+  z-index: 999;
 }
+
+@media (max-width: 640px) {
+  .cart {
+    width: 100vw;
+  }
+}
+
 
 .cart.open {
   transform: translateX(0%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* keep header and items at top */
+  height: 100vh; /* make sure this is set */
 }
+
