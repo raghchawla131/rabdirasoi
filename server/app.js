@@ -33,8 +33,8 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/customerDetails", customerDetails);
 app.use("/api/payment", razorpay);
 
-app.post("/", (req, res) => {
-  res.json({ message: "Hello from server!" });
+app.get("/", (req, res) => {
+  res.send("Welcome to the Rab di Rasoi API");
 });
 
 app.listen(PORT, () => {
