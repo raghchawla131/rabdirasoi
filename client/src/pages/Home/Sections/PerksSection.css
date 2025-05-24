@@ -1,0 +1,60 @@
+/* PerksSection.css */
+
+.page-3 {
+  padding-top: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.page-3 h2 {
+  text-align: center;
+  padding-bottom: 1em;
+  /* Removed horizontal padding */
+}
+
+.page-3 h2 span {
+  color: deeppink;
+}
+
+.perks > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.perks img {
+  width: 40px;
+}
+
+.perk-1,
+.perk-2 {
+  padding-bottom: 1em;
+  /* Removed horizontal padding */
+}
+
+.perk-1 > *,
+.perk-2 > * {
+  padding-bottom: 1em;
+}
+
+/* Media queries at the end */
+
+@media (min-width: 1200px) {
+  .page-3 h2 {
+    font-size: 2rem;
+  }
+
+  .perks {
+    display: flex;
+    gap: 10rem;
+  }
+
+  .perks > * {
+    max-width: 20rem;
+  }
+}

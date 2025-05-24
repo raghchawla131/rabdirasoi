@@ -1,0 +1,33 @@
+/* SocialProofSection.css */
+
+.page-6 {
+  padding: 2em;
+  background-color: #fef5f5ff;
+}
+
+.page-6 h2 {
+  text-align: center;
+  padding-bottom: 2em;
+}
+
+.social-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.social-comment {
+  width: 90%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 1.5em;
+}
+
+.comment-2 {
+  max-width: 30rem;
+}
+
+.social-comment:nth-child(2) {
+  align-self: flex-end;
+}

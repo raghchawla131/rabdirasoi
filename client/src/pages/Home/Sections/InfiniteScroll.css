@@ -1,0 +1,28 @@
+/* InfiniteScroll.css */
+
+.infinite-scroll {
+  background-color: rgb(23, 23, 23);
+  color: antiquewhite;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.scroll-content {
+  display: inline-flex;
+  animation: scroll 30s linear infinite;
+}
+
+.scroll-content p {
+  margin: 0 1.5em;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

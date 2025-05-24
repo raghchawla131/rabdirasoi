@@ -1,0 +1,32 @@
+/* BakerySection.css */
+
+.page-2 {
+  padding-top: 2em;
+  text-align: center;
+}
+
+.horizontal-scroller-header {
+  /* Removed horizontal padding, as XContainer handles it */
+}
+
+.horizontal-scroller-header p {
+  margin-top: 1em;
+}
+
+/* Media queries at the end */
+
+@media (min-width: 800px) {
+  .horizontal-scroller-header {
+    /* Removed horizontal padding here too */
+  }
+}
+
+@media (min-width: 1200px) {
+  .horizontal-scroller-header {
+    /* Removed horizontal padding here as well */
+  }
+
+  .horizontal-scroller {
+    gap: 1em;
+  }
+}
