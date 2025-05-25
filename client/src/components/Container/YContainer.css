@@ -1,0 +1,16 @@
+.y-container {
+  padding-top: 80px;
+}
+
+/* Optional: responsive adjustments */
+@media (max-width: 768px) {
+  .y-container {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .y-container {
+    padding-top: 60px;
+  }
+}

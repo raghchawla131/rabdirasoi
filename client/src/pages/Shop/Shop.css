@@ -19,10 +19,28 @@
   padding-top: 1em;
 }
 
+.load-more-btn {
+  display: block;
+  margin: 1em auto 2em;
+  padding: 0;
+  background: none;
+  border: none;
+  color: deeppink;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background-color: white;
+}
+
 @media (min-width: 1200px) {
   .collections {
     display: grid;
-    grid-template-columns: repeat(12,1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: 30px;
   }
 }

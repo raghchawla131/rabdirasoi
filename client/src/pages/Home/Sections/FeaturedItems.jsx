@@ -1,8 +1,8 @@
 import HorizontalScroller from "../../../components/HorizontalScroller/HorizontalScroller";
 import XContainer from "../../../components/Container/XContainer";
-import './BakerySection.css';
+import './FeaturedItems.css';
 
-export default function BakerySection({ productIds }) {
+export default function FeaturedItems({ productIds }) {
   return (
     <XContainer>
       <div className="page-2">

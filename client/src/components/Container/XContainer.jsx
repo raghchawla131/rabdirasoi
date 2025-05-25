@@ -1,10 +1,7 @@
+import './XContainer.css';
 
 const XContainer = ({ children }) => {
-  return (
-    <div style={{ paddingLeft: '30px', paddingRight: '30px' }}>
-      {children}
-    </div>
-  );
+  return <div className="x-container">{children}</div>;
 };
 
 export default XContainer;
