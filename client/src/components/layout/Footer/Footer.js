@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Socials from "../socials";
+import Socials from "../../socials";
 import "./Footer.css";
 
 export default function Footer() {

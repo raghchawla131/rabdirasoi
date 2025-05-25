@@ -7,11 +7,10 @@ import axios from "axios";
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
-export default function Cart({ toggleCart }) {
+export default function Cart({ isCartVisible, onClose }) {
   const { currentUser } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const countSubtotal = (items) => {
@@ -28,79 +27,71 @@ export default function Cart({ toggleCart }) {
     countSubtotal(cartItems);
   }, [cartItems]);
 
-  const handleToggleCart = () => {
-    setIsOpen(!isOpen);
-    toggleCart();
+  const fetchCartItems = useCallback(async () => {
+    if (currentUser) {
+      try {
+        const res = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`,
+          {
+            user_id: currentUser,
+          }
+        );
+        setCartItems(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [currentUser]);
+
+  const navigateToCheckout = () => {
+    onClose();
+    navigate("/checkout");
   };
 
+  useEffect(() => {
+    fetchCartItems();
+  }, [fetchCartItems]);
 
-const fetchCartItems = useCallback(async () => {
-  if (currentUser) {
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`, 
-        {
-          user_id: currentUser,
-        }
-      );
-      setCartItems(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}, [currentUser]); // Add currentUser as a dependency
-
-const navigateToCheckout = () => {
-  setIsOpen(!isOpen);
-  toggleCart();
-  navigate("/checkout");
-};
-
-useEffect(() => {
-  fetchCartItems();
-}, [fetchCartItems]); // Now fetchCartItems is stable and won't cause issues
-
+  if (!isCartVisible) return null;
 
   return (
-    <>
-      <section className={`cart ${isOpen ? "open" : ""}`}>
-        <div className="cart-header">
-          <IconContext.Provider value={{ size: "2rem", cursor: "pointer" }}>
-            <div>
-              <IoClose onClick={handleToggleCart} />
-            </div>
-          </IconContext.Provider>
-          <h4>YOUR ORDERS</h4>
-        </div>
-        <div className="selected-cart-items">
-          {cartItems.map((item) => (
-            <CartItem
-              key={item.product_id} // Assuming product_id is unique
-              item={item}
-              fetchCartItems={fetchCartItems}
-            />
-          ))}
-        </div>
-        <div className="cart-bottom">
-          <div className="total-order-price">
-            <div>
-              <h4>subtotal</h4>
-              <h4>₹{subtotal}</h4>
-            </div>
-            <div>
-              <h4>shipping + handling</h4>
-              <h4>₹{shippingCharges}</h4>
-            </div>
-            <div>
-              <h4>total</h4>
-              <h4>₹{subtotal + shippingCharges}</h4>
-            </div>
+    <section className="cart open">
+      <div className="cart-header">
+        <IconContext.Provider value={{ size: "2rem", cursor: "pointer" }}>
+          <div>
+            <IoClose onClick={onClose} />
           </div>
-          <div onClick={navigateToCheckout} className="cart-checkout">
-            <button className="cart-checkout-btn">Checkout</button>
+        </IconContext.Provider>
+        <h4>YOUR ORDERS</h4>
+      </div>
+      <div className="selected-cart-items">
+        {cartItems.map((item) => (
+          <CartItem
+            key={item.product_id} // Assuming product_id is unique
+            item={item}
+            fetchCartItems={fetchCartItems}
+          />
+        ))}
+      </div>
+      <div className="cart-bottom">
+        <div className="total-order-price">
+          <div>
+            <h4>subtotal</h4>
+            <h4>₹{subtotal}</h4>
+          </div>
+          <div>
+            <h4>shipping + handling</h4>
+            <h4>₹{shippingCharges}</h4>
+          </div>
+          <div>
+            <h4>total</h4>
+            <h4>₹{subtotal + shippingCharges}</h4>
           </div>
         </div>
-      </section>
-    </>
+        <div onClick={navigateToCheckout} className="cart-checkout">
+          <button className="cart-checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </section>
   );
 }

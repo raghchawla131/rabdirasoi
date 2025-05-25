@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -6,9 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home/Home";
-import Footer from "./components/layout/Footer";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/Shop/Shop";
@@ -22,10 +20,12 @@ import Login from "./pages/Auth/Login.jsx";
 import Signup from "./pages/Auth/Signup.jsx";
 import CustomerDetails from "./pages/CustomerDetails/CustomerDetails.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
+import Footer from "./components/layout/Footer/Footer.js";
+import NavbarWrapper from "./components/layout/Navbar/NavbarWrapper.jsx";
 
 const Layout = () => (
   <div className="layout">
-    <Navbar />
+    <NavbarWrapper />
     <Outlet />
     <Footer />
   </div>

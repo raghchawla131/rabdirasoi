@@ -1,0 +1,93 @@
+/* MobileNavbar.css */
+
+.mobile-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.97);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 98;
+  border-bottom: 1px solid black;
+}
+
+.mobile-nav ion-icon {
+  font-size: 1.75rem;
+}
+
+.sidebar-navbar-logo {
+  width: 10rem;
+  padding: 1em 0;
+}
+
+/* Sidebar */
+
+.sidebar {
+  background-color: white;
+  height: 100vh;
+  width: 71%;
+  padding: 0 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transform: translateX(-80vw);
+  transition: transform 0.5s ease-in-out;
+}
+
+.sidebar--show {
+  transform: translateX(0);
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__logo {
+  width: 10rem;
+  padding: 1em 0;
+  margin: auto;
+}
+
+.sidebar__list {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar__item {
+  margin-bottom: 20px;
+}
+
+/* Sidebar link styles shared with desktop */
+
+.sidebar__link {
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  padding: 0;
+  display: inline-block;
+}
+
+.sidebar__link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  background-color: deeppink;
+  width: 0;
+  height: 2px;
+  transition: width 350ms ease-in-out;
+}
+
+.sidebar__link:hover::after {
+  width: 100%;
+}

@@ -1,0 +1,68 @@
+/* DesktopNavbar.css */
+
+.desktop-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 5rem;
+  background-color: rgba(255, 255, 255, 0.97);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 98;
+  border-bottom: 1px solid black;
+}
+
+.logo {
+  width: 10rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 3em;
+}
+
+.nav-links .cart-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.nav-links a,
+.nav-links__link {
+  color: black;
+  text-decoration: none;
+  font-weight: 700 !important;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  padding: 0;
+  display: inline-block;
+}
+
+.nav-links a::after,
+.nav-links__link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  background-color: deeppink;
+  width: 0;
+  height: 2px;
+  transition: width 350ms ease-in-out;
+}
+
+.nav-links a:hover::after,
+.nav-links__link:hover::after {
+  width: 100%;
+}
