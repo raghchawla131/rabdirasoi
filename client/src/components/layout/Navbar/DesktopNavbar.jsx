@@ -1,20 +1,27 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import {
+  useUser,
+  SignedIn,
+  SignedOut,
+  ClerkProvider,
+  UserButton,
+  SignInButton,
+} from "@clerk/react-router";
 import Cart from "../../Cart/Cart";
 import logo from "../../../assets/rab di rasoi logo.png";
-import { AuthContext } from "../../../context/authContext";
 import CartOverlay from "../../Overlay/CartOverlay";
 import { useLogoClick } from "../../../hooks/useLogoClick";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import "./DesktopNavbar.css";
+import { ShoppingCart } from "lucide-react";
 
 export default function DesktopNavbar({
   isCartVisible,
   openCart,
   closeCart,
-  handleLogout,
+  // Remove handleLogout; Clerk provides logout via UserButton
 }) {
-  const { currentUser } = useContext(AuthContext);
+  // const { isSignedIn } = useUser();
 
   const handleLogoClick = useLogoClick();
 
@@ -49,21 +56,27 @@ export default function DesktopNavbar({
                 About us
               </Link>
             </li>
-            {currentUser ? (
+
+            {/* Clerk Auth Check */}
+            <SignedOut>
               <li>
-                <Link onClick={handleLogout}>Logout</Link>
+                <SignInButton />
               </li>
-            ) : (
+            </SignedOut>
+
+            <SignedIn>
               <li>
-                <Link to="/Login" onClick={scrollToTop}>
-                  Login
-                </Link>
+                {/* UserButton shows user avatar and provides sign out, account management UI */}
+                <UserButton />
               </li>
-            )}
+            </SignedIn>
+
             <li>
-              <button className="nav-links__link cart-btn" onClick={openCart}>
+              {/* <button className="nav-links__link cart-btn" onClick={openCart}>
                 Cart
-              </button>
+              </button> */}
+              <ShoppingCart onClick={openCart} />
+              {""}
             </li>
           </ul>
         </div>

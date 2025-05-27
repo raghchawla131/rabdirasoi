@@ -31,6 +31,7 @@ yarn-error.log*
 
 # Ignore server-specific files
 /server/node_modules
+/server/api_map.md
 /server/.env
 
 # Add any other common exclusions or customizations here

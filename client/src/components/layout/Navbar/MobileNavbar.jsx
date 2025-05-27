@@ -7,6 +7,15 @@ import CartOverlay from "../../Overlay/CartOverlay";
 import { useLogoClick } from "../../../hooks/useLogoClick";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import "./MobileNavbar.css";
+import { ShoppingCart } from "lucide-react";
+import {
+  useUser,
+  SignedIn,
+  SignedOut,
+  ClerkProvider,
+  UserButton,
+  SignInButton,
+} from "@clerk/react-router";
 
 export default function MobileNavbar({
   isMenuOpen,
@@ -14,13 +23,12 @@ export default function MobileNavbar({
   isCartVisible,
   openCart,
   closeCart,
-  handleLogout,
+  // handleLogout,
 }) {
   const { currentUser } = useContext(AuthContext);
   const ref = useRef(null);
 
-
-const scrollToTop = useScrollToTop();
+  const scrollToTop = useScrollToTop();
 
   const handleLogoClick = useLogoClick();
 
@@ -40,18 +48,27 @@ const scrollToTop = useScrollToTop();
             onClick={handleLogoClick}
           />
         </div>
-        <div>
+        <div className="mobile-nav__links">
           {/* Use button or div instead of Link because Cart is modal */}
-          <button
-            className="sidebar__link cart-btn"
+          <ShoppingCart
+            className="sidebar__link cart-icon"
             onClick={() => {
               openCart();
-              setIsMenuOpen(false); // optional: close menu when cart opens
+              setIsMenuOpen(false);
             }}
             aria-label="Open Cart"
-          >
-            Cart
-          </button>
+          />
+          <SignedOut>
+            <li>
+              <SignInButton />
+            </li>
+          </SignedOut>
+
+          <SignedIn>
+            <li className="user-button">
+              <UserButton />
+            </li>
+          </SignedIn>
         </div>
       </nav>
 
@@ -75,11 +92,7 @@ const scrollToTop = useScrollToTop();
               </Link>
             </li>
             <li>
-              <Link
-                to="/Shop"
-                onClick={scrollToTop}
-                className="sidebar__link"
-              >
+              <Link to="/Shop" onClick={scrollToTop} className="sidebar__link">
                 Shop
               </Link>
             </li>
@@ -93,15 +106,11 @@ const scrollToTop = useScrollToTop();
               </Link>
             </li>
             <li>
-              <Link
-                to="/About"
-                onClick={scrollToTop}
-                className="sidebar__link"
-              >
+              <Link to="/About" onClick={scrollToTop} className="sidebar__link">
                 About us
               </Link>
             </li>
-            {currentUser ? (
+            {/* {currentUser ? (
               <li>
                 <Link onClick={handleLogout} className="sidebar__link">
                   Logout
@@ -117,7 +126,7 @@ const scrollToTop = useScrollToTop();
                   Login
                 </Link>
               </li>
-            )}
+            )} */}
           </ul>
         </div>
       </div>

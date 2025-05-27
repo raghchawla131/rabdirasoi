@@ -1,1 +1,0 @@
-https://rabdirasoi.netlify.app/

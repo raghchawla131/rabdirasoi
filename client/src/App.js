@@ -1,27 +1,15 @@
-import { useState } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
-import "./App.css";
+import { Routes, Route, Outlet } from "react-router-dom";
+import { SignIn, SignUp, SignedOut } from "@clerk/react-router";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/Shop/Shop";
 import ItemDetails from "./components/ItemDetails/ItemDetails.jsx";
-import Admin from "./Admin/Admin";
-import AdminLogin from "./Admin/pages/AdminLogin/AdminLogin.jsx";
-import AddProducts from "./Admin/pages/AddProducts/AddProducts.jsx";
-import ShowProducts from "./Admin/pages/ShowProducts/ShowProducts.jsx";
-import AdminSidebar from "./Admin/components/AdminSidebar/AdminSidebar.jsx";
-import Login from "./pages/Auth/Login.jsx";
-import Signup from "./pages/Auth/Signup.jsx";
 import CustomerDetails from "./pages/CustomerDetails/CustomerDetails.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Footer from "./components/layout/Footer/Footer.js";
 import NavbarWrapper from "./components/layout/Navbar/NavbarWrapper.jsx";
+import "./App.css";
 
 const Layout = () => (
   <div className="layout">
@@ -31,94 +19,39 @@ const Layout = () => (
   </div>
 );
 
-// admin-layout css is in app.css file
-const AdminLayout = () => (
-  <div className="admin-layout">
-    <AdminSidebar />
-    <Outlet />
-  </div>
-);
-
-const ProtectedRoute = ({ element, adminAuthenticated }) => {
-  return adminAuthenticated ? element : <Navigate to="/admin/login" />;
-};
-
 function App() {
-  const [adminAuthenticated, setAdminAuthenticated] = useState(true); // Start with adminAuthenticated as false
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/about",
-          element: <About />,
-        },
-        {
-          path: "/contact",
-          element: <Contact />,
-        },
-        {
-          path: "/shop",
-          element: <Shop />,
-        },
-        {
-          path: "/products/:productId",
-          element: <ItemDetails />,
-        },
-        {
-          path: "/checkout",
-          element: <Checkout />,
-        },
-      ],
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
-    {
-      path: "/customer-details",
-      element: <CustomerDetails />,
-    },
-    {
-      path: "/admin/login",
-      element: <AdminLogin setAdminAuthenticated={setAdminAuthenticated} />,
-    },
-    {
-      path: "/admin",
-      element: (
-        <ProtectedRoute
-          element={<AdminLayout />}
-          adminAuthenticated={adminAuthenticated}
-        />
-      ),
-      children: [
-        {
-          path: "/admin",
-          element: <Admin />,
-        },
-        {
-          path: "/admin/add-product",
-          element: <AddProducts />,
-        },
-        {
-          path: "/admin/show-products",
-          element: <ShowProducts />,
-        },
-      ],
-    },
-  ]);
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="products/:productId" element={<ItemDetails />} />
+        <Route path="checkout" element={<Checkout />} />
+      </Route>
 
-  return <RouterProvider router={router} />;
+      <Route
+        path="/sign-in"
+        element={
+          <SignedOut>
+            <SignIn routing="path" path="/sign-in" />
+          </SignedOut>
+        }
+      />
+      <Route
+        path="/sign-up"
+        element={
+          <SignedOut>
+            <SignUp routing="path" path="/sign-up" />
+          </SignedOut>
+        }
+      />
+      <Route path="/customer-details" element={<CustomerDetails />} />
+
+    </Routes>
+  );
 }
 
 export default App;

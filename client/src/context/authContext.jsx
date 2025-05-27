@@ -1,47 +1,37 @@
-import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+// src/context/authContext.js
+import React, { createContext, useContext, useMemo } from "react";
+import { useUser, useAuth } from "@clerk/clerk-react";
 
 export const AuthContext = createContext(undefined);
 
-const getUserFromLocalStorage = () => {
-  const userJson = localStorage.getItem("user");
-  if (!userJson) return null;
-  try {
-    return JSON.parse(userJson);
-  } catch (error) {
-    console.error("Error parsing JSON from localStorage", error);
-    return null;
-  }
-};
-
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(getUserFromLocalStorage);
+  const { user, isSignedIn } = useUser();
+  const { signOut } = useAuth();
 
-  const login = async (authData) => {
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/auth/login`,
-      authData,
-      { withCredentials: true }
-    );
-    setCurrentUser(res.data);
+  // Map Clerk user info to your currentUser object (similar to old one)
+  const currentUser = useMemo(() => {
+    if (!isSignedIn || !user) return null;
+
+    return {
+      id: user.id,
+      email: user.emailAddresses[0]?.emailAddress || "",
+      firstName: user.firstName,
+      lastName: user.lastName,
+      // add more user fields if you used any
+    };
+  }, [user, isSignedIn]);
+
+  const logout = async () => {
+    await signOut();
   };
 
-  const signup = async (authData) => {
-    await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, authData);
-  };
-
-  const logout = () => {
-    setCurrentUser(null);
-    localStorage.removeItem("user");
-  };
-
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(currentUser));
-  }, [currentUser]);
+  // No login/signup here - Clerk handles that via their components & flows
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, signup, logout }}>
+    <AuthContext.Provider value={{ currentUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export const useAuthContext = () => useContext(AuthContext);
