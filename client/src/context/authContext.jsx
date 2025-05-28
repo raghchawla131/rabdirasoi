@@ -1,37 +1,33 @@
-// src/context/authContext.js
-import React, { createContext, useContext, useMemo } from "react";
-import { useUser, useAuth } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/react-router";
+import { createContext, useMemo } from "react";
 
-export const AuthContext = createContext(undefined);
+export const AuthContext = createContext(null);
 
 export const AuthContextProvider = ({ children }) => {
-  const { user, isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const { signOut } = useAuth();
 
-  // Map Clerk user info to your currentUser object (similar to old one)
   const currentUser = useMemo(() => {
-    if (!isSignedIn || !user) return null;
-
+    //If not logged in return null
+    if (!isSignedIn) return null;
+    //If logged in, return user details
     return {
-      id: user.id,
-      email: user.emailAddresses[0]?.emailAddress || "",
+      userId: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
-      // add more user fields if you used any
+      email: user.emailAddresses[0]?.emailAddress || "",
+      profilePicture: user.imageUrl,
     };
-  }, [user, isSignedIn]);
+  }, [isSignedIn, user]);
 
-  const logout = async () => {
+  //To handle logout
+  const logOut = async () => {
     await signOut();
-  };
-
-  // No login/signup here - Clerk handles that via their components & flows
+  }
 
   return (
-    <AuthContext.Provider value={{ currentUser, logout }}>
+    <AuthContext.Provider value={ currentUser }>
       {children}
     </AuthContext.Provider>
-  );
+  )
 };
-
-export const useAuthContext = () => useContext(AuthContext);
