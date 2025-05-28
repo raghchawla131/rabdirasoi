@@ -2,16 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import "./ItemDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
+import { authContext } from "../../context/authContext";
+import { RedirectToSignIn } from "@clerk/react-router";
 
 const ItemDetails = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(authContext);
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [itemsQuantity, setItemsQuantity] = useState(1);
   const [poundQuantity, setPoundQuantity] = useState("1");
 
-  const navigate = useNavigate();
+  const [redirectToSignIn, setRedirectToSignIn] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -59,17 +60,20 @@ const ItemDetails = () => {
 
   const handleAddToCartBtnClick = async () => {
     if (!currentUser) {
-      navigate("/login");
+      setRedirectToSignIn(true);
       return;
     }
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/add-to-cart`, {
-        user_id: currentUser,
-        product_id: productId,
-        pound_quantity: poundQuantity,
-        item_quantity: itemsQuantity,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/cart/add-to-cart`,
+        {
+          user_id: currentUser.userId,
+          product_id: productId,
+          pound_quantity: poundQuantity,
+          item_quantity: itemsQuantity,
+        }
+      );
       alert("Item added to cart successfully");
     } catch (error) {
       if (error.response && error.response.status === 409) {
@@ -80,6 +84,10 @@ const ItemDetails = () => {
       }
     }
   };
+
+  if (redirectToSignIn) {
+    return <RedirectToSignIn redirectUrl={`/products/${productId}`} />;
+  }
 
   if (!product) {
     return <div>Loading...</div>;

@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import {
-  useUser,
   SignedIn,
   SignedOut,
-  ClerkProvider,
   UserButton,
   SignInButton,
 } from "@clerk/react-router";
@@ -15,14 +13,7 @@ import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import "./DesktopNavbar.css";
 import { ShoppingCart } from "lucide-react";
 
-export default function DesktopNavbar({
-  isCartVisible,
-  openCart,
-  closeCart,
-  // Remove handleLogout; Clerk provides logout via UserButton
-}) {
-  // const { isSignedIn } = useUser();
-
+export default function DesktopNavbar({ isCartVisible, openCart, closeCart }) {
   const handleLogoClick = useLogoClick();
 
   const scrollToTop = useScrollToTop();
@@ -66,15 +57,11 @@ export default function DesktopNavbar({
 
             <SignedIn>
               <li>
-                {/* UserButton shows user avatar and provides sign out, account management UI */}
                 <UserButton />
               </li>
             </SignedIn>
 
             <li>
-              {/* <button className="nav-links__link cart-btn" onClick={openCart}>
-                Cart
-              </button> */}
               <ShoppingCart onClick={openCart} />
               {""}
             </li>

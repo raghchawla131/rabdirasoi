@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState, useCallback } from "react"; 
 import "./Checkout.css"; 
-import { AuthContext } from "../../context/AuthContext"; 
 import axios from "axios"; 
 import { useNavigate } from "react-router-dom"; 
 import logo from "../../assets/rab di rasoi logo.png"; 
+import { authContext } from "../../context/authContext";
 
 const Checkout = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(authContext);
   const [cartItems, setCartItems] = useState([]);
   const [customer, setCustomer] = useState(null); 
   const [subtotal, setSubtotal] = useState(0); 
@@ -20,7 +20,7 @@ const Checkout = () => {
       try {
         const res = await axios.post(
           `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`,
-          { user_id: currentUser }
+          { user_id: currentUser.userId }
         );
         setCartItems(res.data);
       } catch (error) {
@@ -35,7 +35,7 @@ const Checkout = () => {
       try {
         const res = await axios.post(
           `${process.env.REACT_APP_API_URL}/api/customerDetails/fetchCustomerDetails`,
-          { user_id: currentUser }
+          { user_id: currentUser.userId }
         );
         if (res.data) {
           setCustomer(res.data);

@@ -2,17 +2,14 @@ import { Link } from "react-router-dom";
 import { useRef, useContext } from "react";
 import Cart from "../../Cart/Cart";
 import logo from "../../../assets/rab di rasoi logo.png";
-import { AuthContext } from "../../../context/AuthContext";
 import CartOverlay from "../../Overlay/CartOverlay";
 import { useLogoClick } from "../../../hooks/useLogoClick";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import "./MobileNavbar.css";
 import { ShoppingCart } from "lucide-react";
 import {
-  useUser,
   SignedIn,
   SignedOut,
-  ClerkProvider,
   UserButton,
   SignInButton,
 } from "@clerk/react-router";
@@ -23,9 +20,7 @@ export default function MobileNavbar({
   isCartVisible,
   openCart,
   closeCart,
-  // handleLogout,
 }) {
-  const { currentUser } = useContext(AuthContext);
   const ref = useRef(null);
 
   const scrollToTop = useScrollToTop();
@@ -110,23 +105,6 @@ export default function MobileNavbar({
                 About us
               </Link>
             </li>
-            {/* {currentUser ? (
-              <li>
-                <Link onClick={handleLogout} className="sidebar__link">
-                  Logout
-                </Link>
-              </li>
-            ) : (
-              <li>
-                <Link
-                  to="/Login"
-                  onClick={scrollToTop}
-                  className="sidebar__link"
-                >
-                  Login
-                </Link>
-              </li>
-            )} */}
           </ul>
         </div>
       </div>

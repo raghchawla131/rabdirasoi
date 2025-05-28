@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import "./CartItem.css";
-import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { authContext } from "../../context/authContext";
 
 export default function CartItem({ item, fetchCartItems }) {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(authContext);
   const [poundQuantity, setPoundQuantity] = useState(item.pound_quantity);
   const [itemsQuantity, setItemsQuantity] = useState(item.item_quantity);
 
@@ -64,7 +64,7 @@ export default function CartItem({ item, fetchCartItems }) {
   const updateCartItemPoundQuantity = async (oldPoundQuantity, newPoundQuantity) => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/update-cart-item-pound-quantity`, {
-        user_id: currentUser,
+        user_id: currentUser.userId,
         product_id: item.product_id,
         old_pound_quantity: oldPoundQuantity,
         new_pound_quantity: newPoundQuantity,
@@ -82,7 +82,7 @@ export default function CartItem({ item, fetchCartItems }) {
   const updateCartItemQuantity = async (poundQuantity, itemsQuantity) => {
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/update-cart-item-quantity`, {
-        user_id: currentUser,
+        user_id: currentUser.userId,
         product_id: item.product_id,
         pound_quantity: poundQuantity,
         item_quantity: itemsQuantity,
@@ -97,7 +97,7 @@ export default function CartItem({ item, fetchCartItems }) {
   const handleRemoveCartItem = async (productId, pound_quantity) => {
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/remove-from-cart`, {
-        user_id: currentUser,
+        user_id: currentUser.userId,
         product_id: productId,
         pound_quantity: pound_quantity,
       });

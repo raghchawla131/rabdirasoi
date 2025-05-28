@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import "./CustomerDetails.css";
 import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { authContext } from "../../context/authContext";
 
 export default function CustomerDetails() {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(authContext);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -23,7 +23,7 @@ export default function CustomerDetails() {
           const res = await axios.post(
             `${process.env.REACT_APP_API_URL}/api/customerDetails/fetchCustomerDetails`,
             {
-              user_id: currentUser,
+              user_id: currentUser.userId,
             }
           );
           if (res.data) {
@@ -60,7 +60,7 @@ export default function CustomerDetails() {
         `${process.env.REACT_APP_API_URL}/api/customerDetails/updateCustomerDetails`,
         {
           ...formData,
-          user_id: currentUser,
+          user_id: currentUser.userId,
         }
       );
       navigate("/checkout");

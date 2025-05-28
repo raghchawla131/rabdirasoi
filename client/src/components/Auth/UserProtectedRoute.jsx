@@ -1,13 +1,11 @@
-import React from 'react';
-import { useUser } from '@clerk/react-router';
-import { Navigate } from 'react-router-dom';
+import { RedirectToSignIn, useUser } from '@clerk/react-router';
 
 // UserProtectedRoute component to protect routes for signed-in users
 const UserProtectedRoute = ({ children }) => {
   const { isSignedIn } = useUser();
 
   if (!isSignedIn) {
-    return <Navigate to="/sign-in" />;
+    return <RedirectToSignIn redirectUrl={window.location.pathname} />
   }
   return children;
 };

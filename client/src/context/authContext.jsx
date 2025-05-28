@@ -1,11 +1,10 @@
-import { useAuth, useUser } from "@clerk/react-router";
+import { useUser } from "@clerk/react-router";
 import { createContext, useMemo } from "react";
 
-export const AuthContext = createContext(null);
+export const authContext = createContext(null);
 
 export const AuthContextProvider = ({ children }) => {
   const { isSignedIn, user } = useUser();
-  const { signOut } = useAuth();
 
   const currentUser = useMemo(() => {
     //If not logged in return null
@@ -20,14 +19,9 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, [isSignedIn, user]);
 
-  //To handle logout
-  const logOut = async () => {
-    await signOut();
-  }
-
   return (
-    <AuthContext.Provider value={ currentUser }>
+    <authContext.Provider value={{ currentUser }}>
       {children}
-    </AuthContext.Provider>
+    </authContext.Provider>
   )
 };

@@ -10,6 +10,7 @@ import Checkout from "./pages/Checkout/Checkout.jsx";
 import Footer from "./components/layout/Footer/Footer.js";
 import NavbarWrapper from "./components/layout/Navbar/NavbarWrapper.jsx";
 import "./App.css";
+import UserProtectedRoute from "./components/Auth/UserProtectedRoute.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -20,7 +21,6 @@ const Layout = () => (
 );
 
 function App() {
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -29,7 +29,14 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="shop" element={<Shop />} />
         <Route path="products/:productId" element={<ItemDetails />} />
-        <Route path="checkout" element={<Checkout />} />
+        <Route
+          path="checkout"
+          element={
+            <UserProtectedRoute>
+              <Checkout />
+            </UserProtectedRoute>
+          }
+        />
       </Route>
 
       <Route
@@ -48,8 +55,14 @@ function App() {
           </SignedOut>
         }
       />
-      <Route path="/customer-details" element={<CustomerDetails />} />
-
+      <Route
+        path="/customer-details"
+        element={
+          <UserProtectedRoute>
+            <CustomerDetails />
+          </UserProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
