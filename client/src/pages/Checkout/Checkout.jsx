@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from "react"; 
 import "./Checkout.css"; 
-import { AuthContext } from "../../context/authContext"; 
+import { AuthContext } from "../../context/AuthContext"; 
 import axios from "axios"; 
 import { useNavigate } from "react-router-dom"; 
 import logo from "../../assets/rab di rasoi logo.png"; 

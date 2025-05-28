@@ -4,7 +4,7 @@ import CartItem from "../CartItems/CartItem";
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
 import axios from "axios";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart({ isCartVisible, onClose }) {

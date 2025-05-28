@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
-import { AuthContext } from "../../../context/authContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 export default function NavbarWrapper() {
   const [isCartVisible, setIsCartVisible] = useState(false);

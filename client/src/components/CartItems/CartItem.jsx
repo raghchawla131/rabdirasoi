@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./CartItem.css";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 export default function CartItem({ item, fetchCartItems }) {

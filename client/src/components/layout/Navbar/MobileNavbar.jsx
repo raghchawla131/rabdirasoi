@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useRef, useContext } from "react";
 import Cart from "../../Cart/Cart";
 import logo from "../../../assets/rab di rasoi logo.png";
-import { AuthContext } from "../../../context/authContext";
+import { AuthContext } from "../../../context/AuthContext";
 import CartOverlay from "../../Overlay/CartOverlay";
 import { useLogoClick } from "../../../hooks/useLogoClick";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";

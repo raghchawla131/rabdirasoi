@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./ItemDetails.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const ItemDetails = () => {
   const { currentUser } = useContext(AuthContext);
