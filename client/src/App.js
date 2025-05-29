@@ -11,6 +11,8 @@ import Footer from "./components/layout/Footer/Footer.js";
 import NavbarWrapper from "./components/layout/Navbar/NavbarWrapper.jsx";
 import "./App.css";
 import UserProtectedRoute from "./components/Auth/UserProtectedRoute.jsx";
+import AdminProtectedRoute from "./components/Auth/AdminProtectedRoute.jsx";
+import Admin from "./pages/Admin/Admin.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -61,6 +63,14 @@ function App() {
           <UserProtectedRoute>
             <CustomerDetails />
           </UserProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <AdminProtectedRoute>
+            <Admin />
+          </AdminProtectedRoute>
         }
       />
     </Routes>

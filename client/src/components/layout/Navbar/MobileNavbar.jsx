@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useRef, useContext } from "react";
+import { useRef } from "react";
 import Cart from "../../Cart/Cart";
 import logo from "../../../assets/rab di rasoi logo.png";
 import CartOverlay from "../../Overlay/CartOverlay";

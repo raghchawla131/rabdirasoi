@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const userRoutes = require("./routes/users");
 const clerkRoutes = require("./routes/clerk");
 const productsRoutes = require("./routes/products");
 const cartRoutes = require("./routes/cart");
@@ -27,6 +28,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/users", userRoutes);
 app.use("/api/clerk", clerkRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/cart", cartRoutes);
