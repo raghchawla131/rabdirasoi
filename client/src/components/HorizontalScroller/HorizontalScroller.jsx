@@ -7,18 +7,25 @@ export default function HorizontalScroller({ data }) {
   const [products, setProducts] = useState([]);   
   
   const fetchProducts = async (productIds) => {
-    try {            
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/products/get-products-horizontal-scroller`,
-        { 
-          ids: productIds,
-        }
-      );
-      setProducts(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  try {
+    const res = await axios.get(
+      `http://localhost:5000/api/products/get`,
+      {
+        ids: productIds,
+      }
+    );
+
+    // Filter products with tag "Best Seller"
+    const bestSellers = res.data.filter(
+      (product) => product.tags?.toLowerCase() === "best seller"
+    );
+
+    setProducts(bestSellers);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   useEffect(() => {
     fetchProducts(data); // Pass `data` here
@@ -33,4 +40,4 @@ export default function HorizontalScroller({ data }) {
       </div>
     </>
   );
-}
+} 

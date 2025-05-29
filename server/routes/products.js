@@ -1,12 +1,13 @@
 const express = require('express');
-const { addProduct, deleteProduct, getProducts, getProductsForHorizontalScroller, getProductUsingId } = require('../controllers/products');
+const { addProduct, getProducts, getProductUsingId, removeProduct, updateProduct } = require('../controllers/products');
 
 const router = express.Router();
 
-router.post('/add-product', addProduct);
-router.post('/show-products', getProducts);
-router.post('/delete-product/:product_id', deleteProduct);
+router.post('/add', addProduct);
+router.get('/get', getProducts);
+router.post('/remove/:product_id', removeProduct);
 router.post('/get-product/:product_id', getProductUsingId);
-router.post('/get-products-horizontal-scroller', getProductsForHorizontalScroller);
+router.put('/update/:product_id', updateProduct);
+
 
 module.exports = router;

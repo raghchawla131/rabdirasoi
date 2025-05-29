@@ -28,8 +28,8 @@ export default function Shop() {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/api/products/show-products`
+        const response = await axios.get(
+          `http://localhost:5000/api/products/get`
         );
         setProducts(response.data);
       } catch (error) {
