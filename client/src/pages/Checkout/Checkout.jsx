@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Checkout.css";
 import { useNavigate } from "react-router-dom";
-import { authContext } from "../../context/authContext";
 import { useCart } from "../../context/cartContext";
 import { useRazorpayPayment } from "../../hooks/useRazorpayPayment";
 
 const Checkout = () => {
-  const { currentUser } = useContext(authContext);
   const { cartItems, subtotal, total, fetchCartItems } = useCart();
   const { initiatePayment } = useRazorpayPayment();
   const navigate = useNavigate();

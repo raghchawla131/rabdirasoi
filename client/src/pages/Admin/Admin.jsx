@@ -22,7 +22,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("${process.env.REACT_APP_BASE_URL}/api/products/get");
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/get`);
       setProducts(res.data);
     } catch (err) {
       console.error("Failed to fetch products:", err);
@@ -48,7 +48,7 @@ const Admin = () => {
       } else {
         // Add new product
         await axios.post(
-          "${process.env.REACT_APP_BASE_URL}/api/products/add-product",
+          `${process.env.REACT_APP_BASE_URL}/api/products/add-product`,
           form
         );
       }

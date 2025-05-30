@@ -53,7 +53,7 @@ export default function CartItem({ item, fetchCartItems }) {
 
   const updateCartItemPoundQuantity = async (oldPoundQuantity, newPoundQuantity) => {
     try {
-      const res = await axios.put(`${process.env.process.env.REACT_APP_BASE_URL}/api/cart/update`, {
+      const res = await axios.put(`${process.env.REACT_APP_BASE_URL}/api/cart/update`, {
         user_id: currentUser.userId,
         product_id: item.product_id,
         old_pound_quantity: oldPoundQuantity,

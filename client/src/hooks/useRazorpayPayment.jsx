@@ -11,7 +11,7 @@ export const useRazorpayPayment = () => {
   const initiatePayment = async ({ customer, navigate }) => {
     try {
       // 🔒 Hardcoded API URL (development)
-      const API_URL = "${process.env.REACT_APP_BASE_URL}";
+      const API_URL = `${process.env.REACT_APP_BASE_URL}`;
 
       const res = await axios.post(`${API_URL}/api/payment/create-order`, {
         amount: total * 100,
