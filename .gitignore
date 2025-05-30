@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/client/build/
 
 # Ignore root .env file
 .env
@@ -35,3 +35,6 @@ yarn-error.log*
 /server/.env
 
 # Add any other common exclusions or customizations here
+
+# Local Netlify folder
+.netlify
