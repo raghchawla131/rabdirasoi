@@ -22,7 +22,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products/get");
+      const res = await axios.get("${process.env.REACT_APP_BASE_URL}/api/products/get");
       setProducts(res.data);
     } catch (err) {
       console.error("Failed to fetch products:", err);
@@ -42,13 +42,13 @@ const Admin = () => {
       if (editMode) {
         // Update product
         await axios.put(
-          `http://localhost:5000/api/products/update/${editId}`,
+          `${process.env.REACT_APP_BASE_URL}/api/products/update/${editId}`,
           form
         );
       } else {
         // Add new product
         await axios.post(
-          "http://localhost:5000/api/products/add-product",
+          "${process.env.REACT_APP_BASE_URL}/api/products/add-product",
           form
         );
       }
@@ -72,7 +72,7 @@ const Admin = () => {
   // Handle delete
   const handleDelete = async (id) => {
     try {
-      await axios.post(`http://localhost:5000/api/products/remove/${id}`);
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/products/remove/${id}`);
       setProducts(products.filter((p) => p.product_id !== id));
     } catch (err) {
       console.error("Error deleting product:", err);
