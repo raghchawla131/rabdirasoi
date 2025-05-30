@@ -1,48 +1,16 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useContext, useEffect } from "react";
 import "./Cart.css";
 import CartItem from "../CartItems/CartItem";
 import { IoClose } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { authContext } from "../../context/authContext";
+import { useCart } from "../../context/cartContext";
 
 export default function Cart({ isCartVisible, onClose }) {
   const { currentUser } = useContext(authContext);
-  const [cartItems, setCartItems] = useState([]);
-  const [subtotal, setSubtotal] = useState(0);
+  const { cartItems, subtotal, total, fetchCartItems } = useCart(); // ✅ Using from context
   const navigate = useNavigate();
-
-  const countSubtotal = (items) => {
-    let calculatedSubtotal = 0;
-    for (const item of items) {
-      calculatedSubtotal += item.price * item.pound_quantity * item.item_quantity;
-    }
-    setSubtotal(calculatedSubtotal);
-  };
-
-  const shippingCharges = cartItems.length > 0 ? 50 : 0;
-
-  useEffect(() => {
-    countSubtotal(cartItems);
-  }, [cartItems]);
-
-  const fetchCartItems = useCallback(async () => {
-  if (currentUser) {
-    try {
-      const res = await axios.get(
-        `http://localhost:5000/api/cart/get`,
-        {
-          params: { user_id: currentUser.userId }
-        }
-      );
-      setCartItems(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}, [currentUser]);
-
 
   const navigateToCheckout = () => {
     onClose();
@@ -50,8 +18,10 @@ export default function Cart({ isCartVisible, onClose }) {
   };
 
   useEffect(() => {
-    fetchCartItems();
-  }, [fetchCartItems]);
+    if (currentUser) {
+      fetchCartItems();
+    }
+  }, [currentUser, fetchCartItems]);
 
   if (!isCartVisible) return null;
 
@@ -68,7 +38,7 @@ export default function Cart({ isCartVisible, onClose }) {
       <div className="selected-cart-items">
         {cartItems.map((item) => (
           <CartItem
-            key={item.product_id} // Assuming product_id is unique
+            key={item.product_id}
             item={item}
             fetchCartItems={fetchCartItems}
           />
@@ -81,12 +51,8 @@ export default function Cart({ isCartVisible, onClose }) {
             <h4>₹{subtotal}</h4>
           </div>
           <div>
-            <h4>shipping + handling</h4>
-            <h4>₹{shippingCharges}</h4>
-          </div>
-          <div>
             <h4>total</h4>
-            <h4>₹{subtotal + shippingCharges}</h4>
+            <h4>₹{total}</h4>
           </div>
         </div>
         <div onClick={navigateToCheckout} className="cart-checkout">

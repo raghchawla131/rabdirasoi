@@ -4,7 +4,7 @@ const userRoutes = require("./routes/users");
 const clerkRoutes = require("./routes/clerk");
 const productsRoutes = require("./routes/products");
 const cartRoutes = require("./routes/cart");
-const customerDetails = require("./routes/customerDetails");
+const orderDetailsRoute = require("./routes/orderDetails");
 const razorpay = require("./routes/razorpay");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -32,7 +32,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/clerk", clerkRoutes);
 app.use("/api/products", productsRoutes);
 app.use("/api/cart", cartRoutes);
-app.use("/api/customerDetails", customerDetails);
+app.use("/api/orders", orderDetailsRoute);
 app.use("/api/payment", razorpay);
 
 app.get("/", (req, res) => {

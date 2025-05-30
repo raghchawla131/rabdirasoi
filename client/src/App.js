@@ -5,7 +5,6 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/Shop/Shop";
 import ItemDetails from "./components/ItemDetails/ItemDetails.jsx";
-import CustomerDetails from "./pages/CustomerDetails/CustomerDetails.jsx";
 import Checkout from "./pages/Checkout/Checkout.jsx";
 import Footer from "./components/layout/Footer/Footer.js";
 import NavbarWrapper from "./components/layout/Navbar/NavbarWrapper.jsx";
@@ -13,6 +12,7 @@ import "./App.css";
 import UserProtectedRoute from "./components/Auth/UserProtectedRoute.jsx";
 import AdminProtectedRoute from "./components/Auth/AdminProtectedRoute.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import OrderDetails from "./pages/CustomerDetails/OrderDetails.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -39,6 +39,14 @@ function App() {
             </UserProtectedRoute>
           }
         />
+        <Route
+        path="/order-details"
+        element={
+          <UserProtectedRoute>
+            <OrderDetails />
+          </UserProtectedRoute>
+        }
+      />
       </Route>
 
       <Route
@@ -55,14 +63,6 @@ function App() {
           <SignedOut>
             <SignUp routing="path" path="/sign-up" />
           </SignedOut>
-        }
-      />
-      <Route
-        path="/customer-details"
-        element={
-          <UserProtectedRoute>
-            <CustomerDetails />
-          </UserProtectedRoute>
         }
       />
       <Route
