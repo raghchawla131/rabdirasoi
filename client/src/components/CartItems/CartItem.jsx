@@ -8,7 +8,6 @@ export default function CartItem({ item, fetchCartItems }) {
   const [poundQuantity, setPoundQuantity] = useState(item.pound_quantity);
   const [itemsQuantity, setItemsQuantity] = useState(item.item_quantity);
 
-  // Define the options for the select dropdown
   const options = [
     { value: "1.00", label: "1 Pound" },
     { value: "1.50", label: "1.5 Pounds" },
@@ -21,56 +20,48 @@ export default function CartItem({ item, fetchCartItems }) {
     { value: "5.00", label: "5 Pounds" },
   ];
 
-  // Handle changes to the select dropdown
   const handlePoundChange = async (e) => {
     const newQuantity = parseFloat(e.target.value);
-  
+
     try {
       const status = await updateCartItemPoundQuantity(poundQuantity, String(newQuantity));
-      
       if (status === 200) {
-        // Only proceed if the status code is 200
         setPoundQuantity(newQuantity);
       } else {
-        // Optionally handle other statuses or errors
         console.log("Error: Unexpected status code", status);
       }
     } catch (error) {
-      // Optionally handle the error or display a message to the user
       console.log("Error updating pound quantity:", error.message);
     }
   };
 
-  // Handle incrementing the item quantity
   const handleIncrement = async () => {
     if (itemsQuantity < 3) {
       const newQuantity = itemsQuantity + 1;
       setItemsQuantity(newQuantity);
-      console.log(poundQuantity, newQuantity);
-      updateCartItemQuantity(poundQuantity, newQuantity);
+      await updateCartItemQuantity(poundQuantity, newQuantity);
     }
   };
 
-  // Handle decrementing the item quantity
   const handleDecrement = async () => {
     if (itemsQuantity > 1) {
       const newQuantity = itemsQuantity - 1;
       setItemsQuantity(newQuantity);
-      updateCartItemQuantity(poundQuantity, newQuantity);
+      await updateCartItemQuantity(poundQuantity, newQuantity);
     }
   };
 
-  // Update the cart item pound quantity
   const updateCartItemPoundQuantity = async (oldPoundQuantity, newPoundQuantity) => {
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/update-cart-item-pound-quantity`, {
+      const res = await axios.put(`http://localhost:5000/api/cart/update`, {
         user_id: currentUser.userId,
         product_id: item.product_id,
         old_pound_quantity: oldPoundQuantity,
         new_pound_quantity: newPoundQuantity,
+        item_quantity: itemsQuantity,
       });
-      if(res.status === 200) {
-        fetchCartItems(); // Fetch updated cart items
+      if (res.status === 200) {
+        fetchCartItems();
       }
       return res.status;
     } catch (error) {
@@ -78,30 +69,33 @@ export default function CartItem({ item, fetchCartItems }) {
     }
   };
 
-  // Update the cart item quantity
-  const updateCartItemQuantity = async (poundQuantity, itemsQuantity) => {
+  const updateCartItemQuantity = async (poundQuantity, itemQuantity) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/update-cart-item-quantity`, {
+      const res = await axios.put(`http://localhost:5000/api/cart/update`, {
         user_id: currentUser.userId,
         product_id: item.product_id,
-        pound_quantity: poundQuantity,
-        item_quantity: itemsQuantity,
+        old_pound_quantity: poundQuantity,
+        new_pound_quantity: poundQuantity,
+        item_quantity: itemQuantity,
       });
-      fetchCartItems(); // Fetch updated cart items
+      if (res.status === 200) {
+        fetchCartItems();
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Handle removing an item from the cart
   const handleRemoveCartItem = async (productId, pound_quantity) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/cart/remove-from-cart`, {
-        user_id: currentUser.userId,
-        product_id: productId,
-        pound_quantity: pound_quantity,
+      await axios.delete(`http://localhost:5000/api/cart/remove`, {
+        data: {
+          user_id: currentUser.userId,
+          product_id: productId,
+          pound_quantity: pound_quantity,
+        },
       });
-      fetchCartItems(); // Fetch updated cart items
+      fetchCartItems();
     } catch (error) {
       alert("Error removing item from cart");
       console.log(error);

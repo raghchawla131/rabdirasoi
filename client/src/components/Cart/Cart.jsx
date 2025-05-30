@@ -28,20 +28,21 @@ export default function Cart({ isCartVisible, onClose }) {
   }, [cartItems]);
 
   const fetchCartItems = useCallback(async () => {
-    if (currentUser) {
-      try {
-        const res = await axios.post(
-          `${process.env.REACT_APP_API_URL}/api/cart/fetch-cart-items`,
-          {
-            user_id: currentUser,
-          }
-        );
-        setCartItems(res.data);
-      } catch (error) {
-        console.log(error);
-      }
+  if (currentUser) {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/cart/get`,
+        {
+          params: { user_id: currentUser.userId }
+        }
+      );
+      setCartItems(res.data);
+    } catch (error) {
+      console.log(error);
     }
-  }, [currentUser]);
+  }
+}, [currentUser]);
+
 
   const navigateToCheckout = () => {
     onClose();
