@@ -1,8 +1,11 @@
-const express = require('express');
-const { order } = require('../controllers/razorpay');
+const express = require("express");
+const { createOrder, verifyPayment } = require("../controllers/razorpay");
 
 const router = express.Router();
 
-router.post('/order', order);
+require('dotenv').config();
+
+router.post("/create-order", createOrder);   // More descriptive name
+router.post("/verify", verifyPayment);       // For signature verification
 
 module.exports = router;

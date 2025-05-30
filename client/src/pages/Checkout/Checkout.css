@@ -93,6 +93,39 @@ hr {
   margin: 20px 0;
 }
 
+.edit-details-btn {
+  background-color: white;
+  color: rgb(255, 20, 147);
+  border: 2px solid rgb(255, 20, 147);
+  font-weight: 600;
+  padding: 0.75em 2em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-details-btn:hover {
+  background-color: rgb(255, 20, 147);
+  color: white;
+}
+
+.pay-now-btn {
+  background-color: rgb(255, 20, 147);
+  color: white;
+  font-weight: 700;
+  padding: 0.75em 2em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pay-now-btn:hover {
+  background-color: deeppink;
+  transform: scale(1.05);
+}
+
+
 .payment {
   margin-top: 17px;
 }

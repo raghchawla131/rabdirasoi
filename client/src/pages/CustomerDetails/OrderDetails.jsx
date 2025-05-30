@@ -1,13 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./OrderDetails.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { authContext } from "../../context/authContext";
 import XContainer from "../../components/Container/XContainer";
 import YContainer from "../../components/Container/YContainer";
 
 export default function OrderDetails() {
-  const { currentUser } = useContext(authContext);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
