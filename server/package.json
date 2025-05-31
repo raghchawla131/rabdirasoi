@@ -20,7 +20,8 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.10.2",
     "node-cron": "^3.0.3",
-    "razorpay": "^2.9.4"
+    "razorpay": "^2.9.4",
+    "svix": "^1.66.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
