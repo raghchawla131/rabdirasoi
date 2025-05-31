@@ -1,15 +1,16 @@
-const db = require('../db');
-exports.handleClerkWebhook = (req, res) => {
+const db = require("../db");
+
+exports.handleClerkWebhook = async (req, res) => {
   const event = req.body;
 
-  console.log('Clerk event received:', event.type);
+  console.log("Clerk event received:", event.type);
 
-  if (event.type === 'user.created' || event.type === 'user.updated') {
+  if (event.type === "user.created" || event.type === "user.updated") {
     const user = event.data;
 
-    const email = user.email_addresses[0]?.email_address || null;
+    const email = user.email_addresses?.[0]?.email_address || null;
     const createdAt = new Date(user.created_at);
-    const username = user.first_name || null;  // null if no first_name
+    const username = user.first_name || null;
 
     const query = `
       INSERT INTO users (user_id, username, email, created_at)
@@ -22,14 +23,14 @@ exports.handleClerkWebhook = (req, res) => {
 
     const values = [user.id, username, email, createdAt];
 
-    db.query(query, values, (err) => {
-      if (err) {
-        console.log('Database error:', err);
-        return res.status(500).send('Something went wrong');
-      }
-      res.status(200).send('User saved');
-    });
+    try {
+      await db.query(query, values);
+      res.status(200).send("User saved");
+    } catch (err) {
+      console.error("Database error:", err);
+      res.status(500).send("Something went wrong");
+    }
   } else {
-    res.status(200).send('Ignored');
+    res.status(200).send("Ignored");
   }
 };

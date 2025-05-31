@@ -1,19 +1,21 @@
-const db = require('../db'); 
+const db = require('../db'); // your db.js exports a promise-based pool
 
-exports.getUserRole = (req, res) => {
+exports.getUserRole = async (req, res) => {
   const { userId } = req.params;
 
-  const q = 'SELECT role FROM users WHERE user_id = ?';
-  db.query(q, [userId], (err, results) => {
-    if (err) {
-      console.error('DB Error:', err);
-      return res.status(500).json({ message: 'Server error' });
-    }
+  try {
+    const [results] = await db.query(
+      'SELECT role FROM users WHERE user_id = ?',
+      [userId]
+    );
 
     if (!results.length) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     res.json({ role: results[0].role });
-  });
-}
+  } catch (err) {
+    console.error('DB Error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

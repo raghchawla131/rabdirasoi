@@ -88,7 +88,14 @@ export default function MobileNavbar({
           />
           <SignedOut>
             <SignInButton mode="modal">
-              <Button variant="outlined" size="small">
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  backgroundColor: "black",
+                  color: "white",
+                }}
+              >
                 Sign In
               </Button>
             </SignInButton>

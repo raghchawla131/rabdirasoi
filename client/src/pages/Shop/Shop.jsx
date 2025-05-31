@@ -43,7 +43,7 @@ useEffect(() => {
   };
 
   fetchProducts();
-}, []);
+}, [setLoading]);
 
 
   const filterProductsByCategory = (category) =>
