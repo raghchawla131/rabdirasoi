@@ -38,6 +38,11 @@ export default function DesktopNavbar({ isCartVisible, openCart, closeCart }) {
               </Link>
             </li>
             <li>
+              <Link to="/gallery" onClick={scrollToTop}>
+                Gallery
+              </Link>
+            </li>
+            <li>
               <Link to="/Contact" onClick={scrollToTop}>
                 Contact us
               </Link>
@@ -52,8 +57,8 @@ export default function DesktopNavbar({ isCartVisible, openCart, closeCart }) {
             <SignedOut>
               <li>
                 <SignInButton mode="modal">
-      <button className="sign-in-btn">Sign In</button>
-    </SignInButton>
+                  <button className="sign-in-btn">Sign In</button>
+                </SignInButton>
               </li>
             </SignedOut>
 

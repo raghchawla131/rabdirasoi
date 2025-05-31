@@ -5,7 +5,7 @@ import HorizontalScrollerItems from './HorizontalScrollerItems';
 
 export default function HorizontalScroller({ data }) {
   const [products, setProducts] = useState([]);   
-  
+
   const fetchProducts = async (productIds) => {
   try {
     const res = await axios.get(

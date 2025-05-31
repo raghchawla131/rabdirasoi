@@ -13,6 +13,8 @@ import UserProtectedRoute from "./components/Auth/UserProtectedRoute.jsx";
 import AdminProtectedRoute from "./components/Auth/AdminProtectedRoute.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import OrderDetails from "./pages/CustomerDetails/OrderDetails.jsx";
+import Loader from "./components/Loader/Loader.jsx";
+import Gallery from "./pages/Gallery/Gallery.jsx";
 
 const Layout = () => (
   <div className="layout">
@@ -24,56 +26,60 @@ const Layout = () => (
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="products/:productId" element={<ItemDetails />} />
+    <>
+      <Loader />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="products/:productId" element={<ItemDetails />} />
+          <Route
+            path="checkout"
+            element={
+              <UserProtectedRoute>
+                <Checkout />
+              </UserProtectedRoute>
+            }
+          />
+          <Route
+            path="/order-details"
+            element={
+              <UserProtectedRoute>
+                <OrderDetails />
+              </UserProtectedRoute>
+            }
+          />
+        </Route>
+
         <Route
-          path="checkout"
+          path="/sign-in"
           element={
-            <UserProtectedRoute>
-              <Checkout />
-            </UserProtectedRoute>
+            <SignedOut>
+              <SignIn routing="path" path="/sign-in" />
+            </SignedOut>
           }
         />
         <Route
-        path="/order-details"
-        element={
-          <UserProtectedRoute>
-            <OrderDetails />
-          </UserProtectedRoute>
-        }
-      />
-      </Route>
-
-      <Route
-        path="/sign-in"
-        element={
-          <SignedOut>
-            <SignIn routing="path" path="/sign-in" />
-          </SignedOut>
-        }
-      />
-      <Route
-        path="/sign-up"
-        element={
-          <SignedOut>
-            <SignUp routing="path" path="/sign-up" />
-          </SignedOut>
-        }
-      />
-      <Route
-        path="/admin"
-        element={
-          <AdminProtectedRoute>
-            <Admin />
-          </AdminProtectedRoute>
-        }
-      />
-    </Routes>
+          path="/sign-up"
+          element={
+            <SignedOut>
+              <SignUp routing="path" path="/sign-up" />
+            </SignedOut>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminProtectedRoute>
+              <Admin />
+            </AdminProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

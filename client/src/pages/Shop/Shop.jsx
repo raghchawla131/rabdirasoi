@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Shop.css";
 import Product from "../../components/ShopProduct/Product";
+import { useLoading } from "../../context/loadingContext";
 
 const ITEMS_PER_LOAD = 5;
 
 export default function Shop() {
   const [products, setProducts] = useState([]);
+  const { loading, setLoading } = useLoading();
   // Track how many items to show per category
   const [itemsToShow, setItemsToShow] = useState({
     Cakes: ITEMS_PER_LOAD,
@@ -23,22 +25,26 @@ export default function Shop() {
     Cupcakes: false,
   });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+useEffect(() => {
+  window.scrollTo(0, 0);
 
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/api/products/get`
-        );
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/products/get`
+      );
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchProducts();
-  }, []);
+  fetchProducts();
+}, []);
+
 
   const filterProductsByCategory = (category) =>
     products.filter((product) => product.category === category);
@@ -106,6 +112,8 @@ export default function Shop() {
       </section>
     );
   };
+
+  if(loading) return null;
 
   return (
     <div id="shop">
