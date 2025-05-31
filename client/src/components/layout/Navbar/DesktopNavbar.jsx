@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import {
   SignedIn,
   SignedOut,
-  UserButton,
   SignInButton,
+  UserButton,
 } from "@clerk/react-router";
 import Cart from "../../Cart/Cart";
 import logo from "../../../assets/rab di rasoi logo.png";
@@ -51,7 +51,9 @@ export default function DesktopNavbar({ isCartVisible, openCart, closeCart }) {
             {/* Clerk Auth Check */}
             <SignedOut>
               <li>
-                <SignInButton />
+                <SignInButton mode="modal">
+      <button className="sign-in-btn">Sign In</button>
+    </SignInButton>
               </li>
             </SignedOut>
 
