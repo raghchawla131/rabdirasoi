@@ -1,7 +1,24 @@
 const db = require("../db");
+const crypto = require("crypto");
+
+const CLERK_SIGNING_SECRET = process.env.CLERK_SIGNING_SECRET;
 
 exports.handleClerkWebhook = async (req, res) => {
-  const event = req.body;
+  const signature = req.headers["clerk-signature"];
+  const rawBody = req.body; // This is a Buffer, not parsed JSON!
+
+  // Verify signature
+  const hmac = crypto.createHmac("sha256", CLERK_SIGNING_SECRET);
+  hmac.update(rawBody);
+  const computedSignature = hmac.digest("hex");
+
+  if (computedSignature !== signature) {
+    console.warn("Webhook signature verification failed.");
+    return res.status(401).send("Invalid signature");
+  }
+
+  // Now parse the JSON body manually since we got raw buffer
+  const event = JSON.parse(rawBody.toString());
 
   console.log("Clerk event received:", event.type);
 
