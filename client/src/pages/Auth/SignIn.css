@@ -1,0 +1,104 @@
+.signin-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.signin-left {
+  flex: 1;
+  position: relative;
+  display: block;
+}
+
+.signin-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signin-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #ffffff;
+}
+
+.form-box {
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-box h2 {
+  margin-bottom: 10px;
+}
+
+.sub-text {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.error-msg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.form-box input[type="email"],
+.form-box input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Updated button color to deeppink */
+.form-box button[type="submit"] {
+  background-color: deeppink; /* or #ff1493 */
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-box button[type="submit"]:hover {
+  background-color: #c71585; /* darker deeppink on hover */
+}
+
+.bottom-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Link color changed to deeppink */
+.bottom-text a {
+  color: deeppink;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.bottom-text a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .signin-container {
+    flex-direction: column;
+  }
+
+  .signin-left {
+    display: none;
+  }
+
+  .signin-right {
+    flex: none;
+    width: 100%;
+    padding: 20px;
+  }
+}

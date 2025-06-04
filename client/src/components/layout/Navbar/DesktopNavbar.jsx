@@ -1,10 +1,4 @@
-import { Link } from "react-router-dom";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import Cart from "../../Cart/Cart";
 import logo from "../../../assets/rab di rasoi logo.png";
 import CartOverlay from "../../Overlay/CartOverlay";
@@ -12,11 +6,18 @@ import { useLogoClick } from "../../../hooks/useLogoClick";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
 import "./DesktopNavbar.css";
 import { ShoppingCart } from "lucide-react";
+import { useContext } from "react";
+import { authContext } from "../../../context/authContext";
+import { Button } from "@mui/material";
 
 export default function DesktopNavbar({ isCartVisible, openCart, closeCart }) {
   const handleLogoClick = useLogoClick();
 
   const scrollToTop = useScrollToTop();
+
+  const navigate = useNavigate();
+
+  const { currentUser, signOut } = useContext(authContext);
 
   return (
     <>
@@ -53,20 +54,39 @@ export default function DesktopNavbar({ isCartVisible, openCart, closeCart }) {
               </Link>
             </li>
 
-            {/* Clerk Auth Check */}
-            <SignedOut>
-              <li>
-                <SignInButton mode="modal">
-                  <button className="sign-in-btn">Sign In</button>
-                </SignInButton>
-              </li>
-            </SignedOut>
-
-            <SignedIn>
-              <li>
-                <UserButton />
-              </li>
-            </SignedIn>
+                <li>
+      {!currentUser ? (
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => navigate('/signin')}
+          sx={{
+            backgroundColor: 'deeppink',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#c71585',
+            },
+          }}
+        >
+          Sign In
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => signOut()}
+          sx={{
+            backgroundColor: 'deeppink',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#c71585',
+            },
+          }}
+        >
+          Sign Out
+        </Button>
+      )}
+    </li>
 
             <li>
               <ShoppingCart onClick={openCart} />

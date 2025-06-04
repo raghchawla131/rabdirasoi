@@ -1,9 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-import "./ItemDetails.css";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import axios from "axios";
 import { authContext } from "../../context/authContext";
-import { RedirectToSignIn } from "@clerk/react-router";
+import {
+  Box,
+  Typography,
+  Button,
+  Select,
+  MenuItem,
+  IconButton,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import XContainer from "../Container/XContainer";
+import YContainer from "../Container/YContainer";
+
+const MAX_QUANTITY = 3;
 
 const ItemDetails = () => {
   const { currentUser } = useContext(authContext);
@@ -11,18 +25,17 @@ const ItemDetails = () => {
   const [product, setProduct] = useState(null);
   const [itemsQuantity, setItemsQuantity] = useState(1);
   const [poundQuantity, setPoundQuantity] = useState("1");
-
   const [redirectToSignIn, setRedirectToSignIn] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/api/products/get-product/${productId}`
+          `${process.env.REACT_APP_TEST_URL}/api/products/get-product/${productId}`
         );
         setProduct(res.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -46,16 +59,11 @@ const ItemDetails = () => {
   };
 
   const handleIncrement = () => {
-    if (itemsQuantity >= 3) {
-      return;
-    }
-    setItemsQuantity(itemsQuantity + 1);
+    if (itemsQuantity < MAX_QUANTITY) setItemsQuantity(itemsQuantity + 1);
   };
 
   const handleDecrement = () => {
-    if (itemsQuantity > 1) {
-      setItemsQuantity(itemsQuantity - 1);
-    }
+    if (itemsQuantity > 1) setItemsQuantity(itemsQuantity - 1);
   };
 
   const handleAddToCartBtnClick = async () => {
@@ -65,15 +73,12 @@ const ItemDetails = () => {
     }
 
     try {
-      await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/cart/add`,
-        {
-          user_id: currentUser.userId,
-          product_id: productId,
-          pound_quantity: poundQuantity,
-          item_quantity: itemsQuantity,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_TEST_URL}/api/cart/add`, {
+        user_id: currentUser.userId,
+        product_id: productId,
+        pound_quantity: poundQuantity,
+        item_quantity: itemsQuantity,
+      });
       alert("Item added to cart successfully");
     } catch (error) {
       if (error.response && error.response.status === 409) {
@@ -86,66 +91,130 @@ const ItemDetails = () => {
   };
 
   if (redirectToSignIn) {
-    return <RedirectToSignIn redirectUrl={`/products/${productId}`} />;
+    return <Navigate to={`/signin?redirect=/products/${productId}`} replace />;
   }
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <XContainer>
+        <YContainer>
+          <Typography variant="h6" align="center" mt={4}>
+            Loading...
+          </Typography>
+        </YContainer>
+      </XContainer>
+    );
   }
 
   const { name, image_url, description, price } = product;
-
-  const trimmedPrice = parseFloat(price).toString();
+  const trimmedPrice = parseFloat(price).toFixed(2);
 
   return (
-    <div className="item-details">
-      <div className="item-details__container">
-        <div className="item-details__image">
-          <img src={image_url} alt={name} />
-        </div>
-        <div className="item-details__content">
-          <h1 className="item-details__title">{name}</h1>
-          <p className="item-details__description">{description}</p>
-          <div>
-            <h4 className="item-details__size-label">Select size: </h4>
-            <div className="item-details__dropdown">
-              <select value={poundQuantity} onChange={handleSelectChange}>
-                {options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="item-details__actions">
-              <div className="item-details__quantity">
-                <button
+    <XContainer>
+      <YContainer>
+        <Box
+          sx={{
+            paddingY: 8,
+            display: "flex",
+            gap: { xs: 10 },
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            justifyContent: "center",
+            px: 2,
+          }}
+        >
+          {/* Image Section */}
+          {/* Image Section */}
+<Box
+  flex={0.8}
+  sx={{
+    maxHeight: { xs: 300, md: "70vh" },
+    p: { xs: 2, sm: 3, md: 0 }, // padding on small screens
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+  <Box
+    component="img"
+    src={image_url}
+    alt={name}
+    sx={{
+      width: { xs: 350, sm: 350, md: 400 },
+      height: { xs: 350, sm: 350, md: 400 },
+      borderRadius: 2,
+      objectFit: "cover",
+      boxShadow: 3, // optional: subtle shadow
+    }}
+  />
+</Box>
+
+
+          {/* Content Section */}
+          <Box
+            flex={1}
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+          >
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                {name}
+              </Typography>
+              <Typography variant="body1" mb={3}>
+                {description}
+              </Typography>
+
+              <FormControl fullWidth sx={{ mb: 3 }}>
+                <InputLabel id="size-select-label">Select size</InputLabel>
+                <Select
+                  labelId="size-select-label"
+                  value={poundQuantity}
+                  label="Select size"
+                  onChange={handleSelectChange}
+                >
+                  {options.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <Box display="flex" alignItems="center" gap={2}>
+                <Typography>Quantity:</Typography>
+                <IconButton
+                  aria-label="decrease quantity"
                   onClick={handleDecrement}
-                  className="item-details__quantity-btn"
+                  disabled={itemsQuantity <= 1}
                 >
-                  <ion-icon name="remove-outline"></ion-icon>
-                </button>
-                <div className="item-details__quantity-value">
-                  {itemsQuantity}
-                </div>
-                <button
+                  <RemoveIcon />
+                </IconButton>
+                <Typography>{itemsQuantity}</Typography>
+                <IconButton
+                  aria-label="increase quantity"
                   onClick={handleIncrement}
-                  className="item-details__quantity-btn"
+                  disabled={itemsQuantity >= MAX_QUANTITY}
                 >
-                  <ion-icon name="add-outline"></ion-icon>
-                </button>
-              </div>
-              <button
+                  <AddIcon />
+                </IconButton>
+              </Box>
+            </Box>
+
+            <Box mt={4}>
+              <Button
+                variant="contained"
+                size="large"
+                fullWidth
                 onClick={handleAddToCartBtnClick}
-                className="item-details__cart-btn"
               >
                 Add to Cart - &#8377;{trimmedPrice}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </YContainer>
+    </XContainer>
   );
 };
 

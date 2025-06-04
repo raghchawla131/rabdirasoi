@@ -9,7 +9,7 @@ export default function HorizontalScroller({ data }) {
   const fetchProducts = async (productIds) => {
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/api/products/get`,
+      `${process.env.REACT_APP_TEST_URL}/api/products/get`,
       {
         ids: productIds,
       }

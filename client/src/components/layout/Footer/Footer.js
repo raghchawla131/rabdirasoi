@@ -1,34 +1,121 @@
-import { Link } from "react-router-dom";
-import Socials from "../../socials";
-import "./Footer.css";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  Link,
+  Stack,
+  IconButton,
+} from "@mui/material";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 export default function Footer() {
   const scrollToTop = () => window.scrollTo(0, 0);
+  const accentColor = "#f48fb1"; // soft pink (not deeppink)
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-socials">
-          <h2 className="footer-title">Stay Connected</h2>
-          <div className="footer-icons">
-            <Socials icon={<ion-icon name="logo-instagram"></ion-icon>} />
-            <Socials icon={<ion-icon name="logo-whatsapp"></ion-icon>} />
-          </div>
-        </div>
-        <div className="footer-links">
-          <h2 className="footer-title">Quick Links</h2>
-          <ul className="footer-nav">
-            <li><Link to="/" onClick={scrollToTop}>Home</Link></li>
-            <li><Link to="/shop" onClick={scrollToTop}>Shop</Link></li>
-            <li><Link to="/gallery" onClick={scrollToTop}>Gallery</Link></li>
-            <li><Link to="/about" onClick={scrollToTop}>About</Link></li>
-            <li><Link to="/contact" onClick={scrollToTop}>Contact</Link></li>
-          </ul>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>© 2025 Rab Di Rasoi. All rights reserved.</p>
-      </div>
-    </footer>
+    <Box
+      component="footer"
+      sx={{
+        backgroundColor: "black",
+        mt: 8,
+        pt: 6,
+        pb: 3,
+        px: { xs: 2, sm: 6 },
+        color: "white",
+      }}
+    >
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        justifyContent="space-between"
+        spacing={4}
+        sx={{ borderBottom: "1px solid #333", pb: 4 }}
+      >
+        {/* Socials */}
+        <Box>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ color: accentColor, fontWeight: "bold" }}
+          >
+            Stay Connected
+          </Typography>
+          <Stack direction="row" spacing={2}>
+            <IconButton
+              component="a"
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: "white",
+                "&:hover": {
+                  color: accentColor,
+                },
+              }}
+            >
+              <InstagramIcon />
+            </IconButton>
+            <IconButton
+              component="a"
+              href="https://wa.me/91xxxxxxxxxx"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: "white",
+                "&:hover": {
+                  color: accentColor,
+                },
+              }}
+            >
+              <WhatsAppIcon />
+            </IconButton>
+          </Stack>
+        </Box>
+
+        {/* Links */}
+        <Box>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ color: accentColor, fontWeight: "bold" }}
+          >
+            Quick Links
+          </Typography>
+          <Stack spacing={1}>
+            {[
+              { label: "Home", to: "/" },
+              { label: "Shop", to: "/shop" },
+              { label: "Gallery", to: "/gallery" },
+              { label: "About", to: "/about" },
+              { label: "Contact", to: "/contact" },
+            ].map((link) => (
+              <Link
+                key={link.to}
+                component={RouterLink}
+                to={link.to}
+                onClick={scrollToTop}
+                underline="hover"
+                sx={{
+                  color: "white",
+                  fontSize: "0.95rem",
+                  "&:hover": {
+                    color: accentColor,
+                  },
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </Stack>
+        </Box>
+      </Stack>
+
+      {/* Footer bottom */}
+      <Box textAlign="center" mt={3}>
+        <Typography variant="body2" sx={{ color: "white" }}>
+          © 2025 <span style={{ color: accentColor }}>Rab Di Rasoi</span>. All rights reserved.
+        </Typography>
+      </Box>
+    </Box>
   );
 }

@@ -16,12 +16,8 @@ import Cart from "../../Cart/Cart";
 import CartOverlay from "../../Overlay/CartOverlay";
 import { useLogoClick } from "../../../hooks/useLogoClick";
 import { useScrollToTop } from "../../../hooks/useScrollToTop";
-import {
-  SignedIn,
-  SignedOut,
-  UserButton,
-  SignInButton,
-} from "@clerk/react-router";
+import { useContext } from "react";
+import { authContext } from "../../../context/authContext";
 
 export default function MobileNavbar({
   isMenuOpen,
@@ -32,6 +28,7 @@ export default function MobileNavbar({
 }) {
   const scrollToTop = useScrollToTop();
   const handleLogoClick = useLogoClick();
+  const { currentUser, signOut } = useContext(authContext);
 
   const navLinks = [
     { label: "Home", to: "/" },
@@ -86,23 +83,42 @@ export default function MobileNavbar({
             aria-label="Open Cart"
             style={{ cursor: "pointer" }}
           />
-          <SignedOut>
-            <SignInButton mode="modal">
-              <Button
-                variant="contained"
-                size="small"
-                sx={{
-                  backgroundColor: "black",
-                  color: "white",
-                }}
-              >
-                Sign In
-              </Button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          {!currentUser ? (
+  <Button
+    variant="contained"
+    size="small"
+    sx={{
+      backgroundColor: "deeppink",
+      color: "white",
+      '&:hover': {
+        backgroundColor: "#c71585", // slightly darker pink on hover
+      },
+    }}
+    component={Link}
+    to="/signin"
+  >
+    Sign In
+  </Button>
+) : (
+  <Button
+    variant="contained"
+    size="small"
+    onClick={() => {
+      signOut();
+      setIsMenuOpen(false);
+    }}
+    sx={{
+      backgroundColor: "deeppink",
+      color: "white",
+      '&:hover': {
+        backgroundColor: "#c71585",
+      },
+    }}
+  >
+    Sign Out
+  </Button>
+)}
+
         </Box>
       </Box>
 

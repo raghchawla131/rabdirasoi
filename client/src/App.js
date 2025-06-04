@@ -1,5 +1,4 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import { SignIn, SignUp, SignedOut } from "@clerk/react-router";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
@@ -15,6 +14,8 @@ import Admin from "./pages/Admin/Admin.jsx";
 import OrderDetails from "./pages/CustomerDetails/OrderDetails.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import Gallery from "./pages/Gallery/Gallery.jsx";
+import SignIn from "./pages/Auth/SignIn";
+import SignUp from "./pages/Auth/SignUp";
 
 const Layout = () => (
   <div className="layout">
@@ -54,22 +55,9 @@ function App() {
           />
         </Route>
 
-        <Route
-          path="/sign-in"
-          element={
-            <SignedOut>
-              <SignIn routing="path" path="/sign-in" />
-            </SignedOut>
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <SignedOut>
-              <SignUp routing="path" path="/sign-up" />
-            </SignedOut>
-          }
-        />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+
         <Route
           path="/admin"
           element={

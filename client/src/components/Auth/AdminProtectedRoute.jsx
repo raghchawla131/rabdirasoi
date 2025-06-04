@@ -1,47 +1,44 @@
-import { RedirectToSignIn, useUser } from '@clerk/react-router';
-import { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { authContext } from "../../context/authContext";
 
 const AdminProtectedRoute = ({ children }) => {
-  const { isSignedIn, user } = useUser();
+  const { currentUser } = useContext(authContext);
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
-  if (!user || !user.id) return;
-
-  setLoading(true); // set loading whenever user changes
-
-  fetch(`/api/users/${user.id}/role`)
-    .then(res => {
-      if (!res.ok) throw new Error("Role fetch failed");
-      return res.json();
-    })
-    .then(data => {
-      console.log("Fetched role:", data.role);
-      setRole(data.role);
+    if (!currentUser || !currentUser.id) {
       setLoading(false);
-    })
-    .catch((err) => {
-      console.error("Error fetching role:", err);
-      setRole('user'); // fallback if fetch fails
-      setLoading(false);
-    });
-}, [user]);
+      return;
+    }
 
+    setLoading(true);
 
-  console.log("Loading:", loading, "Role:", role);
+    fetch(`/api/users/${currentUser.id}/role`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Role fetch failed");
+        return res.json();
+      })
+      .then((data) => {
+        setRole(data.role);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setRole("user");
+        setLoading(false);
+      });
+  }, [currentUser]);
 
-
-  if (!isSignedIn) {
-    return <RedirectToSignIn redirectUrl={window.location.pathname} />;
+  if (!currentUser) {
+    return <Navigate to="/signin" replace />;
   }
 
   if (loading) {
-    return <div>Loading...</div>; // or spinner
+    return <div>Loading...</div>;
   }
 
-  if (role !== 'admin') {
+  if (role !== "admin") {
     return <Navigate to="/" replace />;
   }
 
