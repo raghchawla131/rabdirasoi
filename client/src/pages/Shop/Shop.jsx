@@ -32,7 +32,7 @@ useEffect(() => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_TEST_URL}/api/products/get`
+        `${process.env.REACT_APP_BASE_URL}/api/products/get`
       );
       setProducts(response.data);
     } catch (error) {

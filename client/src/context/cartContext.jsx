@@ -23,7 +23,7 @@ export const CartProvider = ({ children }) => {
   const fetchCartItems = useCallback(async () => {
     if (currentUser) {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_TEST_URL}/api/cart/get`, {
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cart/get`, {
           params: { user_id: currentUser.userId },
         });
         setCartItems(res.data);
